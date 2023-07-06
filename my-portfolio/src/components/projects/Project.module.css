@@ -1,0 +1,24 @@
+.prohome {
+  background-color: white;
+}
+
+.prohomeCards {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.prohomeCards > h3 {
+  text-align: center;
+  color: rgba(22, 20, 20, 0.904);
+  padding: 4vmax;
+}
+
+.prohomeCardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2vmax;
+  width: 80%;
+  margin: auto;
+}

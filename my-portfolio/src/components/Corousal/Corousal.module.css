@@ -1,0 +1,20 @@
+.gallery {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery__item {
+  scroll-snap-align: center;
+  min-width: 25%;
+  overflow: hidden;
+}
+
+.gallery__image {
+  width: 24rem;
+  height: 12rem;
+  border-radius: 1rem;
+  object-fit: cover;
+}
