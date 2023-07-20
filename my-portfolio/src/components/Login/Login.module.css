@@ -1,0 +1,127 @@
+body {
+  background-color: #fff;
+  font-family: "Rubik", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: #005aec;
+}
+
+.login_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffd9c0;
+}
+
+.ccontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 70vw;
+  height: 60vh;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left {
+  background-image: url("./images/authBg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 2;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.right {
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 2;
+}
+
+.right img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 4px 5px 8px rgba(0, 0, 0, 0.216);
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 45%;
+}
+
+.form_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  height: 100%;
+  width: 90%;
+  border-radius: 1rem;
+}
+
+.loginbtn {
+  width: 56%;
+  height: 2.5rem;
+  border-radius: 50rem;
+  border: none;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  outline: none;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #8c006d;
+  margin-top: 1rem;
+}
+
+.input {
+  border: 2px solid #e8e8e8;
+  padding: 15px;
+  border-radius: 50px;
+  background-color: #353535;
+  color: #e8e8e8;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+  width: 15rem;
+  height: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input:focus {
+  outline-color: white;
+  background-color: #353535;
+  color: #e8e8e8;
+  box-shadow: 5px 5px #888888;
+}

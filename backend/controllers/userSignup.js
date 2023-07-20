@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 const Signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, avatar } = req.body;
 
     const username = await User.findOne({ username: name });
     if (username) {
@@ -22,6 +22,7 @@ const Signup = async (req, res) => {
       username: name,
       email: email,
       password: hashedPassword,
+      avatar: avatar,
     });
 
     const savedUser = await newUser.save();

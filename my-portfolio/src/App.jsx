@@ -10,9 +10,12 @@ import Model from "./components/Model/Model";
 import Project from "./components/projects/Project";
 import Login from "./components/Login/Login";
 import Signup from "./components/SIgnup/Signup";
+import UserModel from "./components/usersModel/UserModel";
+import Comments from "./components/comments/Comment";
 
 function App() {
   const user = localStorage.getItem("token");
+  const admin = localStorage.getItem("admin");
   return (
     <Router>
       <Routes>
@@ -21,7 +24,14 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         {user && <Route path="/projects" element={<Project />} />}
         <Route path="/projects" element={<Navigate replace to="/login" />} />
-        <Route path="/projects/:id" element={<Model />} />
+        {admin && <Route path="/projects/:id" element={<Model />} />}
+        {user && !admin && (
+          <Route
+            path="/projects/:id"
+            element={<UserModel />}
+          />
+        )}
+        <Route path="/comments/:parentId" element={<Comments />} />
       </Routes>
     </Router>
   );

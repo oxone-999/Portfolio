@@ -5,9 +5,6 @@ import { isExpired, decodeToken } from "react-jwt";
 import { Button } from "@mui/material";
 
 function Header() {
-  const token = localStorage.getItem("token");
-  const admin = localStorage.getItem("admin");
-  const decodedToken = decodeToken(token);
   const [currUser, setUser] = useState({});
   const [disabled, setDisabled] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -26,6 +23,13 @@ function Header() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const admin = localStorage.getItem("admin");
+    const decodedToken = decodeToken(token);
+    // if (isExpired) {
+    //   localStorage.removeItem("token");
+    //   window.location = "/login";
+    // } else 
     if (token) {
       const user = decodedToken;
       setUser(user);
@@ -54,7 +58,7 @@ function Header() {
                 <div className={Styles.profile}>
                   <img src="/images/myself.jpg" alt="profile" />
                 </div>
-                <div>
+                <div className={Styles.username}>
                   <h2>
                     Welcome Back!! {currUser.username} , We have kept your
                     website safe and secure.
@@ -62,13 +66,24 @@ function Header() {
                 </div>
               </>
             ) : (
-              <h2>{currUser.username}</h2>
+              <>
+                <div className={Styles.profile}>
+                  <img src={currUser.avatar} alt="profile" />
+                </div>
+                <div className={Styles.username}>
+                  <h2>{currUser.username}</h2>
+                </div>
+              </>
             )}
           </div>
           <div className={Styles.buttons}>
             <div>
               {disabled === false && (
-                <button type="button" className={Styles.buttonAdd} onClick={handleAdd}>
+                <button
+                  type="button"
+                  className={Styles.buttonAdd}
+                  onClick={handleAdd}
+                >
                   <span className={Styles.button__text}>Add Item</span>
                   <span className={Styles.button__icon}>
                     <svg

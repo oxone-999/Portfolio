@@ -1,71 +1,23 @@
-import React, { useRef } from "react";
+import React from "react";
 import Styles from "./AddPopup.module.css";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from "prop-types";
 
 const AddPopup = ({ setIsFormOpen }) => {
-  const [selectedFile, setSelectedFile] = React.useState(null);
-  const [selectedFile2, setSelectedFile2] = React.useState(null);
   const [title, setTitle] = React.useState("Sample Title");
-  const [skills, setSkills] = React.useState("Sample Skills");
-  const [github, setGithub] = React.useState("Sample Github");
-  const [previewUrl, setPreviewUrl] = React.useState(null);
-  const [previewUrl2, setPreviewUrl2] = React.useState(null);
+  const [description, setDescription] = React.useState("Sample Description");
   const [disabled, setDisabled] = React.useState(false);
-  const fileInputRef = useRef(null);
 
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFile = async (e) => {
-    const file = e.target.files[0];
-
-    convertToBase64(file)
-      .then((base64Data) => {
-        setSelectedFile(base64Data);
-        console.log(base64Data);
-      })
-      .catch((error) => {
-        window.alert("Something went wrong!");
-        console.error(error);
-      });
-
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
-  };
-
-  const handlePreview = async (e) => {
-    const file = e.target.files[0];
-
-    convertToBase64(file)
-      .then((base64Data) => {
-        setSelectedFile2(base64Data);
-        console.log(base64Data);
-      })
-      .catch((error) => {
-        window.alert("Something went wrong!");
-        console.error(error);
-      });
-
-    const url = URL.createObjectURL(file);
-    setPreviewUrl2(url);
+  const handleDescription = (e) => {
+    console.log(e.target.value);
+    setDescription(e.target.value);
   };
 
   const handleTitle = (e) => {
     console.log(e.target.value);
     setTitle(e.target.value);
-  };
-
-  const handleSkill = (e) => {
-    console.log(e.target.value);
-    setSkills(e.target.value);
-  };
-
-  const handleLink = (e) => {
-    console.log(e.target.value);
-    setGithub(e.target.value);
   };
 
   const closePopup = () => {
@@ -84,10 +36,7 @@ const AddPopup = ({ setIsFormOpen }) => {
         },
         body: JSON.stringify({
           title,
-          skills,
-          github,
-          selectedFile,
-          selectedFile2,
+          description,
         }),
       });
       const data = await response.data;
@@ -104,6 +53,7 @@ const AddPopup = ({ setIsFormOpen }) => {
       } else {
         toast.error("Failed to add project"); // Error notification
       }
+      setDisabled(false);
     } catch (error) {
       toast.error("Failed to add project"); // Error notification
       console.log(error);
@@ -115,85 +65,28 @@ const AddPopup = ({ setIsFormOpen }) => {
       <div className={Styles.popup_overlay}>
         <div className={Styles.popup_form}>
           <div className={Styles.popup_container}>
-            <div className={Styles.Preview}>
-              <div className={Styles.preview_secondary}>
-                <div className={Styles.preview_main}>Preview</div>
-                <div className={Styles.previewImage_container}>
-                  <div className={Styles.preview_image}>
-                    <img src={previewUrl2} alt="Preview" />
-                  </div>
-                  <input
-                    ref={fileInputRef}
-                    name="myFile"
-                    type="file"
-                    id="file-upload"
-                    accept=".jpeg, .png, .jpg"
-                    onChange={handlePreview}
-                    style={{ display: "none" }}
-                  />
-                  <button
-                    className={Styles.edit_btn}
-                    onClick={handleButtonClick}
-                  >
-                    <img src="/images/edit.png" alt="Upload" />
-                  </button>
-                </div>
-                <div className={Styles.preview_content}>
-                  <div className={Styles.preview_title}>{title}</div>
-                  <div className={Styles.preview_title}>{skills}</div>
-                  <div className={Styles.preview_title}>{github}</div>
-                </div>
-              </div>
-            </div>
             <div className={Styles.form}>
               <div className={Styles.form_secondary}>
+                <div className={Styles.form_main}>Add Project</div>
                 <div className={Styles.mbsc_form_group}>
                   <div className={Styles.mbsc_form_group_title}>
                     Project Title
                   </div>
                   <input
                     name="title"
-                    placeholder="Enter title"
+                    placeholder="Enter your project title"
                     onChange={handleTitle}
                   />
                 </div>
                 <div className={Styles.mbsc_form_group}>
-                  <div className={Styles.mbsc_form_group - title}>Skills</div>
-                  <input
-                    name="title"
-                    placeholder="Enter title"
-                    onChange={handleSkill}
-                  />
-                </div>
-                <div className={Styles.mbsc_form_group}>
                   <div className={Styles.mbsc_form_group_title}>
-                    Github Repo Link
+                    Description
                   </div>
                   <input
-                    name="title"
-                    placeholder="Enter title"
-                    onChange={handleLink}
+                    name="description"
+                    placeholder="Enter your project description"
+                    onChange={handleDescription}
                   />
-                </div>
-                <div className={Styles.mbsc_form_group}>
-                  <div className={Styles.mbsc_form_group_title}>
-                    Upload Images
-                  </div>
-                  <input
-                    name="myFile"
-                    type="file"
-                    label="Image"
-                    id="file-upload"
-                    accept=".jpeg, .png, .jpg"
-                    onChange={handleFile}
-                  />
-                </div>
-                <div className={Styles.preview_container}>
-                  {selectedFile && (
-                    <div className={Styles.images}>
-                      <img src={previewUrl} alt="Preview" />
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -217,17 +110,8 @@ const AddPopup = ({ setIsFormOpen }) => {
   );
 };
 
-export default AddPopup;
+AddPopup.propTypes = {
+  setIsFormOpen: PropTypes.func,
+};
 
-function convertToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
-}
+export default AddPopup;

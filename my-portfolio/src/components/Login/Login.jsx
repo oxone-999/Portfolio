@@ -1,34 +1,21 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Link from "@mui/material/Link";
-
-const defaultTheme = createTheme();
+import { useState } from "react";
+import Styles from "./Login.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function Login() {
-  const [error, setError] = React.useState(null);
-  const [disabled, setDisabled] = React.useState(false);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         body: JSON.stringify({
-          email: data.get("email"),
-          password: data.get("password"),
+          email: email,
+          password: password,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -40,96 +27,67 @@ export default function Login() {
         localStorage.setItem("token", json.data);
         alert("Login Successful");
 
-        if(json.admin){
+        if (json.admin) {
           localStorage.setItem("admin", json.admin);
           console.log(json.admin);
         }
         window.location = "/projects";
       } else {
-        setError(json.error);
-        alert("Login Failed");
+        toast.error(json.error);
       }
       console.log("Success:", JSON.stringify(json));
     } catch (error) {
       console.error("Error:", error);
-      if(error){
-        setError(error.message);
+      if (error) {
+        toast.error(error);
       }
     }
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
+    <div className={Styles.login_container}>
+      <ToastContainer />
+      <div className={Styles.ccontainer}>
+        <div className={Styles.left}>LOGIN</div>
+        <div className={Styles.right}>
+          <div className={Styles.form_container}>
+            <LazyLoadImage
+              src="./images/authBg.jpg"
+              width={600}
+              height={400}
+              alt="Image Alt"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            {error && <p>{error}</p>}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  Don't have an account? Sign Up
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+            <form onSubmit={handleLogin}>
+              <div className={Styles.container}>
+                <input
+                  type="email"
+                  name="text"
+                  className={Styles.input}
+                  placeholder="username or email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className={Styles.container}>
+                <input
+                  type="password"
+                  name="text"
+                  className={Styles.input}
+                  placeholder="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <button className={Styles.loginbtn} type="submit">
+                Login
+              </button>
+            </form>
+            <p>
+              Don't have an account? <a href="/signup">Register here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

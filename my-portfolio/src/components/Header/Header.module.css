@@ -1,5 +1,8 @@
 .header{
-    width: 100%;
+    width: 97.8%;
+    border: 0.1px solid rgba(0, 0, 0, 0.329);
+    border-radius: 2rem;
+    margin: 1rem;
 }
 
 .profile img {
@@ -120,4 +123,10 @@ a {
 
 .buttons > div{
     margin: 0 1rem;
+}
+
+.username{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #313131;
 }

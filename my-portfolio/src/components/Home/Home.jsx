@@ -14,6 +14,27 @@ const Home = () => {
       <div className={Styles.bg}>
         <img src="/images/bg_home.png" alt="arrow" />
       </div>
+      {/* 
+      <div className={Styles.skillsLeft}>
+        <div className={Styles.skill1}>
+          <img src="/images/skill1.png" alt="skill1" /> 
+
+          <img src="/images/skill2.png" alt="skill2" />
+          <img src="/images/skill3.png" alt="skill3" />
+          <img src="/images/skill4.png" alt="skill4" />
+          <img src="/images/skill5.png" alt="skill5" />
+          <img src="/images/skill6.png" alt="skill6" />
+          <img src="/images/skill1.png" alt="skill1" />
+          <img src="/images/skill2.png" alt="skill2" />
+          <img src="/images/skill3.png" alt="skill3" />
+          <img src="/images/skill4.png" alt="skill4" />
+          <img src="/images/skill5.png" alt="skill5" />
+          <img src="/images/skill6.png" alt="skill6" />
+      </div>
+      <div className={Styles.skillsRight}>
+
+      </div> 
+      */}
       <div className={Styles.profile1}>
         <div className={Styles.profileImage}>
           <img src="/images/myself.jpg" alt="profile" />
