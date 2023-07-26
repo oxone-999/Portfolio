@@ -3,16 +3,17 @@ const Comments = require("../models/comments");
 const createReply = async (req, res) => {
   try {
     const { parent_id } = req.params;
-    const { authorName, author_id, comment } = req.body;
-    console.log(parent_id);
+    const { authorName,avatar, author_id, comment } = req.body;
+    console.log("req.body",req.body);
 
     const reply = new Comments({
       parent_id: parent_id,
       author: authorName,
+      avatar:avatar,
       author_id: author_id,
       comment: comment,
     });
-    console.log(reply);
+    console.log("reply",reply);
 
     /// Find the parent comment
     let parentComment = null;
@@ -36,7 +37,7 @@ const createReply = async (req, res) => {
     }
 
     const savedDocument = await reply.save();
-    res.send(savedDocument);
+    res.status(201).json(savedDocument);
   } catch (error) {
     res.json({ error: error.message });
   }

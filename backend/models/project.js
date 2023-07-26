@@ -10,6 +10,16 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbnail: {
+    public_id: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  },
   images: [
     {
       public_id: {
@@ -20,6 +30,16 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+    },
+  ],
+  likes: [
+    {
+      type: String,
+    },
+  ],
+  shares: [
+    {
+      type: String,
     },
   ],
 });

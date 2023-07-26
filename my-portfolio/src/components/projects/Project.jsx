@@ -12,7 +12,7 @@ function Project() {
       try {
         const response = await axios.get(`http://localhost:5000/api/images`);
         setFetchProject(response.data.projects);
-        console.log(response.data.projects);
+        console.log("project", response.data.projects);
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +21,7 @@ function Project() {
   }, []);
 
   return (
-    <>
+    <div className={Styles.Project}>
       <Header />
       <div className={Styles.prohome}>
         <div className={Styles.prohomeCards}>
@@ -33,14 +33,15 @@ function Project() {
                 <Cards
                   key={item._id}
                   title={item.title}
-                  description={item.description}
+                  description={item.projectDescription}
                   id={item._id}
+                  thumbnail={item.thumbnail}
                 />
               ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

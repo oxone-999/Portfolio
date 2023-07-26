@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BsGithub,
   BsBehance,
@@ -7,134 +6,81 @@ import {
   BsLinkedin,
 } from "react-icons/bs";
 import Styles from "./Home.module.css";
+import Lottie from "lottie-react";
+import animationData from "../../lottie/earth.json";
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 const Home = () => {
   return (
     <div className={Styles.home}>
-      <div className={Styles.bg}>
-        <img src="/images/bg_home.png" alt="arrow" />
-      </div>
-      {/* 
-      <div className={Styles.skillsLeft}>
-        <div className={Styles.skill1}>
-          <img src="/images/skill1.png" alt="skill1" /> 
-
-          <img src="/images/skill2.png" alt="skill2" />
-          <img src="/images/skill3.png" alt="skill3" />
-          <img src="/images/skill4.png" alt="skill4" />
-          <img src="/images/skill5.png" alt="skill5" />
-          <img src="/images/skill6.png" alt="skill6" />
-          <img src="/images/skill1.png" alt="skill1" />
-          <img src="/images/skill2.png" alt="skill2" />
-          <img src="/images/skill3.png" alt="skill3" />
-          <img src="/images/skill4.png" alt="skill4" />
-          <img src="/images/skill5.png" alt="skill5" />
-          <img src="/images/skill6.png" alt="skill6" />
-      </div>
-      <div className={Styles.skillsRight}>
-
-      </div> 
-      */}
-      <div className={Styles.profile1}>
-        <div className={Styles.profileImage}>
-          <img src="/images/myself.jpg" alt="profile" />
+      <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+        <ProfileCard />
+        <div className={Styles.lottie}>
+          <Lottie loop={true} animationData={animationData} />
         </div>
-        <div>
-          <h1>Anuj Verma</h1>
-          <h3>3D Artist</h3>
-          <a href="https://rebrand.ly/5ofsfo1" target="blank">
-            <button className={Styles.btn}>Resume</button>
-          </a>
+        <div className={Styles.projectView}>
           <button
-            className={Styles.btn}
             onClick={() => {
-              window.location.href = "mailto:anujverma11062002@gmail.com";
+              window.location.href = "/projects";
             }}
           >
-            Hire Me
+            Projects
           </button>
         </div>
       </div>
-      <div className={Styles.emptyDiv}>
-        <div className={Styles.about_me}>
-          <p>
-            Hey, my name is Anuj Verma. I am a student at <b>IIT Kharagpur</b>{" "}
-            and currently working as the Design Head at{" "}
-            <b>Computer Graphics Society, IIT Kharagpur</b>. I have intermediate
-            skills in 3D Art and Competitive Programming.
-          </p>
-        </div>
-      </div>
-      <div className={Styles.projectView}>
-        <button
-          className={Styles.cta}
-          onClick={() => {
-            window.location.href = "/projects";
-          }}
-        >
-          <span className={Styles.hover_underline_animation}> Projects </span>
-          <svg
-            viewBox="0 0 46 16"
-            height="10"
-            width="30"
-            xmlns="http://www.w3.org/2000/svg"
-            id="arrow-horizontal"
-          >
-            <path
-              transform="translate(30)"
-              d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-              data-name="Path 10"
-              id="Path_10"
-            ></path>
-          </svg>
-        </button>
-      </div>
       <div className={Styles.contact}>
         <div className={Styles.social_media}>
-          <div>
-            <a
-              href="https://github.com/oxone-999"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <div
+            className={Styles.hoverHandle}
+            onClick={() => {
+              window.location.href = "https://github.com/oxone-999";
+            }}
+          >
+            <div className={Styles.socialIcons}>
               <BsGithub size="2rem" />
-            </a>
+            </div>
           </div>
-          <div>
-            <a
-              href="https://instagram.com/oxone_999"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <div
+            className={Styles.hoverHandle}
+            onClick={() => {
+              window.location.href = "https://instagram.com/oxone_999";
+            }}
+          >
+            <div className={Styles.socialIcons}>
               <BsInstagram size="2rem" />
-            </a>
+            </div>
           </div>
-          <div>
-            <a
-              href="https://www.facebook.com/profile.php?id=100039765825690"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <div
+            className={Styles.hoverHandle}
+            onClick={() => {
+              window.location.href =
+                "https://www.facebook.com/profile.php?id=100039765825690";
+            }}
+          >
+            <div className={Styles.socialIcons}>
               <BsFacebook size="2rem" />
-            </a>
+            </div>
           </div>
-          <div>
-            <a
-              href="https://www.linkedin.com/in/anuj-verma-b430431b1/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <div
+            className={Styles.hoverHandle}
+            onClick={() => {
+              window.location.href =
+                "https://www.linkedin.com/in/anuj-verma-b430431b1/";
+            }}
+          >
+            <div className={Styles.socialIcons}>
               <BsLinkedin size="2rem" />
-            </a>
+            </div>
           </div>
-          <div>
-            <a
-              href="https://www.behance.net/anujverma9/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <div
+            className={Styles.hoverHandle}
+            onClick={() => {
+              window.location.href = "https://www.behance.net/anujverma9/";
+            }}
+          >
+            <div className={Styles.socialIcons}>
               <BsBehance size="2rem" />
-            </a>
+            </div>
           </div>
         </div>
       </div>

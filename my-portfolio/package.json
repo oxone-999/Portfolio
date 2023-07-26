@@ -22,13 +22,16 @@
     "@mui/lab": "^5.0.0-alpha.84",
     "@mui/material": "^5.13.6",
     "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
     "jquery": "^3.6.0",
+    "lottie-react": "^2.4.0",
     "overlay-navbar": "^1.2.3",
     "prop-types": "^15.8.1",
     "random-avatar-generator": "^2.0.0",
     "react": "^18.2.0",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-description-box": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -41,7 +44,10 @@
     "react-router-dom": "^6.14.1",
     "react-toastify": "^9.1.3",
     "reactjs-popup": "^2.0.5",
-    "shallow-equal": "^3.1.0"
+    "shallow-equal": "^3.1.0",
+    "socket.io-client": "^4.7.1",
+    "styled-components": "^6.0.5",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

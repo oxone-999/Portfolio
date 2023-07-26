@@ -1,88 +1,268 @@
 /* @import '~@fortawesome/fontawesome-free/css/all.css'; */
 
-.card{
-    width: 20rem;
-    height: 15rem;
-    transition: all 0.5s;
-    margin: 2vmax;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+.card {
+  width: 20rem;
+  height: 20rem;
+  transition: all 0.5s;
+  margin: 2vmax;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.card > a{
-    text-decoration: none;
-    color: rgba(0,0,0,0.712);
-    width: inherit;
-}   
-
-.cardImage{
-    width: 100%;
+.card > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.712);
+  width: inherit;
 }
 
-.cardImage img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.cardImage {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  position: relative;
 }
 
-.card:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.329);
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
 }
 
 @media screen and (max-width: 600px) {
-    .card{
-        width: 200px;
-    }
+  .card {
+    width: 200px;
+  }
 }
 
-.head{
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.head {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6rem;
+  height: 5rem;
+  width: 100%;
+  background-color: #f5f5f5;
+  transition: all 0.5s ease-in-out;
 }
 
-.title{
-    margin-left: 1rem;
-    font-size: 1.2rem;
-    text-align: center;
-    color: rgba(22, 20, 20, 0.904);
-    height: 2rem;
-    padding: 0.7rem;
+.cardImage:hover .head {
+  transition: all 0.5s ease-in-out;
+  margin-top: 2rem;
+  height: 5rem;
 }
 
-.reaction_icon{
-    margin-left: 0.5rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5rem;    
+.cardImage:hover .title{
+  transition: all 0.5s ease-in-out;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.reaction_button{
-    margin-right: 1rem;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: rgba(22, 20, 20, 0.904);
+  height: 2rem;
+  padding: 0.3rem;
+  transition: all 0.5s ease-in-out;
 }
 
-.fa_heart{
-    color: red;
+.reaction_button {
+  margin-right: 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 7rem;
+  padding: 0.3rem;
+  border-radius: 5rem;
 }
 
-.fa_comment{
-    color: #656565;
+.reaction_icon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.fa_share{
-    color: #1a73e8;
+.editBtn {
+  width: 100%;
+  height: 2rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #62a6ff;
+  color: #f5f5f5;
+  transition: all 0.5s ease-in-out;
 }
+
+.editBtn:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: #1a73e8;
+}
+
+.likeButton {
+  background: rgba(255, 192, 200, 0);
+  border-radius: 50%;
+  height: 20px;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 100ms ease;
+  padding: 0.2rem;
+}
+
+.likeIcon {
+  cursor: pointer;
+}
+
+.likeIcon img {
+  width: 20px;
+  height: 20px;
+  padding-top: 0.1rem;
+  padding-right: 0.1rem;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.likeCount {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #358dff;
+  font-weight: 900;
+}
+
+.shareButton {
+  background: rgba(255, 192, 200, 0);
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 100ms ease;
+  padding: 0.2rem;
+}
+
+.shareIcon {
+  cursor: pointer;
+}
+
+.shareIcon img {
+  width: 20px;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.shareModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent gray background */
+  z-index: 9999; /* Adjust the z-index value as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.url {
+  border-radius: 0.8rem;
+  width: 50vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.copy {
+  display: flex;
+  flex-direction: row;
+  color: #212121;
+  background-color: #c4c4c4;
+}
+
+.url h4 {
+  margin-left: 1rem;
+}
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Semi-transparent background for the blur effect */
+  z-index: 999; /* Make sure the modal appears on top of other content */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.thumbnail {
+  width: inherit;
+  height: inherit;
+  margin: auto;
+  margin-top: 0rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.cardImage {
+  overflow: hidden; /* Add this line to clip content that goes outside the div */
+}
+
+.cardImage:hover .thumbnail {
+  margin: auto;
+  margin-top: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+}
+

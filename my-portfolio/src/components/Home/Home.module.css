@@ -1,99 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
-}
-
-.bg img {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  z-index: -1;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .home {
   font-size: large;
   font-weight: 700;
   color: white;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: 1;
-}
-
-.emptyDiv {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.profile1 {
-  width: 100%;
-  height: 100vh;
-  padding-top: 6rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1vmax;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin: 0;
-}
-
-.profileImage img {
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  margin-right: 1vmax;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.329);
-}
-
-/* Resume and hire button css */
-
-.btn {
-  margin-top: 1rem;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid white;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-weight: bold;
-  background: transparent;
-  position: relative;
-  transition: all 1s;
+  z-index: -1;
+  background-color: #212121;
   overflow: hidden;
 }
-
-.btn:hover {
-  color: white;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 0%;
-  top: 0;
-  left: -40px;
-  transform: skewX(45deg);
-  background-color: white;
-  z-index: -1;
-  transition: all 1s;
-}
-
-.btn:hover::before {
-  width: 180%;
-}
-
-/* project view css */
 
 .projectView {
   width: 100%;
@@ -102,123 +29,74 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
   margin-bottom: 1vmax;
-  background-color: rgba(0, 0, 0, 0.6);
   margin: 0;
 }
 
-.cta {
-  border: none;
-  background: none;
-}
-
-.cta span {
-  padding-bottom: 7px;
-  letter-spacing: 4px;
-  font-size: 20px;
-  padding-right: 15px;
-  text-transform: uppercase;
-}
-
-.cta svg {
-  fill: white;
-  transform: translateX(-8px);
-  transition: all 0.3s ease;
-}
-
-.cta:hover svg {
-  transform: translateX(0);
-}
-
-.cta:active svg {
-  transform: scale(0.9);
-}
-
-.hover_underline_animation {
-  position: relative;
-  color: white;
-  padding-bottom: 20px;
-}
-
-.hover_underline_animation:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-}
-
-.cta:hover .hover_underline_animation:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-.emptyDiv{
+.contact {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.about_me {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  margin-right: 20px;
-}
-
-.about_me p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.contact{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
+  margin-bottom: 6rem;
 }
 
 .social_media {
-  width: 50%;
+  width: 17.9rem;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  border-radius: 5rem;
+  padding: 0.4rem;
+}
+
+.socialIcons {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  padding: 0.5rem;
+  border-radius: 10rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.hoverHandle:hover .socialIcons {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-2rem);
+}
+
+/* Styles for each link inside .social_media container on hover */
+.hoverHandle:nth-child(1) div {
+  background-color: #bd2c00; /* GitHub - Red */
+}
+
+.hoverHandle:nth-child(2) div{
+  background-color: #8a3ab9; /* Instagram - Purple */
+}
+
+.hoverHandle:nth-child(3) div{
+  background-color: #3b5998; /* Facebook - Blue */
+}
+
+.hoverHandle:nth-child(4) div{
+  background-color: #0077b5; /* LinkedIn - Dark Blue */
+}
+
+.hoverHandle:nth-child(5) div{
+  background-color: #053eff; /* Behance - Light Blue */
+}
+
+.lottie {
+  display: flex;
   justify-content: center;
-}
-
-.social_media div {
-  margin-bottom: 10px;
-  margin-right: 20px;
-}
-
-.social_media div a {
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.social_media > div:nth-child(0) > a:hover{
-  color: #bd2c00;
-}
-.social_media > div > a:nth-child(1):hover{
-  color: #8a3ab9;
-}
-.social_media > div > a:nth-child(2):hover{
-  color: #3b5998;
-}
-.social_media > div > a:nth-child(3):hover{
-  color: #0077b5;
-}
-.social_media > div > a:nth-child(4):hover{
-  color: #053eff;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
 }

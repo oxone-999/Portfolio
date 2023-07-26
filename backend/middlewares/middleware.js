@@ -8,6 +8,7 @@ const app = express();
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 
+
 // CORS Middleware
 app.use(cors());
 

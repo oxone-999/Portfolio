@@ -1,11 +1,11 @@
-.prohome {
+.Project {
   background-color: #212121;
 }
 
 .prohomeCards {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  height: 100vh;
 }
 
 .prohomeCards > h3 {

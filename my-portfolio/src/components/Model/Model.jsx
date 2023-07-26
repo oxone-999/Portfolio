@@ -31,7 +31,8 @@ const Model = () => {
   }, [id]);
 
   const handlePreviewClick = () => {
-    window.open(`/projects/${id}`, "_blank");
+    console.log("Preview clicked");
+    window.location.href = `/users/projects/${id}`;
   };
 
   const handleImageDelete = async (e) => {
@@ -210,7 +211,7 @@ const Model = () => {
                 <div className={Styles.btns}>
                   <button
                     className={Styles.previewBtn}
-                    onClick={() => handlePreviewClick}
+                    onClick={handlePreviewClick}
                   >
                     Preview
                   </button>

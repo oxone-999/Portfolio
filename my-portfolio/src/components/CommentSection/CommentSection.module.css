@@ -1,0 +1,142 @@
+.commentSection {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 0.1rem;
+}
+
+.threadBlock {
+  width: 4px;
+  margin-left: 1.3rem;
+  background-color: #007cee;
+  z-index: 999;
+  border-radius: 8rem;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-top: 0.4rem;
+}
+
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.btncontent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btncontent button {
+  display: flex;
+  height: 1.5rem;
+  align-items: center;
+  margin-left: 0.3rem;
+  background-color: #62b3ff;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btncontent input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 0.6rem;
+  border: none;
+  outline: none;
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.content p {
+  font-size: 0.8rem;
+}
+
+.commentText {
+  display: flex;
+  align-items: center;
+  margin-right: 0.4rem;
+}
+
+.Input {
+  display: flex;
+  flex-direction: row;
+  height: 2rem;
+}
+
+.Input input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+
+.Input button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  background-color: #007cee;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.created {
+  display: flex;
+  align-items: center;
+  font-size: 0.6rem;
+  margin-left: 5px;
+  margin-bottom: 3px;
+}
+
+.author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.author h5 {
+  margin-bottom: 0.1rem;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 2rem;
+  margin-right: 0.3rem;
+}
+
+.replyBtn{
+    color:#0065c4;
+}
+
+.replyBtn:hover{
+    cursor:pointer;
+    text-decoration:underline;
+}

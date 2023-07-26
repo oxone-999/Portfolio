@@ -20,7 +20,17 @@ const userSchema = new mongoose.Schema({
   },
   avatar:{
     type: String,
-  }
+  },
+  likes: [
+    {
+      type: String,
+    },
+  ],
+  shares: [
+    {
+      type: String,
+    },
+  ],
 });
 
 userSchema.methods.generateAuthToken = async function () {

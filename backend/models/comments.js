@@ -10,6 +10,10 @@ const commentsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatar:{
+    type: String,
+    required: true,
+  },
   author_id: {
     type: String,
     required: true,
@@ -31,6 +35,10 @@ const commentsSchema = new mongoose.Schema({
       },
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 // Create the User model
