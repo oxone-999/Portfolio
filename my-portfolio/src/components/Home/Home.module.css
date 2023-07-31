@@ -68,7 +68,7 @@ body {
 
 .hoverHandle:hover .socialIcons {
   transition: all 0.3s ease-in-out;
-  transform: translateY(-2rem);
+  transform: translateY(-1rem);
 }
 
 /* Styles for each link inside .social_media container on hover */

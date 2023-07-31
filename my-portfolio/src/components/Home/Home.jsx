@@ -23,7 +23,7 @@ const Home = () => {
           <div
             className={Styles.hoverHandle}
             onClick={() => {
-              window.location.href = "https://github.com/oxone-999";
+              window.open("https://github.com/oxone-999", "_blank");
             }}
           >
             <div className={Styles.socialIcons}>
@@ -33,7 +33,7 @@ const Home = () => {
           <div
             className={Styles.hoverHandle}
             onClick={() => {
-              window.location.href = "https://instagram.com/oxone_999";
+              window.open("https://instagram.com/oxone_999", "_blank");
             }}
           >
             <div className={Styles.socialIcons}>
@@ -43,8 +43,10 @@ const Home = () => {
           <div
             className={Styles.hoverHandle}
             onClick={() => {
-              window.location.href =
-                "https://www.facebook.com/profile.php?id=100039765825690";
+              window.open(
+                "https://www.facebook.com/profile.php?id=100039765825690",
+                "_blank"
+              );
             }}
           >
             <div className={Styles.socialIcons}>
@@ -54,8 +56,10 @@ const Home = () => {
           <div
             className={Styles.hoverHandle}
             onClick={() => {
-              window.location.href =
-                "https://www.linkedin.com/in/anuj-verma-b430431b1/";
+              window.open(
+                "https://www.linkedin.com/in/anuj-verma-b430431b1/",
+                "_blank"
+              );
             }}
           >
             <div className={Styles.socialIcons}>
@@ -65,7 +69,7 @@ const Home = () => {
           <div
             className={Styles.hoverHandle}
             onClick={() => {
-              window.location.href = "https://www.behance.net/anujverma9/";
+              window.open("https://www.behance.net/anujverma9/", "_blank");
             }}
           >
             <div className={Styles.socialIcons}>
