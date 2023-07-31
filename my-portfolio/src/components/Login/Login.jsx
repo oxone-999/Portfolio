@@ -12,17 +12,18 @@ export default function Login() {
     try {
       const response = await fetch(
         "https://portfolio-3l4k.onrender.com/api/auth/login",
-        // "http://localhost:5000/api/auth/login", 
+        // "http://localhost:5000/api/auth/login",
         {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+          method: "POST",
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const json = await response.json();
 
       if (json.status === "ok") {
@@ -53,7 +54,7 @@ export default function Login() {
         <div className={Styles.left}>LOGIN</div>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <img src="/images/authBg.jpg" alt="login" />
+            <img src="images/authBg.jpg" alt="login" />
             <form onSubmit={handleLogin}>
               <div className={Styles.container}>
                 <input
