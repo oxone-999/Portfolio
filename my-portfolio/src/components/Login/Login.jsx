@@ -53,7 +53,7 @@ export default function Login() {
         <div className={Styles.left}>LOGIN</div>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <img src="images/authBg.jpg" alt="login" />
+            <img src="/images/authBg.jpg" alt="login" />
             <form onSubmit={handleLogin}>
               <div className={Styles.container}>
                 <input

@@ -16,19 +16,20 @@ export default function Signup() {
     try {
       const response = await fetch(
         "https://portfolio-3l4k.onrender.com/api/auth/signup",
-        // "http://localhost:5000/api/auth/signup", 
+        // "http://localhost:5000/api/auth/signup",
         {
-        method: "POST",
-        body: JSON.stringify({
-          name: fullName,
-          email: email,
-          password: password,
-          avatar: generator.generateRandomAvatar(),
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+          method: "POST",
+          body: JSON.stringify({
+            name: fullName,
+            email: email,
+            password: password,
+            avatar: generator.generateRandomAvatar(),
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const json = await response.json();
 
       if (json.status === "ok") {
@@ -52,7 +53,7 @@ export default function Signup() {
       <div className={Styles.ccontainer}>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <img src="images/authBg.jpg" alt="register" />
+            <img src="/images/authBg.jpg" alt="register" />
             <form onSubmit={handleSubmit}>
               <div className={Styles.container}>
                 <input
