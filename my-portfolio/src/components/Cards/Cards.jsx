@@ -179,13 +179,14 @@ function Cards(props) {
             </div>
           )}
         </div>
-        <div className={Styles.cardImage} onClick={() => handleClick(props.id)}>
+        <div className={Styles.cardImage}>
           <div
             className={Styles.thumbnail}
             style={{
               backgroundImage: `url(${props.thumbnail.url})`,
               backgroundSize: "cover",
             }}
+            onClick={() => handleClick(props.id)}
           ></div>
           <div className={Styles.head}>
             <div className={Styles.title}>
