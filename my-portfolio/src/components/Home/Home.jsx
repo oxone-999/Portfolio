@@ -6,26 +6,16 @@ import {
   BsLinkedin,
 } from "react-icons/bs";
 import Styles from "./Home.module.css";
-import Lottie from "lottie-react";
-import animationData from "../../lottie/earth.json";
 import ProfileCard from "../ProfileCard/ProfileCard";
+import ProjectView from "../ProjectView/ProjectView";
 
 const Home = () => {
   return (
     <div className={Styles.home}>
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         <ProfileCard />
-        <div className={Styles.lottie}>
-          <Lottie loop={true} animationData={animationData} />
-        </div>
         <div className={Styles.projectView}>
-          <button
-            onClick={() => {
-              window.location.href = "/projects";
-            }}
-          >
-            Projects
-          </button>
+          <ProjectView />
         </div>
       </div>
       <div className={Styles.contact}>

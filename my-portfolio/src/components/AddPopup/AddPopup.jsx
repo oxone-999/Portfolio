@@ -29,16 +29,20 @@ const AddPopup = ({ setIsFormOpen }) => {
     setDisabled(true);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          description,
-        }),
-      });
+      const response = await fetch(
+        `https://portfolio-3l4k.onrender.com/api/add`,
+        // `http://localhost:5000/api/add`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            description,
+          }),
+        }
+      );
       const data = await response.data;
       console.log(data);
 

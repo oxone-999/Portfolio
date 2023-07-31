@@ -14,7 +14,10 @@ export default function Signup() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
+      const response = await fetch(
+        "https://portfolio-3l4k.onrender.com/api/auth/signup",
+        // "http://localhost:5000/api/auth/signup", 
+        {
         method: "POST",
         body: JSON.stringify({
           name: fullName,
@@ -49,7 +52,7 @@ export default function Signup() {
       <div className={Styles.ccontainer}>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <img src="./images/authBg.jpg" alt="register" />
+            <img src="images/authBg.jpg" alt="register" />
             <form onSubmit={handleSubmit}>
               <div className={Styles.container}>
                 <input

@@ -41,13 +41,14 @@ function Cards(props) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/projects/thumbnail/${editProjectId}`,
+        `https://portfolio-3l4k.onrender.com/api/projects/thumbnail/${editProjectId}`,
+        // `http://localhost:5000/api/projects/thumbnail/${editProjectId}`,
         {
           thumbnail: thumbnail,
         }
       );
       toast.success("Thumbnail Updated Successfully");
-      // console.log(response.data);
+      console.log(response.data);
       setEditModal(false);
       window.location.reload();
     } catch (error) {
@@ -59,7 +60,8 @@ function Cards(props) {
     const likes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/projects/likes/${projectId}`
+          `https://portfolio-3l4k.onrender.com/api/projects/likes/${projectId}`,
+          // `http://localhost:5000/api/projects/likes/${projectId}`
         );
         setLikes(response.data.likes.length);
         setLikesArray(response.data.likes);
@@ -82,7 +84,8 @@ function Cards(props) {
     const shares = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/projects/shares/${projectId}`
+          `https://portfolio-3l4k.onrender.com/api/projects/shares/${projectId}`
+          // `http://localhost:5000/api/projects/shares/${projectId}`
         );
         setShares(response.data.shares.length);
         // console.log("shares", response.data.shares);
@@ -117,7 +120,8 @@ function Cards(props) {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/projects/${projectId}`,
+        `https://portfolio-3l4k.onrender.com/api/projects/${projectId}`,
+        // `http://localhost:5000/api/projects/${projectId}`,
         {
           authorId: authorId,
           type: type,

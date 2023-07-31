@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "./ImageForm.module.css";
 import propType from "prop-types";
 

@@ -10,7 +10,10 @@ function Project() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/images`);
+        const response = await axios.get(
+          `https://portfolio-3l4k.onrender.com/api/images`
+          // `http://localhost:5000/api/images`
+        );
         setFetchProject(response.data.projects);
         console.log("project", response.data.projects);
       } catch (error) {

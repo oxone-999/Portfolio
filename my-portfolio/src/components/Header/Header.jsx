@@ -52,7 +52,10 @@ function Header() {
   useEffect(() => {
     const users = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/users/`);
+        const response = await axios.get(
+          `https://portfolio-3l4k.onrender.com/api/users/`
+          // `http://localhost:5000/api/users/`
+        );
         setUsers(response.data.users);
         // console.log(response.data.users);
       } catch (error) {

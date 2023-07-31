@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Styles from "./Login.module.css";
 import { ToastContainer, toast } from "react-toastify";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
@@ -11,7 +10,10 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(
+        "https://portfolio-3l4k.onrender.com/api/auth/login",
+        // "http://localhost:5000/api/auth/login", 
+        {
         method: "POST",
         body: JSON.stringify({
           email: email,
@@ -51,12 +53,7 @@ export default function Login() {
         <div className={Styles.left}>LOGIN</div>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <LazyLoadImage
-              src="./images/authBg.jpg"
-              width={600}
-              height={400}
-              alt="Image Alt"
-            />
+            <img src="images/authBg.jpg" alt="login" />
             <form onSubmit={handleLogin}>
               <div className={Styles.container}>
                 <input

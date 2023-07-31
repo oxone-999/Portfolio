@@ -20,7 +20,8 @@ const UserModel = () => {
     const fetchProject = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/images/${id}`
+          `https://portfolio-3l4k.onrender.com/api/images/${id}`
+          // `http://localhost:5000/api/images/${id}`
         );
         setProject(response.data.project);
         if (anchor === "comment") {

@@ -53,7 +53,8 @@ function CommentSection({ parent_id, parent_Name }) {
     const replies = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/replies/${parentId}`
+          `https://portfolio-3l4k.onrender.com/api/replies/${parentId}`
+          // `http://localhost:5000/api/replies/${parentId}`
         );
         setReplies(response.data.replies);
         // console.log(response);
@@ -81,7 +82,8 @@ function CommentSection({ parent_id, parent_Name }) {
     const avatar = user.avatar;
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/replies/${replyParentId}`,
+        `https://portfolio-3l4k.onrender.com/api/replies/${replyParentId}`,
+        // `http://localhost:5000/api/replies/${replyParentId}`,
         {
           authorName,
           avatar,
@@ -95,7 +97,8 @@ function CommentSection({ parent_id, parent_Name }) {
         const replies = async () => {
           try {
             const response = await axios.get(
-              `http://localhost:5000/api/replies/${parentId}`
+              `https://portfolio-3l4k.onrender.com/api/replies/${parentId}`,
+              // `http://localhost:5000/api/replies/${parentId}`
             );
             setReplies(response.data.replies);
             console.log("replies", response.data.replies);
