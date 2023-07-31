@@ -14,7 +14,6 @@ import UserModel from "./components/usersModel/UserModel";
 import CommentSection from "./components/CommentSection/CommentSection";
 
 function App() {
-  const user = localStorage.getItem("token");
   const admin = localStorage.getItem("admin");
   return (
     <Router>
@@ -22,12 +21,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {user && <Route path="/projects" element={<Project />} />}
-        <Route path="/projects" element={<Navigate replace to="/login" />} />
+        <Route path="/projects" element={<Project />} />
         {admin && <Route path="/projects/:id" element={<Model />} />}
-        {(user || admin) && (
-          <Route path="/users/projects/:id" element={<UserModel />} />
-        )}
+        <Route path="/users/projects/:id" element={<UserModel />} />
         <Route
           path="/comments/"
           element={<CommentSection parent_id="0" parent_Name="0" />}

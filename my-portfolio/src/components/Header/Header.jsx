@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
 import Styles from "./Header.module.css";
 import AddPopup from "../AddPopup/AddPopup";
-import { isExpired, decodeToken } from "react-jwt";
+import { decodeToken } from "react-jwt";
 import axios from "axios";
 
-function Header() {
+const Header = () => {
   const [currUser, setUser] = useState({});
   const [disabled, setDisabled] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [users, setUsers] = useState([]);
+  const token = localStorage.getItem("token");
+  const admin = localStorage.getItem("admin");
 
   const handleAdd = (e) => {
     e.preventDefault();
     setIsFormOpen(true);
     document.body.classList.add("popup-open");
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    window.location = "/login";
   };
 
   const handleLogout = (e) => {
@@ -24,22 +31,14 @@ function Header() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const admin = localStorage.getItem("admin");
-    const decodedToken = decodeToken(token);
-    // if (isExpired) {
-    //   localStorage.removeItem("token");
-    //   window.location = "/login";
-    // } else
+    console.log("currUser", currUser);
     if (token) {
+      const decodedToken = decodeToken(token);
       const user = decodedToken;
       setUser(user);
       if (!user) {
         localStorage.removeItem("token");
-        window.location = "/login";
       }
-    } else {
-      window.location = "/projects";
     }
 
     if (admin === "true") {
@@ -47,7 +46,7 @@ function Header() {
     } else {
       setDisabled(true);
     }
-  }, []);
+  }, [token, admin, currUser]);
 
   useEffect(() => {
     const users = async () => {
@@ -57,7 +56,6 @@ function Header() {
           // `http://localhost:5000/api/users/`
         );
         setUsers(response.data.users);
-        // console.log(response.data.users);
       } catch (error) {
         console.log(error);
       }
@@ -73,16 +71,28 @@ function Header() {
             {disabled === false ? (
               <>
                 <div className={Styles.profile}>
-                  <img src="/images/myself.jpg" alt="profile" />
+                  {admin ? (
+                    <img src="/images/myself.jpg" alt="profile" />
+                  ) : (
+                    <img src="/images/user.png" alt="user" />
+                  )}
                 </div>
               </>
             ) : (
               <>
                 <div className={Styles.profile}>
-                  <img src={currUser.avatar} alt="profile" />
+                  {Object.keys(currUser).length === 0 ? (
+                    <img src="/images/user.png" alt="profile" />
+                  ) : (
+                    <img src={currUser.avatar} alt="profile" />
+                  )}
                 </div>
                 <div className={Styles.username}>
-                  <h2>{currUser.username}</h2>
+                  {Object.keys(currUser).length === 0 ? (
+                    <h2>user</h2>
+                  ) : (
+                    <h2>{currUser.username}</h2>
+                  )}
                 </div>
               </>
             )}
@@ -106,7 +116,11 @@ function Header() {
               )}
             </div>
             <div className={Styles.logout}>
-              <button onClick={handleLogout}>Logout</button>
+              {token !== null ? (
+                <button onClick={handleLogout}>Logout</button>
+              ) : (
+                <button onClick={handleLogin}>Login</button>
+              )}
             </div>
           </div>
           {isFormOpen && <AddPopup setIsFormOpen={setIsFormOpen} />}
@@ -114,6 +128,6 @@ function Header() {
       </div>
     </>
   );
-}
+};
 
 export default Header;

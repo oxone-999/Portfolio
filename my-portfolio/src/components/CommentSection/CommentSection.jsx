@@ -4,8 +4,10 @@ import propTypes from "prop-types";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { decodeToken } from "react-jwt";
+import { ToastContainer, toast } from "react-toastify";
 
 const CommentSection = ({ parent_id, parent_Name }) => {
+  const token = localStorage.getItem("token");
   const parentId = parent_id;
   const [replies, setReplies] = React.useState([]);
   const [replyParentId, setReplyParentId] = React.useState("0");
@@ -33,21 +35,16 @@ const CommentSection = ({ parent_id, parent_Name }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const decodedToken = decodeToken(token);
-
     if (token) {
+      const decodedToken = decodeToken(token);
       const user = decodedToken;
       // console.log(user);
       setUser(user);
       if (!user) {
         localStorage.removeItem("token");
-        window.location = "/login";
       }
-    } else {
-      window.location = "/";
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const replies = async () => {
@@ -70,6 +67,10 @@ const CommentSection = ({ parent_id, parent_Name }) => {
   };
 
   const handleReplyBox = (id, author) => {
+    if (!token) {
+      toast.error("Login to comment");
+      return;
+    }
     setShowReplyBox(true);
     setReplyParentId(id);
     setReplyParentName(author);
@@ -97,7 +98,7 @@ const CommentSection = ({ parent_id, parent_Name }) => {
         const replies = async () => {
           try {
             const response = await axios.get(
-              `https://portfolio-3l4k.onrender.com/api/replies/${parentId}`,
+              `https://portfolio-3l4k.onrender.com/api/replies/${parentId}`
               // `http://localhost:5000/api/replies/${parentId}`
             );
             setReplies(response.data.replies);
@@ -117,6 +118,7 @@ const CommentSection = ({ parent_id, parent_Name }) => {
 
   return (
     <>
+      <ToastContainer />
       <div className={Styles.commentSection}>
         {parent_Name !== "0" && <div className={Styles.threadBlock}></div>}
         <div>
@@ -207,7 +209,7 @@ const CommentSection = ({ parent_id, parent_Name }) => {
       </div>
     </>
   );
-}
+};
 
 CommentSection.propTypes = {
   parent_id: propTypes.string.isRequired,

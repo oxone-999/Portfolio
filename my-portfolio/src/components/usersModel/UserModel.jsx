@@ -5,6 +5,7 @@ import axios from "axios";
 import CommentSection from "../CommentSection/CommentSection";
 import { decodeToken } from "react-jwt";
 import Slider from "../Slider/Slider";
+import { ToastContainer, toast } from "react-toastify";
 
 const UserModel = () => {
   const { id } = useParams();
@@ -65,6 +66,7 @@ const UserModel = () => {
 
   return (
     <div className={Styles.model}>
+    <ToastContainer />
       <div className={Styles.modelHeader}>
         <div className={Styles.modelTitle}>
           <h3>{project.title}</h3>
@@ -86,6 +88,10 @@ const UserModel = () => {
         <button
           className={Styles.startThread}
           onClick={() => {
+            if(!token){
+              toast.error("Login to comment");
+              return;
+            }
             setBox(true);
           }}
         >

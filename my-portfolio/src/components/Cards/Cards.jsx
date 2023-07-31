@@ -12,8 +12,6 @@ function Cards(props) {
   const projectId = props.id;
   const token = localStorage.getItem("token");
   const admin = localStorage.getItem("admin");
-  const decodedToken = decodeToken(token);
-  const authorId = decodedToken._id;
   const [likes, setLikes] = React.useState(0);
   const [shares, setShares] = React.useState(0);
   const [likesArray, setLikesArray] = React.useState([]);
@@ -60,7 +58,7 @@ function Cards(props) {
     const likes = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/projects/likes/${projectId}`,
+          `https://portfolio-3l4k.onrender.com/api/projects/likes/${projectId}`
           // `http://localhost:5000/api/projects/likes/${projectId}`
         );
         setLikes(response.data.likes.length);
@@ -74,11 +72,14 @@ function Cards(props) {
   }, []);
 
   useEffect(() => {
+    if (token === null) return;
+    const decodedToken = decodeToken(token);
+    const authorId = decodedToken._id;
     //find if in likes array this user exist or not
     if (likesArray.includes(authorId)) {
       setIsLiked(true);
     }
-  }, [likesArray, authorId]);
+  }, [likesArray, token]);
 
   useEffect(() => {
     const shares = async () => {
@@ -112,6 +113,13 @@ function Cards(props) {
 
   const handleLikesAndShares = async (type) => {
     // console.log("Likes");
+    if (token === null) {
+      toast.error("Please Login to Like or Share");
+      return;
+    }
+
+    const decodedToken = decodeToken(token);
+    const authorId = decodedToken._id;
 
     if (type === "share") {
       setShowModal(true);
@@ -204,7 +212,7 @@ function Cards(props) {
                 <div className={Styles.likeButton}>
                   <div className={Styles.likeCount}>{likes}</div>
                   <div className={Styles.likeIcon}>
-                    <img src="./images/like.png" alt="like" />
+                    <img src="/images/like.png" alt="like" />
                   </div>
                 </div>
               </div>
