@@ -5,7 +5,7 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { decodeToken } from "react-jwt";
 
-function CommentSection({ parent_id, parent_Name }) {
+const CommentSection = ({ parent_id, parent_Name }) => {
   const parentId = parent_id;
   const [replies, setReplies] = React.useState([]);
   const [replyParentId, setReplyParentId] = React.useState("0");
