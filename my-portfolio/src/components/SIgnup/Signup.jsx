@@ -53,7 +53,7 @@ export default function Signup() {
       <div className={Styles.ccontainer}>
         <div className={Styles.right}>
           <div className={Styles.form_container}>
-            <img src="/images/authBg.jpg" alt="register" />
+            <img src="images/authBg.jpg" alt="register" />
             <form onSubmit={handleSubmit}>
               <div className={Styles.container}>
                 <input

@@ -30,7 +30,7 @@ body {
 }
 
 .left {
-  background-image: url("./images/authBg.jpg");
+  background-image: url("images/authBg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
