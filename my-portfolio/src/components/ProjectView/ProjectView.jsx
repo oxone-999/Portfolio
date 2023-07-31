@@ -1,4 +1,4 @@
-import "./ProjectView.css";
+import "./projectView.css";
 
 function ProjectView() {
   return (
