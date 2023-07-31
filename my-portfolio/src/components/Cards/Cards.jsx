@@ -112,7 +112,7 @@ function Cards(props) {
 
     if (type === "share") {
       setShowModal(true);
-      setShareUrl(`http://localhost:5173/users/projects/${projectId}`);
+      setShareUrl(`http://anujverma.live/users/projects/${projectId}`);
     }
 
     try {
