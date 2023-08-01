@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Styles from "./Signup.module.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { AvatarGenerator } from "random-avatar-generator";
 import Lottie from "lottie-react";
 import Loading from "../../lottie/loading.json";
+
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Signup() {
   const generator = new AvatarGenerator();
@@ -20,8 +22,7 @@ export default function Signup() {
 
     try {
       const response = await fetch(
-        "https://portfolio-3l4k.onrender.com/api/auth/signup",
-        // "http://localhost:5000/api/auth/signup",
+        `${apiUrl}/auth/signup`,
         {
           method: "POST",
           body: JSON.stringify({

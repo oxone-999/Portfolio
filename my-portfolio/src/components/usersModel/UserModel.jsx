@@ -7,6 +7,8 @@ import { decodeToken } from "react-jwt";
 import Slider from "../Slider/Slider";
 import { ToastContainer, toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const UserModel = () => {
   const { id } = useParams();
   const [project, setProject] = React.useState({});
@@ -21,8 +23,7 @@ const UserModel = () => {
     const fetchProject = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/images/${id}`
-          // `http://localhost:5000/api/images/${id}`
+          `${apiUrl}/images/${id}`
         );
         setProject(response.data.project);
         if (anchor === "comment") {
@@ -49,7 +50,7 @@ const UserModel = () => {
     const avatar = user.avatar;
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/replies/${id}`,
+        `${apiUrl}/replies/${id}`,
         {
           authorName,
           avatar,

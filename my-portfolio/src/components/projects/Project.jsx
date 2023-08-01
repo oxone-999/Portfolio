@@ -6,6 +6,8 @@ import axios from "axios";
 import Lottie from "lottie-react";
 import Loading from "../../lottie/loading.json";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Project() {
   const [fetchProject, setFetchProject] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -14,8 +16,7 @@ function Project() {
     const fetchImages = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/images`
-          // `http://localhost:5000/api/images`
+          `${apiUrl}/images`
         );
         setFetchProject(response.data.projects);
         setLoading(false);

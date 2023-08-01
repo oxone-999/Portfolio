@@ -6,6 +6,8 @@ import { formatDistanceToNow } from "date-fns";
 import { decodeToken } from "react-jwt";
 import { ToastContainer, toast } from "react-toastify";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const CommentSection = ({ parent_id, parent_Name }) => {
   const token = localStorage.getItem("token");
   const parentId = parent_id;
@@ -49,10 +51,7 @@ const CommentSection = ({ parent_id, parent_Name }) => {
   useEffect(() => {
     const replies = async () => {
       try {
-        const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/replies/${parentId}`
-          // `http://localhost:5000/api/replies/${parentId}`
-        );
+        const response = await axios.get(`${apiUrl}/replies/${parentId}`);
         setReplies(response.data.replies);
         // console.log(response);
       } catch (error) {

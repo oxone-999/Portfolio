@@ -4,6 +4,8 @@ import AddPopup from "../AddPopup/AddPopup";
 import { decodeToken } from "react-jwt";
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Header = () => {
   const [currUser, setUser] = useState({});
   const [disabled, setDisabled] = useState(false);
@@ -51,8 +53,7 @@ const Header = () => {
     const users = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/users/`
-          // `http://localhost:5000/api/users/`
+          `${apiUrl}/users/`
         );
         setUsers(response.data.users);
       } catch (error) {

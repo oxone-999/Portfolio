@@ -8,7 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { decodeToken } from "react-jwt";
 import CopyLink from "../CopyLink/CopyLink";
 
-function Cards(props) {
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const Cards = (props) => {
   const projectId = props.id;
   const token = localStorage.getItem("token");
   const admin = localStorage.getItem("admin");
@@ -39,8 +41,7 @@ function Cards(props) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://portfolio-3l4k.onrender.com/api/projects/thumbnail/${editProjectId}`,
-        // `http://localhost:5000/api/projects/thumbnail/${editProjectId}`,
+        `${apiUrl}/projects/thumbnail/${editProjectId}`,
         {
           thumbnail: thumbnail,
         }
@@ -58,8 +59,7 @@ function Cards(props) {
     const likes = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/projects/likes/${projectId}`
-          // `http://localhost:5000/api/projects/likes/${projectId}`
+          `${apiUrl}/projects/likes/${projectId}`
         );
         setLikes(response.data.likes.length);
         setLikesArray(response.data.likes);
@@ -85,8 +85,7 @@ function Cards(props) {
     const shares = async () => {
       try {
         const response = await axios.get(
-          `https://portfolio-3l4k.onrender.com/api/projects/shares/${projectId}`
-          // `http://localhost:5000/api/projects/shares/${projectId}`
+          `${apiUrl}/projects/shares/${projectId}`
         );
         setShares(response.data.shares.length);
         // console.log("shares", response.data.shares);
@@ -128,8 +127,7 @@ function Cards(props) {
 
     try {
       const response = await axios.put(
-        `https://portfolio-3l4k.onrender.com/api/projects/${projectId}`,
-        // `http://localhost:5000/api/projects/${projectId}`,
+        `${apiUrl}/projects/${projectId}`,
         {
           authorId: authorId,
           type: type,
@@ -224,7 +222,7 @@ function Cards(props) {
               >
                 <div className={Styles.shareButton}>
                   <div className={Styles.shareIcon}>
-                    <img src="./images/string.png" alt="comment" />
+                    <img src="/images/string.png" alt="comment" />
                   </div>
                 </div>
               </div>
@@ -234,7 +232,7 @@ function Cards(props) {
               >
                 <div className={Styles.shareButton}>
                   <div className={Styles.shareIcon}>
-                    <img src="./images/copy.png" alt="share" />
+                    <img src="/images/copy.png" alt="share" />
                   </div>
                 </div>
               </div>

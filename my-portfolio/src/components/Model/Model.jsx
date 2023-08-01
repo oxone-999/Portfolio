@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageForm from "../imageForm/imageForm";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Model = () => {
   const { id } = useParams();
   const [project, setProject] = React.useState({});
@@ -20,7 +22,7 @@ const Model = () => {
     const fetchProject = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/images/${id}`
+          `${apiUrl}/images/${id}`
         );
         setProject(response.data.project);
       } catch (error) {
@@ -47,7 +49,7 @@ const Model = () => {
     e.preventDefault();
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/projects/${id}/images/${imageId}`
+        `${apiUrl}/projects/${id}/images/${imageId}`
       );
       setProject(response.data.project);
       toast.success("Project deleted successfully", {
@@ -130,7 +132,7 @@ const Model = () => {
       // Make the API call to update the project in the backend with updatedData
       if (Object.keys(updatedData).length > 0) {
         const response = await axios.put(
-          `http://localhost:5000/api/images/${id}`,
+          `${apiUrl}/images/${id}`,
           updatedData
         );
         setProject(response.data.updatedProject);
