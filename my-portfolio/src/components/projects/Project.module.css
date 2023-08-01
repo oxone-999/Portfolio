@@ -3,6 +3,7 @@
 }
 
 .prohomeCards {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -21,4 +22,5 @@
   padding: 2vmax;
   width: 80%;
   margin: auto;
+  margin-top: 1.2rem;
 }

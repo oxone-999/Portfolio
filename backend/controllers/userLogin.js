@@ -4,10 +4,15 @@ const bcrypt = require("bcrypt");
 const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
 
     const user = await User.findOne({ email: email });
     if (!user) {
-        return res.status(400).json({ error: "User does not exist" });
+        const checkUsername = await User.findOne({ username: email });
+        console.log(checkUsername);
+        if(!checkUsername){
+            return res.status(400).json({ error: "User does not exist" });
+        }
     }
 
     const validPassword = await bcrypt.compare(password, user.password);

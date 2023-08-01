@@ -170,7 +170,7 @@ function Cards(props) {
               Edit
             </button>
           )}
-          {editModal && (
+          {editModal && editProjectId === projectId && (
             <div className={Styles.modalContainer}>
               <div className={Styles.modalContent}>
                 <form onSubmit={handleThumbnail}>
