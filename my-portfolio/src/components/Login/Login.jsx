@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Lottie from "lottie-react";
 import Loading from "../../lottie/loading.json";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -14,20 +16,16 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "https://portfolio-3l4k.onrender.com/api/auth/login",
-        // "http://localhost:5000/api/auth/login",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${apiUrl}/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const json = await response.json();
 
       if (json.status === "ok") {
