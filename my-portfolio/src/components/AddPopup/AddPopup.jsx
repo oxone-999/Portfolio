@@ -30,8 +30,8 @@ const AddPopup = ({ setIsFormOpen }) => {
 
     try {
       const response = await fetch(
-        `https://portfolio-3l4k.onrender.com/api/add`,
-        // `http://localhost:5000/api/add`,
+        // `https://portfolio-3l4k.onrender.com/api/add`,
+        `http://localhost:5000/api/add`,
         {
           method: "POST",
           headers: {
@@ -40,6 +40,7 @@ const AddPopup = ({ setIsFormOpen }) => {
           body: JSON.stringify({
             title,
             description,
+            image : "https://source.unsplash.com/random",
           }),
         }
       );

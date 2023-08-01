@@ -3,9 +3,12 @@ import Styles from "./Project.module.css";
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
 import axios from "axios";
+import Lottie from "lottie-react";
+import Loading from "../../lottie/loading.json";
 
 function Project() {
   const [fetchProject, setFetchProject] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -15,6 +18,7 @@ function Project() {
           // `http://localhost:5000/api/images`
         );
         setFetchProject(response.data.projects);
+        setLoading(false);
         console.log("project", response.data.projects);
       } catch (error) {
         console.log(error);
@@ -28,20 +32,26 @@ function Project() {
       <Header />
       <div className={Styles.prohome}>
         <div className={Styles.prohomeCards}>
-          <div className={Styles.prohomeCardsWrapper}>
-            {fetchProject !== null &&
-              fetchProject !== undefined &&
-              fetchProject &&
-              fetchProject.map((item) => (
-                <Cards
-                  key={item._id}
-                  title={item.title}
-                  description={item.projectDescription}
-                  id={item._id}
-                  thumbnail={item.thumbnail}
-                />
-              ))}
-          </div>
+          {loading ? (
+            <div className={Styles.loading}>
+              <Lottie animationData={Loading} loop={true} />
+            </div>
+          ) : (
+            <div className={Styles.prohomeCardsWrapper}>
+              {fetchProject !== null &&
+                fetchProject !== undefined &&
+                fetchProject &&
+                fetchProject.map((item) => (
+                  <Cards
+                    key={item._id}
+                    title={item.title}
+                    description={item.projectDescription}
+                    id={item._id}
+                    thumbnail={item.thumbnail}
+                  />
+                ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -145,7 +145,7 @@ const Model = () => {
 
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error);
@@ -254,7 +254,7 @@ const Model = () => {
                       </div>
                     ))
                   ) : (
-                    <img src="./images/thumbnail.png" alt="project" />
+                    <img src="/images/thumbnail.png" alt="project" />
                   )}
                 </div>
               </div>
