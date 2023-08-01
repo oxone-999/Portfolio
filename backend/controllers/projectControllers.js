@@ -7,13 +7,22 @@ const createProject = async (req, res) => {
   try {
     const { title, description, image } = req.body;
 
+    // Upload the image to cloudinary
+    const uploadedImage = await cloudinary.uploader.upload(image, {
+      folder: "photos",
+    });
+
     const project = new Project({
       title: title,
       projectDescription: description,
+      thumbnail: {
+        public_id: uploadedImage.public_id,
+        url: uploadedImage.secure_url,
+      },
     });
 
     const savedDocument = await project.save();
-    res.send(savedDocument);
+    res.json({savedDocument});
   } catch (error) {
     console.log(error);
     res.status(500).send("Error saving document");
