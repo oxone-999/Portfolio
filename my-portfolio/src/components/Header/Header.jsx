@@ -31,7 +31,6 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log("currUser", currUser);
     if (token) {
       const decodedToken = decodeToken(token);
       const user = decodedToken;
@@ -46,7 +45,7 @@ const Header = () => {
     } else {
       setDisabled(true);
     }
-  }, [token, admin, currUser]);
+  }, [token, admin]);
 
   useEffect(() => {
     const users = async () => {

@@ -68,32 +68,24 @@ const AddPopup = ({ setIsFormOpen }) => {
     <>
       <div className={Styles.popup_overlay}>
         <div className={Styles.popup_form}>
-          <div className={Styles.popup_container}>
-            <div className={Styles.form}>
-              <div className={Styles.form_secondary}>
-                <div className={Styles.form_main}>Add Project</div>
-                <div className={Styles.mbsc_form_group}>
-                  <div className={Styles.mbsc_form_group_title}>
-                    Project Title
-                  </div>
-                  <input
-                    name="title"
-                    placeholder="Enter your project title"
-                    onChange={handleTitle}
-                  />
-                </div>
-                <div className={Styles.mbsc_form_group}>
-                  <div className={Styles.mbsc_form_group_title}>
-                    Description
-                  </div>
-                  <input
-                    name="description"
-                    placeholder="Enter your project description"
-                    onChange={handleDescription}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className={Styles.form_main}>Add Project</div>
+          <div className={Styles.mbsc_form_group}>
+            <div className={Styles.mbsc_form_group_title}>Project Title</div>
+            <input
+              className={Styles.Input}
+              name="title"
+              placeholder="Enter your project title"
+              onChange={handleTitle}
+            />
+          </div>
+          <div className={Styles.mbsc_form_group}>
+            <div className={Styles.mbsc_form_group_title}>Description</div>
+            <textarea
+              className={Styles.Input}
+              name="description"
+              placeholder="Enter your project description"
+              onChange={handleDescription}
+            />
           </div>
           <div className={Styles.button}>
             <Button variant="contained" color="error" onClick={closePopup}>

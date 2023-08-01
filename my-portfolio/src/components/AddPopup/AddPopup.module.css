@@ -13,7 +13,7 @@
 
 .popup_form {
   border-radius: 0.8rem;
-  width: 50vw;
+  width: 30vw;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,24 +23,8 @@
   border: 1px solid #ccc;
 }
 
-.popup_container {
-  display: flex;
-  flex-direction: row;
-}
-
-.container > div {
-  flex-basis: calc(50% - 10px); /* Two equal columns with gap */
-  margin-right: 10px; /* Gap between columns */
-  margin-bottom: 10px; /* Gap between rows */
-}
-
-.container > div:last_child {
-  margin-right: 0; /* Remove margin for last column */
-}
-
 .mbsc_form_group {
   margin-top: 1rem;
-  height: 5rem;
   width: 80%;
   margin: 0 5rem 0 2rem;
 }
@@ -51,17 +35,14 @@
   width: 100%;
   height: 1rem;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.mbsc_form_group > input {
-  margin-left: 1rem;
-  width: 100%;
-  height: 1rem;
-  flex-grow: 2;
-  margin-top: 10px;
-}
-
-input {
+.Input {
+  min-width: 60%;
+  max-width: 90%;
+  min-height: 3rem;
+  max-height: 20rem;
   width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -69,35 +50,14 @@ input {
   margin-bottom: 10px;
 }
 
-input::placeholder {
+.Input::placeholder {
   color: #999;
 }
 
-input:focus {
+.Input:focus {
   outline: none;
   border-color: #5c9eff;
   box-shadow: 0 0 5px rgba(92, 158, 255, 0.5);
-}
-
-.preview_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 10;
-}
-
-.preview_image {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-.preview_image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .button {
@@ -110,96 +70,6 @@ input:focus {
 
 .button Button {
   margin-left: 1rem;
-}
-
-.Preview {
-  border-radius: 0.8rem 0 0 0.8rem;
-  background-color: #d3d1d1;
-  height: 63vh;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  overflow: hidden;
-  padding: 0.5rem;
-  padding-right: 0.25rem;
-}
-
-.preview_secondary {
-  height: 100%;
-  width: 100%;
-  background-color: #f0efef;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.8rem 0 0 0.8rem;
-}
-
-.preview_secondary button {
-  position: absolute;
-  top: 5rem;
-  left: 14.5rem;
-}
-
-.edit_btn{
-  background-color: #fff;
-  border-radius: 50%;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: none;
-  background-color: none;
-  text-decoration: none;
-}
-
-.edit_btn img {
-  height: 1.5rem;
-  width: 1.5rem;
-  background-color: #fff;
-  border-radius: 50%;
-  padding: 0.5rem;
-}
-
-.previewImage_container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 2;
-}
-
-.previewImage_container img {
-  margin: 0;
-  border-radius: 1rem;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.preview_main {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 1rem;
-  flex-grow: 2;
-  margin-top: 10px;
-}
-
-.preview_content{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 30;
 }
 
 .form {
@@ -216,33 +86,4 @@ input:focus {
   padding: 0.5rem;
   padding-left: 0.25rem;
   overflow: hidden;
-}
-
-.form_secondary {
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0 0.8rem 0.8rem 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.images{
-  height: 100%;
-  width: 100%;
-}
-
-.images img{
-  width: 20%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 2;
-  margin-left: 10rem;
-  margin-right: 10rem;
 }

@@ -55,7 +55,7 @@ export default function Login() {
 
   return (
     <div className={Styles.login_container}>
-    <ToastContainer />
+      <ToastContainer />
       {loading ? (
         <Lottie animationData={Loading} loop={true} />
       ) : (
