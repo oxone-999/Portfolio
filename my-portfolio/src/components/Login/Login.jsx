@@ -11,6 +11,8 @@ export default function Login() {
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  console.log("apiUrl", apiUrl);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     setLoading(true);
