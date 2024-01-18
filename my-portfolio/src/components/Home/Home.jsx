@@ -8,6 +8,7 @@ import {
 import Styles from "./Home.module.css";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import ProjectView from "../ProjectView/ProjectView";
+import React from "react";
 
 const Home = () => {
   return (

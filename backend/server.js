@@ -37,8 +37,10 @@ app.put("/api/projects/thumbnail/:id", projectController.updateThumbnail);
 app.get("/api/projects/likes/:id", getProjectController.getProjectLikes);
 app.get("/api/projects/shares/:id", getProjectController.getProjectShares);
 
+app.post("/api/projects/work/:id/", projectController.updateWork);
+
 app.get("/api/users", getUserController.getUsers);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });

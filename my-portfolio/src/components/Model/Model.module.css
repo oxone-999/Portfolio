@@ -21,7 +21,7 @@
   color: white;
 }
 
-.modelTitle{
+.modelTitle {
   width: 100%;
   height: 100%;
   display: flex;
@@ -35,7 +35,7 @@
   z-index: 999;
 }
 
-.modelTitle h3{
+.modelTitle h3 {
   width: 90%;
   height: 5rem;
   display: flex;
@@ -64,8 +64,7 @@
   z-index: 999;
 }
 
-
-.imageDiv{
+.imageDiv {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +102,6 @@
   align-items: center;
   padding: 0 5rem;
   width: 97%;
-  height: 30rem;
   background-color: #fff;
   color: #212121;
 }
@@ -117,8 +115,27 @@
   color: #212121;
   border-radius: 2rem;
   width: 100%;
-  height: 100%;
   z-index: 999;
+  padding: 1rem;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 95%;
+  text-align: left;
+  overflow-y: hidden;
+}
+
+.content h2{
+  font-size: 1.2rem;
+  font-weight: 800; 
+}
+
+.content span{
+ font-size: 1rem; 
 }
 
 .description p {
@@ -130,7 +147,7 @@
   height: 100%;
 }
 
-.deleteBtn{
+.deleteBtn {
   width: 10%;
   height: 3rem;
   font-size: 1rem;
@@ -144,7 +161,7 @@
   cursor: pointer;
 }
 
-.cancelBtn{
+.cancelBtn {
   width: 10%;
   height: 3rem;
   font-size: 1rem;
@@ -158,7 +175,7 @@
   cursor: pointer;
 }
 
-.deleteForm{
+.deleteForm {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -175,7 +192,7 @@
   z-index: 999;
 }
 
-.deleteForm h3{
+.deleteForm h3 {
   width: 90%;
   height: 30%;
   display: flex;
@@ -188,7 +205,7 @@
   font-weight: bold;
 }
 
-.deleteFormBtn{
+.deleteFormBtn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -199,7 +216,7 @@
   margin-top: 2rem;
 }
 
-.editBtn{
+.editBtn {
   width: 10rem;
   height: 4rem;
   padding-bottom: 2rem;
@@ -217,12 +234,12 @@
   transform: translateY(1.5rem);
 }
 
-.editBtn:hover{
+.editBtn:hover {
   transition: all 0.5s ease-in-out;
   transform: translateY(0.5rem);
 }
 
-.previewBtn{
+.previewBtn {
   width: 10rem;
   height: 4rem;
   padding-bottom: 2rem;
@@ -240,12 +257,12 @@
   transform: translateY(1.5rem);
 }
 
-.previewBtn:hover{
+.previewBtn:hover {
   transition: all 0.5s ease-in-out;
   transform: translateY(0.5rem);
 }
 
-.btns{
+.btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -254,4 +271,175 @@
   width: 100%;
   height: 50%;
   margin-top: 2rem;
+}
+
+.editForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 35%;
+  background-color: #ffa2a2;
+  color: #212121;
+  border-radius: 0.5rem;
+  z-index: 999;
+}
+
+.editForm button {
+  width: 10rem;
+  height: 3rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  color: #6d6d6d;
+  background-color: #67ff88;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(1.5rem);
+}
+
+.editForm button:nth-child(2) {
+  color: #ffffff;
+  background-color: #ff3a3a;
+}
+
+.editForm button:hover {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(1.2rem);
+}
+
+.editForm input {
+  width: 90%;
+  height: 3rem;
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  background-color: #ffdcdc;
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.editForm h3 {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  color: #353535;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.descriptionForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 85%;
+  background-color: #ffa2a2;
+  color: #212121;
+  border-radius: 0.5rem;
+  z-index: 999;
+}
+
+.descriptionForm .btn {
+  width: 10rem;
+  height: 3rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  color: #6d6d6d;
+  background-color: #67ff88;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(0.5rem);
+}
+
+.descriptionForm .btn:nth-child(2) {
+  color: #ffffff;
+  background-color: #ff3a3a;
+}
+
+.descriptionForm .btn:hover {
+  transition: all 0.2s ease-in-out;
+  transform: translateY(0.2rem);
+}
+
+.descriptionForm h3 {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #353535;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.workExperience{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.workExperience input{
+  width: 100%;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin: 0.3rem;
+}
+
+.workExperience input:focus{
+  border: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.skills button{
+  width: 3rem;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin: 0.3rem;
+  background-color: #f5f5f5;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.skills button:hover{
+  background-color: #53ffb7;
+  color: #f5f5f5;
+  transition: all 0.3s ease-in-out;
+}
+
+.fields{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  overflow-y: scroll;
+  width: 100%;
 }

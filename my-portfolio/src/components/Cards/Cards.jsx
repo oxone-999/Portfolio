@@ -7,11 +7,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { decodeToken } from "react-jwt";
 import CopyLink from "../CopyLink/CopyLink";
+import EditModal from "../editModal_Cards/edit_Modal";
+import Lottie from "lottie-react";
+import Loading from "../../lottie/loading.json";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Cards = (props) => {
   const projectId = props.id;
+  const [loading,setLoading] = React.useState(false);
   const token = localStorage.getItem("token");
   const admin = localStorage.getItem("admin");
   const [likes, setLikes] = React.useState(0);
@@ -26,8 +30,16 @@ const Cards = (props) => {
   const [editModal, setEditModal] = React.useState(false);
   const [editProjectId, setEditProjectId] = React.useState("");
 
-  const [previewThumbnail, setPreviewThumbnail] = React.useState(null);
-  const [thumbnail, setThumbnail] = React.useState(null);
+  const [coverImage, setCoverImage] = React.useState(props.thumbnail.url);
+
+  const [previewThumbnail, setPreviewThumbnail] = React.useState(
+    "/images/thumbnail.png"
+  );
+  const [thumbnail, setThumbnail] = React.useState(props.thumbnail.url);
+
+  useEffect(() => {
+    setCoverImage(thumbnail)
+  },[thumbnail]);
 
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
@@ -38,6 +50,7 @@ const Cards = (props) => {
   };
 
   const handleThumbnail = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await axios.put(
@@ -46,10 +59,12 @@ const Cards = (props) => {
           thumbnail: thumbnail,
         }
       );
-      toast.success("Thumbnail Updated Successfully");
+      setLoading(false);
+      toast.success("Thumbnail Updated Successfully",{
+        autoClose:1000
+      });
       console.log(response.data);
       setEditModal(false);
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +84,7 @@ const Cards = (props) => {
       }
     };
     likes();
-  }, []);
+  }, [projectId]);
 
   useEffect(() => {
     if (token === null) return;
@@ -96,7 +111,7 @@ const Cards = (props) => {
     shares();
   }, []);
 
-  const handleEditClick = (id) => {
+  const handleEditClick = async (id) => {
     setEditModal(true);
     setEditProjectId(id);
   };
@@ -126,13 +141,10 @@ const Cards = (props) => {
     }
 
     try {
-      const response = await axios.put(
-        `${apiUrl}/projects/${projectId}`,
-        {
-          authorId: authorId,
-          type: type,
-        }
-      );
+      const response = await axios.put(`${apiUrl}/projects/${projectId}`, {
+        authorId: authorId,
+        type: type,
+      });
       if (type === "like") {
         if (response.data.result === "liked") {
           setLikes(likes + 1);
@@ -168,33 +180,31 @@ const Cards = (props) => {
               Edit
             </button>
           )}
-          {editModal && editProjectId === projectId && (
-            <div className={Styles.modalContainer}>
-              <div className={Styles.modalContent}>
-                <form onSubmit={handleThumbnail}>
-                  <input
-                    type="file"
-                    name="thumbnail"
-                    accept="image/*"
-                    onChange={handleThumbnailChange}
-                  />
-                  <img
-                    style={{ width: "50px" }}
-                    src={previewThumbnail}
-                    alt="preview"
-                  />
-                  <button type="submit">Update</button>
-                </form>
-              </div>
+          {loading ? (
+            <div className={Styles.loading}>
+              <Lottie animationData={Loading} loop={true} />
             </div>
+          ) : (
+          <EditModal
+            setEditModal={setEditModal}
+            editModal={editModal}
+            editProjectId={editProjectId}
+            projectId={projectId}
+            handleThumbnailChange={handleThumbnailChange}
+            handleThumbnail={handleThumbnail}
+            previewThumbnail={previewThumbnail}
+          />
           )}
         </div>
         <div className={Styles.cardImage}>
           <div
             className={Styles.thumbnail}
             style={{
-              backgroundImage: `url(${props.thumbnail.url})`,
-              backgroundSize: "cover",
+              backgroundImage: `url(${coverImage})`,
+              backgroundPosition:"center",
+              backgroundSize: "80%",
+              backgroundRepeat: "no-repeat",
+              mixBlendMode: "multiply"
             }}
             onClick={() => handleClick(props.id)}
           ></div>
@@ -242,7 +252,7 @@ const Cards = (props) => {
       </div>
     </>
   );
-}
+};
 
 Cards.propTypes = {
   title: PropTypes.string.isRequired,

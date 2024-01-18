@@ -22,7 +22,7 @@ const createProject = async (req, res) => {
     });
 
     const savedDocument = await project.save();
-    res.json({savedDocument});
+    res.json({ savedDocument });
   } catch (error) {
     console.log(error);
     res.status(500).send("Error saving document");
@@ -146,7 +146,6 @@ const updateThumbnail = async (req, res) => {
   const { thumbnail } = req.body;
 
   try {
-    console.log("Thumbnail:", thumbnail);
     const uploadedImage = await cloudinary.uploader.upload(thumbnail, {
       folder: "photos",
     });
@@ -173,11 +172,45 @@ const updateThumbnail = async (req, res) => {
       { new: true }
     );
 
-    console.log("Updated project:", updatedProject);
     res.json(updatedProject);
   } catch (error) {
     console.error("Error updating project:", error);
     res.status(500).json({ message: "Error updating project" });
+  }
+};
+
+const updateWork = async (req, res) => {
+  const projectId = req.params.id;
+  const { companyName, role, points, skills } = req.body;
+  try {
+    const newWork = {
+      companyName,
+      role,
+      points,
+      skills
+    }
+
+    console.log(newWork);
+
+    const existingProject = await Project.findById(projectId);
+
+    console.log(existingProject);
+
+    if (!existingProject) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    existingProject.projectDescription = newWork;
+
+    const updatedProject = await Project.findByIdAndUpdate(
+      projectId,
+      existingProject,
+      { new: true }
+    );
+
+    res.json(updatedProject);
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -186,4 +219,5 @@ module.exports = {
   updateProject,
   updateProjectLikeShare,
   updateThumbnail,
+  updateWork
 };

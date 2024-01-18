@@ -1,5 +1,7 @@
 import Styles from "./ImageForm.module.css";
 import propType from "prop-types";
+import React from 'react';
+import axios from 'axios';
 
 const ImageForm = ({
   setIsEditingImages,
@@ -8,6 +10,14 @@ const ImageForm = ({
   handleImageChange,
   handleSubmit,
 }) => {
+  const [name,setName] = React.useState("");
+  const [ProjectDescription,SetDescription] = React.useState("");
+
+  // const handleSubmit = async () => {
+  //   const response = await axios.put(`${apiUrl}/images/${id}`, updatedData);
+  //   console.log(response);
+  // }
+
   return (
     <>
       <form
@@ -22,6 +32,10 @@ const ImageForm = ({
               accept="image/*"
               onChange={handleImageChange}
             />
+          </div>
+          <div>
+            {/* <input type='text' />
+            <textarea onChange={handleSubmit} /> */}
           </div>
           <div className={Styles.editCorousal}>
             {project.images.length &&

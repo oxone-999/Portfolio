@@ -5,6 +5,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageForm from "../imageForm/imageForm";
+import { Parser } from "html-to-react";
+import ProjectDescription from "../ProjectDescription/ProjectDescription";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -14,17 +16,16 @@ const Model = () => {
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const [isEditingDescription, setIsEditingDescription] = React.useState(false);
   const [isEditingImages, setIsEditingImages] = React.useState(false);
-  const [editedProjectData, setEditedProjectData] = React.useState({});
+  const [editedProjectData, setEditedProjectData] = React.useState("");
   const [isDelete, setIsDelete] = React.useState(false);
   const [imageId, setImageId] = React.useState("");
 
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/images/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/images/${id}`);
         setProject(response.data.project);
+        console.log(response.data.project);
       } catch (error) {
         console.log(error);
       }
@@ -101,46 +102,34 @@ const Model = () => {
 
   const handleSubmit = async (e, type) => {
     e.preventDefault();
-
     try {
-      // Create an object to store only the modified fields
       const updatedData = {};
 
-      // Check if title was edited and add it to updatedData
       if (type === "title") {
+        console.log(editedProjectData.title);
         if (editedProjectData.title !== project.title) {
           updatedData.title = editedProjectData.title;
         }
       }
-
-      // Check if description was edited and add it to updatedData
       if (type === "description") {
-        if (
-          editedProjectData.projectDescription !== project.projectDescription
-        ) {
+        if (editedProjectData.projectDescription) {
           updatedData.projectDescription = editedProjectData.projectDescription;
         }
       }
-
-      // Check if images were edited and add them to updatedData
       if (type === "images") {
         if (editedProjectData.images) {
           updatedData.images = editedProjectData.images;
         }
       }
 
-      // Make the API call to update the project in the backend with updatedData
       if (Object.keys(updatedData).length > 0) {
-        const response = await axios.put(
-          `${apiUrl}/images/${id}`,
-          updatedData
-        );
+        console.log(`${apiUrl}/images/${id}`);
+        const response = await axios.put(`${apiUrl}/images/${id}`, updatedData);
         setProject(response.data.updatedProject);
         toast.success("Project updated successfully", {
           autoClose: 1000,
         });
 
-        // Reset the form
         setIsEditingTitle(false);
         setIsEditingDescription(false);
         setIsEditingImages(false);
@@ -181,24 +170,39 @@ const Model = () => {
       {project && Object.keys(project).length > 0 && (
         <>
           {isEditingTitle ? (
-            <form onSubmit={(e) => handleSubmit(e, "title")}>
+            <form
+              className={Styles.editForm}
+              onSubmit={(e) => handleSubmit(e, "title")}
+            >
+              <h3>Project Title</h3>
               <input
                 type="text"
                 name="title"
                 defaultValue={project.title}
                 onChange={handleInputChange}
               />
-              <button type="submit">Save</button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "23rem",
+                }}
+              >
+                <button type="submit">Save</button>
+                <button
+                  onClick={() => {
+                    setIsEditingTitle(false);
+                  }}
+                >
+                  Close
+                </button>
+              </div>
             </form>
           ) : isEditingDescription ? (
-            <form onSubmit={(e) => handleSubmit(e, "description")}>
-              <textarea
-                name="projectDescription"
-                defaultValue={project.projectDescription}
-                onChange={handleInputChange}
-              />
-              <button type="submit">Save</button>
-            </form>
+            <>
+              <h3>Project Description</h3>
+              <ProjectDescription id={id} project={project} />
+            </>
           ) : isEditingImages ? (
             <ImageForm
               setIsEditingImages={setIsEditingImages}
@@ -236,7 +240,12 @@ const Model = () => {
                   Edit
                 </button>
                 <div className={Styles.projectDescription}>
-                  <p>{project.projectDescription}</p>
+                  <div className={Styles.content}>
+                    <h2>Company Name : {project.projectDescription.companyName}</h2>
+                    <span>Role : {project.projectDescription.role}</span>
+                    <span>Description : {project.projectDescription.points}</span>
+                    <span>Skills : {project.projectDescription.skills}</span>
+                  </div>
                 </div>
               </div>
               <div className={Styles.imageDiv}>

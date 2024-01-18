@@ -1,0 +1,45 @@
+.main{
+    width: 100%;
+    height: 100%;    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 3rem;
+    background-color: #ff6f6f;
+}
+
+.main input{
+    width: 100%;
+    height: 2.5rem;
+    margin: 0.2rem;
+    border-radius: 0.7rem;
+}
+
+.main textarea{
+    width: 100%;
+    padding: 2rem;
+    margin: 0.2rem;
+    border-radius: 0.7rem;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+button{
+    padding: 0.4rem;
+    margin: 0.2rem;
+    background-color: #6fff91;
+    color: #606060;
+    font-weight: bold;
+    border-radius: 0.3rem;
+    transition: 0.5s all ease-in-out;
+}
+
+button:hover{
+    transition: 0.5s all ease-in-out;
+    transform: scale(1.1);
+}

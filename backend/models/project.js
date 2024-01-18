@@ -7,8 +7,22 @@ const projectSchema = new mongoose.Schema({
     required: true,
   },
   projectDescription: {
-    type: String,
-    required: true,
+    companyName:{
+      type: String,
+      required: true,
+    },
+    role:{
+      type:String,
+      required:true,
+    },
+    points:{
+      type:String,
+      required:true,
+    },
+    skills:{
+      type:String,
+      required:true,
+    }
   },
   thumbnail: {
     public_id: {
@@ -28,6 +42,12 @@ const projectSchema = new mongoose.Schema({
       url: {
         type: String,
       },
+      name:{
+        type:String,
+      },
+      description:{
+        type: String,
+      }
     },
   ],
   likes: [

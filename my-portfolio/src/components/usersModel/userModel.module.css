@@ -1,7 +1,7 @@
-body{
+body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .model {
@@ -9,7 +9,7 @@ body{
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -23,7 +23,7 @@ body{
   color: white;
 }
 
-.modelTitle{
+.modelTitle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ body{
   z-index: 999;
 }
 
-.modelTitle h3{
+.modelTitle h3 {
   width: 90%;
   height: 7rem;
   display: flex;
@@ -46,14 +46,14 @@ body{
   font-weight: bold;
 }
 
-.imageDiv{
+.imageDiv {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50rem;
+  height: 40rem;
   background-color: #fff;
   color: #212121;
   border-radius: 0.5rem;
@@ -67,7 +67,7 @@ body{
   align-items: center;
   padding: 0 5rem;
   width: 100%;
-  height: 30rem;
+  padding: 1rem;
 }
 
 .projectDescription {
@@ -80,6 +80,39 @@ body{
   z-index: 999;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.content h2{
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.content span{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.skills li{
+  margin-left: 1rem;
+  background-color: #e6e6e6;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  border-radius: 1rem;
+}
+
 .description p {
   display: flex;
   flex-direction: column;
@@ -90,13 +123,13 @@ body{
   height: 100%;
 }
 
-.horizontal{
+.horizontal {
   background-color: #5d5d5d;
   width: 100%;
   height: 0.1rem;
 }
 
-.CommentBlock{
+.CommentBlock {
   width: 100%;
   height: 100%;
   display: flex;
@@ -107,7 +140,7 @@ body{
   padding-top: 2rem;
 }
 
-.commentSection{
+.commentSection {
   background-color: #e6e6e6;
   display: flex;
   width: 90%;
@@ -121,7 +154,7 @@ body{
   padding: 3rem;
 }
 
-.startThread{
+.startThread {
   width: 12rem;
   height: 3rem;
   display: flex;
@@ -194,7 +227,7 @@ body{
   margin: 0;
 }
 
-.commentHeader{
+.commentHeader {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -206,7 +239,7 @@ body{
   font-size: 3rem;
 }
 
-.footer{
+.footer {
   width: 100%;
   height: 20rem;
   background-color: #212121;

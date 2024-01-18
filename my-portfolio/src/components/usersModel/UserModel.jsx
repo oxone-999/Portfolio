@@ -18,14 +18,14 @@ const UserModel = () => {
   const decodedToken = decodeToken(token);
   const user = decodedToken;
   const anchor = window.location.hash.replace("#", "");
+  const [skillsList, setSkillsList] = React.useState([]);
 
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await axios.get(
-          `${apiUrl}/images/${id}`
-        );
+        const response = await axios.get(`${apiUrl}/images/${id}`);
         setProject(response.data.project);
+        console.log(response.data.project);
         if (anchor === "comment") {
           const element = document.getElementById(anchor);
           if (element) {
@@ -37,7 +37,11 @@ const UserModel = () => {
       }
     };
     fetchProject();
-  }, [id, anchor]);
+
+    if (project.projectDescription) {
+      setSkillsList(project.projectDescription.skills.split(" "));
+    }
+  }, [id, anchor, project]);
 
   const handleInputChange = (e) => {
     setComment(e.target.value);
@@ -49,15 +53,12 @@ const UserModel = () => {
     const authorName = user.username;
     const avatar = user.avatar;
     try {
-      const response = await axios.post(
-        `${apiUrl}/replies/${id}`,
-        {
-          authorName,
-          avatar,
-          author_id,
-          comment,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/replies/${id}`, {
+        authorName,
+        avatar,
+        author_id,
+        comment,
+      });
       console.log(response.data);
       window.location.reload();
     } catch (error) {
@@ -67,7 +68,7 @@ const UserModel = () => {
 
   return (
     <div className={Styles.model}>
-    <ToastContainer />
+      <ToastContainer />
       <div className={Styles.modelHeader}>
         <div className={Styles.modelTitle}>
           <h3>{project.title}</h3>
@@ -75,7 +76,23 @@ const UserModel = () => {
       </div>
       <div className={Styles.description}>
         <div className={Styles.projectDescription}>
-          <p>{project.projectDescription}</p>
+          <div className={Styles.content}>
+            {project.projectDescription && (
+              <>
+                <h2>Company Name: {project.projectDescription.companyName}</h2>
+                <span>Role : {project.projectDescription.role}</span>
+                <span>Description : {project.projectDescription.points}</span>
+                <span>
+                  Skills :{" "}
+                  {skillsList.map((word, index) => (
+                    <div className={Styles.skills} key={index}>
+                      <li>{word}</li>
+                    </div>
+                  ))}
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </div>
       <div className={Styles.imageDiv}>
@@ -89,7 +106,7 @@ const UserModel = () => {
         <button
           className={Styles.startThread}
           onClick={() => {
-            if(!token){
+            if (!token) {
               toast.error("Login to comment");
               return;
             }
@@ -126,7 +143,7 @@ const UserModel = () => {
           <CommentSection parent_id={id} parent_Name="0" />
         </div>
       </div>
-      <div className={Styles.footer}></div>
+      {/* <div className={Styles.footer}></div> */}
     </div>
   );
 };

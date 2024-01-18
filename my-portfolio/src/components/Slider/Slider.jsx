@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 const Slider = ({ project }) => {
   const slideRef = useRef(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [openModal, setModal] = useState(false);
 
   const handleClickNext = () => {
     let items = slideRef.current.querySelectorAll(".item");
@@ -17,6 +18,14 @@ const Slider = ({ project }) => {
     let items = slideRef.current.querySelectorAll(".item");
     slideRef.current.prepend(items[items.length - 1]);
   };
+
+  const handleModal = () => {
+    setModal(true);
+  };
+
+  const close = () => {
+    setModal(false);
+  }
 
   return (
     <div className="container">
@@ -29,10 +38,14 @@ const Slider = ({ project }) => {
               style={{ backgroundImage: `url(${image.url})` }}
               key={image._id}
             >
+              {openModal && <div className="slider_modal">
+                {image.description}
+                
+                <button onClick={close}>close</button>
+              </div>}
               <div className="content">
-                <div className="name">Name</div>
-                <div className="des">Description</div>
-                <button>See more</button>
+                {/* <div className="name">{image.name}</div> */}
+                {/* <button onClick={handleModal}>See more</button> */}
               </div>
             </div>
           ))
