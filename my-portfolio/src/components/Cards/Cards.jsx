@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { decodeToken } from "react-jwt";
 import CopyLink from "../CopyLink/CopyLink";
-import EditModal from "../editModal_Cards/edit_Modal";
+import EditModal from "../editModal_Cards/Edit_Modal";
 import Lottie from "lottie-react";
 import Loading from "../../lottie/loading.json";
 
