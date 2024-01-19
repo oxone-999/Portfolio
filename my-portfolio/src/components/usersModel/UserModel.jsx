@@ -115,6 +115,15 @@ const UserModel = () => {
         >
           Start New Thread
         </button>
+        {!token && (
+          <button
+            onClick={() => {
+              window.location = "/login";
+            }}
+          >
+            Login
+          </button>
+        )}
         <div className={Styles.commentSection}>
           {started && (
             <div className={Styles.block}>

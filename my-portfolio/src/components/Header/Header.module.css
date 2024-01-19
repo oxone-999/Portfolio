@@ -1,7 +1,7 @@
 .header {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .profile {
@@ -40,7 +40,6 @@
 
 .headerWrapper {
   display: flex;
-  width: 19.5rem;
   justify-content: space-between;
   align-items: center;
   border-radius: 50rem;
@@ -146,16 +145,17 @@ a {
 }
 
 .username {
+  padding-left: 1rem;
   font-size: 1rem;
   font-weight: 600;
   color: #313131;
 }
 
-.logout{
+.logout {
   margin: 0 0 0 0;
 }
 
-.logout button{
+.logout button {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -169,11 +169,11 @@ a {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.329);
 }
 
-.add{
-  margin: 0 1rem 0 0;
+.add {
+  /* margin: 0 1rem 0 0; */
 }
 
-.add button{
+.add button {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -187,23 +187,23 @@ a {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.329);
 }
 
-.add button:hover{
+.add button:hover {
   transition: all 0.3s ease-in-out;
   background-color: #5c5c5c;
   color: #63ff63;
 }
 
-.logout button:hover{
+.logout button:hover {
   transition: all 0.3s ease-in-out;
   background-color: #5c5c5c;
   color: #ff5858;
 }
 
-.users{
+.users {
   margin: 0 1rem 0 0;
 }
 
-.users div{
+.users div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -219,24 +219,23 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-.users div:hover{
+.users div:hover {
   transition: all 0.3s ease-in-out;
   background-color: #5c5c5c;
   color: #79bcff;
 }
 
-.users p{
+.users p {
   margin: 0;
   padding: 0;
 }
 
-.users p:first-child{
+.users p:first-child {
   font-size: 0.8rem;
   font-weight: 400;
 }
 
-.users p:last-child{
+.users p:last-child {
   font-size: 1rem;
   font-weight: bolder;
 }
-
