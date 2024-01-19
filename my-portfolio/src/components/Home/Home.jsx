@@ -13,11 +13,13 @@ import React from "react";
 const Home = () => {
   return (
     <div className={Styles.home}>
-      <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-        <ProfileCard />
-        <div className={Styles.projectView}>
-          <ProjectView />
+      <div className={Styles.intro}>
+        <div className={Styles.head1}>HEY! I'M ANUJ VERMA</div>
+        <div className={Styles.head2}>
+          I am a 3D Artist, Animator & Full Stack Developer
         </div>
+        {/* <ProfileCard /> */}
+          <ProjectView />
       </div>
       <div className={Styles.contact}>
         <div className={Styles.social_media}>

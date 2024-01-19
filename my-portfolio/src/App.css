@@ -1,15 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@100;300;400;700;900&family=Ubuntu+Mono:wght@400;700&display=swap");
-
 * {
   padding: 0%;
   margin: 0%;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Incognito Pro Regular';
   background-color: #f5f5f5;
 }
 
 body .popup-open {
-  overflow: hidden; /* Prevent scrolling when popup is open */
+  overflow: hidden;
 }
+
+@font-face {
+  font-family: 'Incognito Pro Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Incognito-Pro.woff')
+}
+    
