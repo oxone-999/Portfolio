@@ -5,7 +5,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageForm from "../imageForm/imageForm";
-import { Parser } from "html-to-react";
 import ProjectDescription from "../ProjectDescription/ProjectDescription";
 
 const apiUrl = import.meta.env.VITE_API_URL;

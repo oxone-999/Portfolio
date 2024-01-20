@@ -19,7 +19,17 @@ const Home = () => {
           I am a 3D Artist, Animator & Full Stack Developer
         </div>
         {/* <ProfileCard /> */}
-          <ProjectView />
+        <ProjectView />
+        <div className={Styles.threeD}>
+          <img src="./images/Blender.png" />
+          <img src="./images/zbrush.png" />
+          <img src="./images/subs.png" />
+        </div>
+        <div className={Styles.software}>
+          <img src="./images/react.png" />
+          <img src="./images/mongo.png" />
+          <img src="./images/js.png" />
+        </div>
       </div>
       <div className={Styles.contact}>
         <div className={Styles.social_media}>

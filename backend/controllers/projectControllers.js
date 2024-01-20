@@ -5,12 +5,21 @@ const User = require("../models/user");
 // Handle the creation of a new user
 const createProject = async (req, res) => {
   try {
-    const { title, description, image } = req.body;
+    const { title, image } = req.body;
+
+    console.log(title,image);
 
     // Upload the image to cloudinary
     const uploadedImage = await cloudinary.uploader.upload(image, {
       folder: "photos",
     });
+
+    const description = {
+      companyName: "Company Name",
+      role: "Your Position in the Company",
+      points: "What you did",
+      skills: "Your Skills",
+    };
 
     const project = new Project({
       title: title,
@@ -20,6 +29,8 @@ const createProject = async (req, res) => {
         url: uploadedImage.secure_url,
       },
     });
+
+    console.log(project);
 
     const savedDocument = await project.save();
     res.json({ savedDocument });

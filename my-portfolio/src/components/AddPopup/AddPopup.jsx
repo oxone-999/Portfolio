@@ -9,13 +9,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const AddPopup = ({ setIsFormOpen }) => {
   const [title, setTitle] = React.useState("Sample Title");
-  const [description, setDescription] = React.useState("Sample Description");
   const [disabled, setDisabled] = React.useState(false);
-
-  const handleDescription = (e) => {
-    console.log(e.target.value);
-    setDescription(e.target.value);
-  };
 
   const handleTitle = (e) => {
     console.log(e.target.value);
@@ -38,7 +32,6 @@ const AddPopup = ({ setIsFormOpen }) => {
         },
         body: JSON.stringify({
           title,
-          description,
           image: "https://source.unsplash.com/random",
         }),
       });
@@ -75,15 +68,6 @@ const AddPopup = ({ setIsFormOpen }) => {
               name="title"
               placeholder="Enter your project title"
               onChange={handleTitle}
-            />
-          </div>
-          <div className={Styles.mbsc_form_group}>
-            <div className={Styles.mbsc_form_group_title}>Description</div>
-            <textarea
-              className={Styles.Input}
-              name="description"
-              placeholder="Enter your project description"
-              onChange={handleDescription}
             />
           </div>
           <div className={Styles.button}>

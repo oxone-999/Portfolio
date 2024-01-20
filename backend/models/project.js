@@ -9,19 +9,15 @@ const projectSchema = new mongoose.Schema({
   projectDescription: {
     companyName:{
       type: String,
-      required: true,
     },
     role:{
       type:String,
-      required:true,
     },
     points:{
       type:String,
-      required:true,
     },
     skills:{
       type:String,
-      required:true,
     }
   },
   thumbnail: {
