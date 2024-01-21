@@ -43,11 +43,14 @@ const ProjectDescription = ({ id, project }) => {
       points: "",
       skills: "",
     });
+
+    window.location.reload();
   };
 
-  React.useEffect = () => {
-    setFormData(project.ProjectDescription);
-  };
+  React.useEffect(() => {
+    setFormData(project.projectDescription);
+    console.log("po",project.projectDescription)
+  },[project]);
 
   return (
     <form className={Styles.main}>
