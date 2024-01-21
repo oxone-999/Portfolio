@@ -147,3 +147,50 @@ body {
   padding: 2rem;
   height: 30rem;
 }
+
+@media only screen and (max-width: 500px) {
+  .head1 {
+    font-size: 1.5rem;
+  }
+
+  .head2 {
+    text-align: center;
+    width: 60%;
+    font-size: 0.7rem;
+    text-wrap: wrap;
+  }
+
+  .threeD {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    right: 3%;
+    padding: 1rem;
+    height: 10rem;
+  }
+
+  .threeD img {
+    width: 5rem;
+  }
+
+  .software {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    right: 3%;
+    padding: 1rem;
+    height: 10rem;
+  }
+
+  .software img {
+    width: 5rem;
+  }
+}
