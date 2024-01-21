@@ -240,3 +240,16 @@
   transition: all 0.5s ease-in-out;
 }
 
+@media only screen and (max-width: 736px) {
+  .card {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  transition: all 0.5s;
+  margin: 2vmax;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+}
+}
