@@ -155,4 +155,18 @@ form {
     height: 100%;
     flex-grow: 2;
   }
+
+  .input {
+    border: 2px solid #e8e8e8;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #353535;
+    color: #e8e8e8;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+    width: 15rem;
+    height: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
 }
