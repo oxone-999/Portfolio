@@ -124,3 +124,51 @@
 .buttons button:hover {
   background-color: #bac383;
 }
+
+@media only screen and (max-width: 736px) {
+  .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 600px;
+    padding: 50px;
+    background-color: #f5f5f5;
+    box-shadow: 0 30px 50px #a9a8a8;
+  }
+
+  .item {
+    width: 50px;
+    height: 75px;
+    background-position: 50% 50%;
+    border-radius: 10px;
+  }
+
+  .item:nth-child(3) {
+    top: 75%;
+    left: 70%;
+  }
+  .item:nth-child(4) {
+    top: 75%;
+    left: calc(70% + 60px);
+  }
+  .item:nth-child(5) {
+    top: 75%;
+    left: calc(70% + 100px);
+  }
+  .item:nth-child(n + 6) {
+    top: 75%;
+    left: calc(70% + 200px);
+    opacity: 0;
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    z-index: 222222;
+    text-align: center;
+    width: 30%;
+  }
+}

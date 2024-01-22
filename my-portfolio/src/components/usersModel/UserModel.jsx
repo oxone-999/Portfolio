@@ -82,7 +82,7 @@ const UserModel = () => {
                 <h2>Company Name: {project.projectDescription.companyName}</h2>
                 <span>Role : {project.projectDescription.role}</span>
                 <span>Description : {project.projectDescription.points}</span>
-                <span>
+                <span className={Styles.setSkillsList}>
                   Skills :{" "}
                   {skillsList.map((word, index) => (
                     <div className={Styles.skills} key={index}>

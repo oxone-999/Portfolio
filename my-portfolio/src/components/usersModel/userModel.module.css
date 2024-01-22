@@ -89,14 +89,14 @@ body {
   overflow-y: hidden;
 }
 
-.content h2{
+.content h2 {
   width: 100%;
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: 800;
 }
 
-.content span{
+.content span {
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -104,7 +104,7 @@ body {
   font-size: 1.2rem;
 }
 
-.skills li{
+.skills li {
   margin-left: 1rem;
   background-color: #e6e6e6;
   padding: 0.3rem 0.7rem;
@@ -248,4 +248,24 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 736px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    overflow-y: hidden;
+  }
+
+  .setSkillsList{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .skills{
+    margin-bottom: 0.5rem;
+  }
 }
