@@ -45,11 +45,20 @@ const sdeProjects = [
     id: "2",
     name: "Video Analytics Project",
     status: "In Progress",
-    skills: [ "Javascript", "Node.js", "Python", "Redis", "MariaDB", "AWS", "Kafka", "Redis", "Docker" ],
+    skills: [
+      "Javascript",
+      "Node.js",
+      "Python",
+      "Redis",
+      "MariaDB",
+      "AWS",
+      "Kafka",
+      "Redis",
+      "Docker",
+    ],
     description:
       "An AI-powered platform for real-time violation detection using Event Exchange Framework.",
-    content:
-      `<h2>Overview</h2>
+    content: `<h2>Overview</h2>
     <p>
         The <strong>Intelligent Violation Detection & Alert System</strong> is an AI-powered platform that uses the 
         <strong>Event Exchange Framework</strong> to stream real-time data from surveillance cameras across multiple sites. 
@@ -165,10 +174,70 @@ const sdeProjects = [
       `,
   },
   {
+    id: "4",
+    name: "Seat Booking System",
+    status: "Completed",
+    skills: ["Python", "Selenium"],
+    description:
+      "A web automation project to book seats in offices using Selenium.",
+    content: `
+    <p>The <strong>Seat Reservation System</strong> is an intelligent automation project designed to streamline the process of reserving seats in offices, libraries, and shared workspaces. Built using <strong>Python</strong> and <strong>Selenium</strong>, this system automates seat booking, ensuring users secure their preferred seats without hassle.</p>
+
+    <h2>🛠 Problem It Solves</h2>
+    <p>Manually checking and booking seats in shared spaces can be frustrating. This system:</p>
+    <ul>
+        <li>Automates the seat booking process.</li>
+        <li>Runs on a scheduled basis to check for available seats.</li>
+        <li>Sends notifications once a reservation is confirmed.</li>
+    </ul>
+
+    <h2>⚙️ How It Works</h2>
+    <ul>
+        <li><strong>User Authentication:</strong> Logs into the reservation portal.</li>
+        <li><strong>Seat Availability Check:</strong> Scans for open seats.</li>
+        <li><strong>Auto-Booking:</strong> Reserves available seats instantly.</li>
+        <li><strong>Failure Handling:</strong> Keeps checking periodically if no seats are found.</li>
+        <li><strong>Notifications:</strong> Sends email/SMS alerts upon successful booking.</li>
+    </ul>
+
+    <h2>🛠 Technologies Used</h2>
+    <ul>
+        <li><strong>Python 🐍</strong> – Core programming language.</li>
+        <li><strong>Selenium 🌐</strong> – Automates browser interactions.</li>
+        <li><strong>ChromeDriver 🖥️</strong> – Executes Selenium scripts.</li>
+        <li><strong>Twilio / SMTP ✉️</strong> – Sends booking confirmations.</li>
+        <li><strong>Cron Jobs / Task Scheduler ⏳</strong> – Automates script execution.</li>
+    </ul>
+
+    <h2>🔍 Features & Benefits</h2>
+    <ul>
+        <li>✔ <strong>Automated seat booking</strong> – No manual intervention needed.</li>
+        <li>✔ <strong>Custom preferences</strong> – Users can choose seat locations and times.</li>
+        <li>✔ <strong>Real-time monitoring</strong> – Continually checks for availability.</li>
+        <li>✔ <strong>Multi-user support</strong> – Works for multiple users with different needs.</li>
+        <li>✔ <strong>Cloud deployment</strong> – Can run 24/7 on a cloud server.</li>
+    </ul>
+
+    <h2>🌍 Potential Use Cases</h2>
+    <ul>
+        <li>🏢 <strong>Corporate Offices</strong> – Reserve meeting rooms or desks.</li>
+        <li>📚 <strong>Libraries & Study Halls</strong> – Book reading spaces.</li>
+        <li>🏠 <strong>Co-working Spaces</strong> – Reserve shared desks for freelancers.</li>
+    </ul>
+
+    <h2>Project Links</h2>
+    <ul>
+        <li><strong>GitHub Repository:</strong> <a href="https://github.com/oxone-999/Time-Spent-Chrome-Extension" target="_blank">View on GitHub</a></li>
+    </ul>
+
+    <p>The <strong>Seat Reservation System</strong> simplifies booking, making it <strong>smarter, faster, and hassle-free</strong>! 🚀✨</p>
+j`,
+  },
+  {
     id: "5",
     name: "App-Gen",
     status: "Completed",
-    skills: ["React", "Node.js", "MariaDB", "Docker" ],
+    skills: ["React", "Node.js", "MariaDB", "Docker"],
     description:
       "A web-based utility that automates the creation of full-stack applications.",
     content: `
