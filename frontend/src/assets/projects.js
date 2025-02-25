@@ -45,11 +45,61 @@ const sdeProjects = [
     id: "2",
     name: "Video Analytics Project",
     status: "In Progress",
-    skills: ["React", "Node.js", "MongoDB"],
+    skills: [ "Javascript", "Node.js", "Python", "Redis", "MariaDB", "AWS", "Kafka", "Redis", "Docker" ],
     description:
-      "A platform to analyze video content using AI/ML models and generate insights.",
+      "An AI-powered platform for real-time violation detection using Event Exchange Framework.",
     content:
-      "### Project 2 Details\n- Feature 1\n- Feature 2\n**More Details**",
+      `<h2>Overview</h2>
+    <p>
+        The <strong>Intelligent Violation Detection & Alert System</strong> is an AI-powered platform that uses the 
+        <strong>Event Exchange Framework</strong> to stream real-time data from surveillance cameras across multiple sites. 
+        By applying <strong>AI/ML models</strong>, the system detects violations and automatically sends alerts to the 
+        designated point of contact. 
+    </p>
+    <p>
+        A <strong>central cloud server</strong> collects all violation data from different locations, enabling 
+        multi-user access with <strong>Role-Based Access Control (RBAC)</strong> for in-depth analysis and reporting. 
+    </p>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li><strong>Real-Time Video Streaming:</strong> Captures and processes live camera feeds using the Event Exchange Framework.</li>
+        <li><strong>AI-Powered Violation Detection:</strong> Uses deep learning models to identify safety breaches, unauthorized access, and traffic violations.</li>
+        <li><strong>Automated Alert System:</strong> Sends real-time notifications to security teams via email, SMS, or in-app alerts.</li>
+        <li><strong>Central Cloud Storage:</strong> Aggregates violation data from multiple sites for secure storage and analysis.</li>
+        <li><strong>Role-Based Access Control (RBAC):</strong> Provides different access levels for admins, security officers, and analysts.</li>
+        <li><strong>Advanced Analytics:</strong> Generates reports, insights, and trends to improve security measures.</li>
+    </ul>
+
+    <h2>How It Works</h2>
+    <ol>
+        <li><strong>Data Ingestion:</strong> Surveillance cameras capture live video feeds from various locations.</li>
+        <li><strong>AI Processing:</strong> Machine learning models analyze video feeds in near real-time.</li>
+        <li><strong>Violation Detection & Alerting:</strong> Identified violations trigger instant alerts to the appropriate personnel.</li>
+        <li><strong>Centralized Storage:</strong> All detected violations are stored in a cloud database for further review.</li>
+        <li><strong>Role-Based Access & Monitoring:</strong> Authorized users access violation data based on predefined roles.</li>
+    </ol>
+
+    <h2>Technologies Used</h2>
+    <ul>
+        <li><strong>Event Streaming & Processing:</strong> Event Exchange Framework, Kafka</li>
+        <li><strong>AI/ML for Violation Detection:</strong> TensorFlow, OpenCV, YOLO</li>
+        <li><strong>Backend & Data Storage:</strong> Node.js, Python, Redis, MariaDB</li>
+        <li><strong>Cloud Infrastructure:</strong> AWS, GCP, Azure</li>
+        <li><strong>RBAC & Security:</strong> JWT Authentication, Role-Based Access Control</li>
+    </ul>
+
+    <h2>Why Use This System?</h2>
+    <ul>
+        <li>🚀 <strong>Automates violation detection</strong> using AI, reducing manual effort.</li>
+        <li>📢 <strong>Real-time alerts</strong> ensure quick response to security breaches.</li>
+        <li>☁️ <strong>Cloud-based architecture</strong> supports scalability across multiple locations.</li>
+        <li>🔐 <strong>RBAC security</strong> ensures secure and structured user access.</li>
+        <li>📊 <strong>Detailed analytics</strong> help organizations improve compliance and safety.</li>
+    </ul>
+
+    <p><strong>The Intelligent Violation Detection & Alert System revolutionizes automated surveillance, ensuring safety and compliance across various industries.</strong></p>
+`,
   },
   {
     id: "3",
@@ -115,24 +165,55 @@ const sdeProjects = [
       `,
   },
   {
-    id: "4",
-    name: "Seat Reservation System",
-    status: "Completed",
-    skills: ["React", "Node.js", "MongoDB"],
-    description:
-      "A platform to automate the process of reserving seats in a office.",
-    content:
-      "### Project 2 Details\n- Feature 1\n- Feature 2\n**More Details**",
-  },
-  {
     id: "5",
     name: "App-Gen",
     status: "Completed",
-    skills: ["React", "Node.js", "MongoDB"],
+    skills: ["React", "Node.js", "MariaDB", "Docker" ],
     description:
-      "A platform which takes JSON input to generate and deploy apps with ease.",
-    content:
-      "### Project 2 Details\n- Feature 1\n- Feature 2\n**More Details**",
+      "A web-based utility that automates the creation of full-stack applications.",
+    content: `
+        <h2>Overview</h2>
+        <p><strong>AppGen</strong> is a powerful web-based utility that automates the creation of full-stack applications. By taking a <strong>JSON data model</strong> as input, it generates a <strong>frontend, backend, and database</strong> for a fully functional <strong>CRUD application</strong>. The generated source code is packaged into a <strong>ZIP file</strong>, complete with a <strong>Dockerfile</strong> and deployment instructions, allowing users to easily build and deploy their application as a <strong>Docker container</strong>.</p>
+
+        <h2>Problem It Solves</h2>
+        <p>Developing a CRUD-based application from scratch requires setting up a frontend, backend, and database, which can be time-consuming and repetitive. <strong>AppGen automates this process</strong>, significantly reducing development time and effort. With <strong>just a JSON data model</strong>, developers can instantly generate a working application, download the source code, and deploy it effortlessly.</p>
+
+        <h2>How It Works</h2>
+        <ul>
+            <li><strong>Input:</strong> The user provides a <strong>data model in JSON format</strong> that defines the structure of the application.</li>
+            <li><strong>Code Generation:</strong> AppGen automatically generates:
+                <ul>
+                    <li><strong>Frontend:</strong> Built with <strong>React.js</strong></li>
+                    <li><strong>Backend:</strong> Developed using <strong>Node.js</strong></li>
+                    <li><strong>Database:</strong> Schema and queries for <strong>MariaDB</strong></li>
+                </ul>
+            </li>
+            <li><strong>Packaging & Delivery:</strong>
+                <ul>
+                    <li>The generated application is bundled into a <strong>ZIP file</strong></li>
+                    <li>The ZIP includes a <strong>Dockerfile</strong> and setup instructions</li>
+                    <li>A <strong>download link</strong> is provided for the user to access their code</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><strong>Frontend:</strong> React.js</li>
+            <li><strong>Backend:</strong> Node.js</li>
+            <li><strong>Database:</strong> MariaDB</li>
+            <li><strong>Deployment:</strong> Docker</li>
+        </ul>
+
+        <h2>Future Enhancements</h2>
+        <p>AppGen is designed to be <strong>extensible</strong>, with the potential to support additional technologies, including:</p>
+        <ul>
+            <li><strong>Frontend:</strong> Angular, Vue.js</li>
+            <li><strong>Backend:</strong> Java, Python, Go</li>
+            <li><strong>Database:</strong> MySQL, PostgreSQL, MongoDB</li>
+        </ul>
+
+        <p>With its ability to <strong>automate and accelerate web app development</strong>, AppGen is an ideal tool for developers looking to quickly scaffold applications while maintaining flexibility for further customization. 🚀</p>`,
   },
   {
     id: "6",
@@ -166,6 +247,11 @@ const sdeProjects = [
             <li>Users can <strong>view their browsing history in an intuitive dashboard</strong>.</li>
             <li>Data can be analyzed based on <strong>daily usage or cumulative top websites</strong>.</li>
         </ol>
+
+        <h2>Project Links</h2>
+        <ul>
+            <li><strong>GitHub Repository:</strong> <a href="https://github.com/oxone-999/Time-Spent-Chrome-Extension" target="_blank">View on GitHub</a></li>
+        </ul>
 
         <h2>Project Contributor</h2>
         <p>👤 <strong>Name:</strong> Anuj Verma</p>
