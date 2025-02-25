@@ -1,0 +1,218 @@
+.noProject{
+  width: 100vw;
+  align-self: center;
+  text-align: center;
+  color: var(--black);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow-y: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--extra-white);
+  padding: 0rem;
+  margin: 0rem;
+  position: relative;
+  overflow-y: auto;
+  margin-top: 3rem;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: none;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.content {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+}
+
+.projectList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Space between items */
+  justify-content: center;
+  align-items: flex-start;
+  width: 90vw;
+  height: 70vh;
+  padding: 2rem;
+}
+
+.project {
+  margin-top: 1.5rem;
+  width: 90%;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 1.5rem;
+  background-color: #ffffff;
+  font-weight: 200;
+  transition: transform 0.5s;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project:hover {
+  transform: scale(1.01);
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .projectList {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .projectList {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on mobile */
+  }
+}
+
+.project h6 {
+  color: var(--black);
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+}
+
+.status_inprogress {
+  color: var(--primary);
+  padding: 0;
+  margin: 0;
+  font-size: 0.6rem;
+  font-weight: 400;
+  background-color: var(--tertiary);
+  border-radius: 5rem;
+  padding: 0.1rem 0.6rem;
+}
+
+.status_completed {
+  color: var(--tertiary);
+  padding: 0;
+  margin: 0;
+  font-size: 0.6rem;
+  font-weight: 400;
+  background-color: var(--primary);
+  border-radius: 5rem;
+  padding: 0.1rem 0.6rem;
+}
+
+.project p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--black);
+  text-align: left;
+}
+
+.project img {
+  width: 360px;
+  height: 180px;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+}
+
+.skills {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.skill {
+  background-color: var(--tertiary);
+  color: var(--primary);
+  border-radius: 5rem;
+  margin: 0.3rem;
+  font-weight: 500;
+  font-size: 0.7rem;
+  padding: 0.16rem 0.55rem;
+}
+
+.markdown {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.markdown h3 {
+  color: #0070f3;
+}
+
+.markdown ul {
+  padding-left: 20px;
+}
+
+.markdown strong {
+  font-weight: bold;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  width: 90%;
+  height: 90%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.closeButton:hover {
+  background: darkred;
+}

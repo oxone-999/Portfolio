@@ -1,0 +1,91 @@
+.container {
+  margin-top: 6rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: none;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: none;
+}
+
+.about {
+  width: 60%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+}
+
+.about p {
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.content img {
+  width: 22rem;
+  border-radius: 1rem;
+}
+
+.handle {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+}
+
+.handle ul {
+  padding: 0;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background-color: none;
+}
+
+.handle ul li {
+  width: 10rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--green);
+  color: var(--black);
+  font-weight: 700;
+  border-radius: 5rem;
+}
+
+.resume{
+    display: flex;
+    border-radius: 2rem;
+    outline:none;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+}
