@@ -52,7 +52,7 @@ function Project({role}) {
                   ))}
                 </div>
               </div>
-            )) : (<div className={Styles.noProject}>No Pojects have been added yet, please visit <a href="https://www.behance.net/anujverma9" target="_blank">Behance Portfolio</a></div>)}
+            )) : (<div className={Styles.noProject}>No Projects have been added yet, please visit <a href="https://www.behance.net/anujverma9" target="_blank">Behance Portfolio</a></div>)}
           </div>
         </div>
       </div>

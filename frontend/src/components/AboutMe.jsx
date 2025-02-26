@@ -49,16 +49,24 @@ function AboutMe() {
               <button className={Styles.resume}>Resume</button>
             </a> */}
           </div>
-          <img src="me.jpg" />
+          <div className={Styles.profile}>
+            <img src="me.jpg" />
+          </div>
         </div>
         <div className={Styles.handle}>
           <ul>
-            <li><a href="https://www.linkedin.com/in/anuj-verma-b430431b1/" target="_blank">LinkedIn</a></li>
-            {/* <li>GitHub</li>
-            <li>Instagram</li>
-            <li>Facebook</li> */}
+            <li>
+              <a
+                href="https://www.linkedin.com/in/anuj-verma-b430431b1/"
+                target="_blank"
+              >
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <strong>Email me @ anujverma11062002@gmail.com</strong>
+            </li>
           </ul>
-          <span><strong>Email me @ anujverma11062002@gmail.com</strong></span>
         </div>
       </div>
     </div>
