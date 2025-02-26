@@ -10,9 +10,9 @@
   --extra-white : #f8f8f8;
   --light-gray : #d9d9d9;
   --gray : #808080;
-  --primary : #AC1754;
-  --secondary : #E53888;
-  --tertiary : #F7A8C4;
+  --primary : #69247C;
+  --secondary : #DA498D;
+  --tertiary : #F9E6CF;
 
   background-color: var(--extra-white);
 }

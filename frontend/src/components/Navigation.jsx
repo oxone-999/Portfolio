@@ -12,15 +12,15 @@ function Navigation({role, setRole, setDesignation }) {
     console.log(role);
     document
       .getElementById("root")
-      .style.setProperty("--primary", role === "3D" ? "#AC1754" : "#27445D");
+      .style.setProperty("--primary", role === "3D" ? "#69247C" : "#27445D");
 
     document
       .getElementById("root")
-      .style.setProperty("--secondary", role === "3D" ? "#E53888" : "#71BBB2");
+      .style.setProperty("--secondary", role === "3D" ? "#DA498D" : "#71BBB2");
 
     document
       .getElementById("root")
-      .style.setProperty("--tertiary", role === "3D" ? "#F7A8C4" : "#EFE9D5");
+      .style.setProperty("--tertiary", role === "3D" ? "#F9E6CF" : "#EFE9D5");
   };
 
   useEffect(() => {
