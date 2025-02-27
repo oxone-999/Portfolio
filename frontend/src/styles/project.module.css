@@ -7,7 +7,6 @@
 
 .container {
   width: 100%;
-  height: 100%;
   overflow-y: none;
   display: flex;
   justify-content: center;
@@ -16,13 +15,12 @@
   padding: 0rem;
   margin: 0rem;
   position: relative;
-  overflow-y: auto;
-  margin-top: 3rem;
+  overflow-y: hidden;
+  margin-top: 4rem;
 }
 
 .main {
   width: 100%;
-  height: 100%;
   overflow-y: hidden;
   background-color: none;
   padding: 0rem;
@@ -31,11 +29,12 @@
 
 .content {
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: none;
+  overflow-y: hidden;
 }
 
 .projectList {
@@ -44,8 +43,8 @@
   gap: 20px; /* Space between items */
   justify-content: center;
   align-items: flex-start;
+  overflow-y: auto;
   width: 90vw;
-  height: 70vh;
   padding: 2rem;
 }
 

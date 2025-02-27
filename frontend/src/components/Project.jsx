@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Styles from "../styles/project.module.css";
 import ProjectModal from "./ProjectModal";
 import sdeProjects from "../assets/projects";
+import { motion } from "framer-motion";
 
-function Project({role}) {
+function Project({ role }) {
   let projects = sdeProjects;
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -25,42 +26,55 @@ function Project({role}) {
       <div className={Styles.main}>
         <div className={Styles.content}>
           <div className={Styles.projectList}>
-            {role=="SDE" ? projects.map((project) => (
-              <div
-                className={Styles.project}
-                onClick={() => handleModalClick(project)}
-                key={project.id}
-              >
-                <div className={Styles.header}>
-                  <h6>{project.name}</h6>
-                  <span
-                    className={
-                      project.status == "In Progress"
-                        ? Styles.status_inprogress
-                        : Styles.status_completed
-                    }
-                  >
-                    {project.status}
-                  </span>
-                </div>
-                <p>{project.description}</p>
-                <div className={Styles.skills}>
-                  {project.skills.map((skill) => (
-                    <span key={skill} className={Styles.skill}>
-                      {skill}
+            {role == "SDE" ? (
+              projects.map((project) => (
+                <div
+                  className={Styles.project}
+                  onClick={() => handleModalClick(project)}
+                  key={project.id}
+                >
+                  <div className={Styles.header}>
+                    <h6>{project.name}</h6>
+                    <span
+                      className={
+                        project.status == "In Progress"
+                          ? Styles.status_inprogress
+                          : Styles.status_completed
+                      }
+                    >
+                      {project.status}
                     </span>
-                  ))}
+                  </div>
+                  <p>{project.description}</p>
+                  <div className={Styles.skills}>
+                    {project.skills.map((skill) => (
+                      <span key={skill} className={Styles.skill}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className={Styles.noProject}>
+                No Projects have been added yet, please visit{" "}
+                <a href="https://www.behance.net/anujverma9" target="_blank">
+                  Behance Portfolio
+                </a>
               </div>
-            )) : (<div className={Styles.noProject}>No Projects have been added yet, please visit <a href="https://www.behance.net/anujverma9" target="_blank">Behance Portfolio</a></div>)}
+            )}
           </div>
         </div>
       </div>
 
       {showModal && selectedProject && (
         <div className={Styles.modalOverlay} onClick={handleModalClose}>
-          <div
+          <motion.div
             className={Styles.modalContent}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
           >
             <button className={Styles.closeButton} onClick={handleModalClose}>
@@ -68,7 +82,7 @@ function Project({role}) {
             </button>
             <h2>{selectedProject.name}</h2>
             <ProjectModal content={selectedProject.content} />
-          </div>
+          </motion.div>
         </div>
       )}
     </div>
