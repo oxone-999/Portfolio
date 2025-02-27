@@ -143,3 +143,10 @@
   left: 5%;
   animation-duration: 19s;
 }
+
+@media screen and (max-width: 768px) {
+  .backgroundSkills img {
+    width: 70px;
+    height: 70px;
+  } 
+}
