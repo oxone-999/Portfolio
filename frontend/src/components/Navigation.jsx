@@ -54,7 +54,7 @@ function Navigation({role, setRole, setDesignation }) {
     "Home",
     "Projects",
     "Skills",
-    // "Journey",
+    "Journey",
     // "Contact",
     "About",
     // "Extras",

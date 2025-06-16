@@ -61,6 +61,17 @@ function Project({ role }) {
                 <a href="https://www.behance.net/anujverma9" target="_blank">
                   Behance Portfolio
                 </a>
+                <div
+                  className={Styles.project}
+                  dangerouslySetInnerHTML={{
+                    __html: `
+            <div style="height: 140px; padding-bottom: 0;">
+              <a href="https://www.behance.net/anujverma9?" data-iframely-url="//iframely.net/NUKyutj"></a>
+            </div>
+            <script async src="//iframely.net/embed.js"></script>
+          `,
+                  }}
+                />
               </div>
             )}
           </div>

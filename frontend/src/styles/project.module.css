@@ -1,12 +1,14 @@
 .noProject{
   width: 100vw;
+  height: 100vh;
   align-self: center;
   text-align: center;
   color: var(--black);
 }
 
 .container {
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow-y: none;
   display: flex;
   justify-content: center;
@@ -15,13 +17,12 @@
   padding: 0rem;
   margin: 0rem;
   position: relative;
-  overflow-y: hidden;
   margin-top: 4rem;
 }
 
 .main {
   width: 100%;
-  overflow-y: hidden;
+  height: 100%;
   background-color: none;
   padding: 0rem;
   margin: 0rem;
@@ -34,11 +35,11 @@
   justify-content: center;
   align-items: center;
   background-color: none;
-  overflow-y: hidden;
 }
 
 .projectList {
   display: grid;
+  height: 30rem;
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 20px; /* Space between items */
   justify-content: center;
@@ -160,7 +161,7 @@
   border-radius: 5rem;
   margin: 0.3rem;
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   padding: 0.16rem 0.55rem;
 }
 
@@ -189,7 +190,7 @@
   left: auto;
   right: auto;
   width: 90%;
-  height: 90%;
+  height: 87%;
   background: none;
   display: flex;
   align-items: center;
@@ -228,5 +229,5 @@
 }
 
 .closeButton:hover {
-  background: darkred;
+  background: var(--secondary);
 }

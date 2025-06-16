@@ -2,7 +2,7 @@ const sdeProjects = [
   {
     id: "1",
     name: "Event Exchange Platform",
-    status: "In Progress",
+    status: "Completed",
     skills: [
       "JavaScript",
       "Python",
@@ -44,7 +44,7 @@ const sdeProjects = [
   {
     id: "2",
     name: "Video Analytics Project",
-    status: "In Progress",
+    status: "Completed",
     skills: [
       "Javascript",
       "Node.js",
@@ -329,6 +329,126 @@ j`,
 
         <p>This extension is perfect for professionals, students, and anyone looking to optimize their online time management. 🚀</p>`,
   },
+  {
+  id: "7",
+  name: "DFB Streaming Pipeline",
+  status: "Completed",
+  skills: [
+    "Kafka",
+    "Redis",
+    "Python",
+    "FFmpeg",
+    "SRT",
+    "HLS",
+    "NGINX",
+    "Elasticsearch",
+    "Kibana",
+    "Logstash",
+    "Microservices",
+  ],
+  description:
+    "A live video streaming pipeline for broadcasting football matches, using Event Exchange framework.",
+  content: `
+<p><strong>DFB Streaming Pipeline</strong> is a <em>live event streaming architecture</em> designed to ingest, process, enhance, and distribute football match streams to multiple broadcasters using flexible configurations and protocols.</p>
+
+<h2>Project Purpose</h2>
+<p>This pipeline enables real-time acquisition and transformation of live football match streams received from production companies in formats like <strong>HLS, SRT, and RTMP</strong>. It enhances the streams with <strong>multilingual audio and subtitles</strong>, and delivers them to broadcasters in their desired format and quality.</p>
+
+<h2>How It Works</h2>
+<ul>
+  <li>Streams are ingested from external production sources using the <strong>Receiver Adapters</strong> (SRT, HLS, RTMP).</li>
+  <li>Data passes through the <strong>Event Exchange Framework</strong> for pipeline handling using Kafka topics and Redis caching.</li>
+  <li>The pipeline <strong>processes video streams</strong>, applies audio/subtitle overlays, and transforms them using <strong>FFmpeg</strong>.</li>
+  <li>Output is sent via <strong>Sender Adapters</strong> to broadcasters in configurable formats.</li>
+  <li><strong>Monitoring and performance metrics</strong> are tracked through the ELK stack (Logstash, Elasticsearch, Kibana).</li>
+</ul>
+
+<h2>My Contributions</h2>
+<ul>
+  <li>Developed custom <strong>Receiver and Sender Adapters</strong> for live stream protocols including <strong>SRT and HLS</strong>.</li>
+  <li>Researched and implemented stream transformation logic for optimal live video quality.</li>
+  <li>Collaborated on adapting <strong>FFmpeg</strong> pipelines for real-time transcoding and protocol conversion.</li>
+  <li>Ensured integration of <strong>Event Exchange</strong> messaging components for stable stream lifecycle management.</li>
+</ul>
+
+<h2>Technologies Used</h2>
+<ul>
+  <li><strong>Streaming Protocols:</strong> SRT, HLS, RTMP</li>
+  <li><strong>Media Processing:</strong> FFmpeg, NGINX (RTMP module)</li>
+  <li><strong>Framework:</strong> Event Exchange (Kafka, Redis, Topic Console, eStore)</li>
+  <li><strong>Logic Layer:</strong> Python for processing and control flow</li>
+  <li><strong>Monitoring:</strong> Logstash, Elasticsearch, Kibana (ELK Stack)</li>
+</ul>
+
+<p>This project is ideal for <strong>broadcast-grade live sports delivery</strong>, ensuring <strong>low-latency, multilingual, and customizable output</strong> for modern streaming platforms. ⚽🎥</p>
+`,
+},
+{
+  id: "8",
+  name: "Sports Stream Management Console",
+  status: "In Progress",
+  skills: [
+    "React",
+    "Node.js",
+    "TypeScript",
+    "MariaDB",
+    "Docker",
+    "Docker CLI",
+    "RBAC",
+    "Real-time Logs",
+    "Microservices",
+  ],
+  description:
+    "A web-based GUI for managing real-time football streaming pipelines, built to eliminate manual DevOps and improve observability and control.",
+  content: `
+<p>The <strong>Sports Stream Management Console</strong> is a full-featured <em>real-time pipeline orchestration platform</em> built using <strong>React, Node.js, and TypeScript</strong>. It serves as the management interface for the <strong>DFB Streaming Pipeline</strong>, enabling technical and non-technical users to control and monitor live football streaming infrastructure without writing code.</p>
+
+<h2>Problem It Solves</h2>
+<p>The original streaming pipeline required <strong>manual intervention</strong> for:
+  <ul>
+    <li>Starting/stopping Docker services</li>
+    <li>Editing config files manually</li>
+    <li>Debugging logs via command line</li>
+    <li>Maintaining client/pipeline data externally</li>
+  </ul>
+  Additionally, there was no <strong>Role-Based Access Control (RBAC)</strong>, no client management, and no persistent storage for pipeline configurations. The system was highly developer-dependent.
+</p>
+
+<h2>Why This Was Built</h2>
+<p>To solve these issues, we designed a <strong>scalable and intuitive UI-based application</strong> that supports:
+  <ul>
+    <li>Pipeline lifecycle management (Create, Start, Stop, Delete, Update)</li>
+    <li>Configuration persistence</li>
+    <li>Stream categorization (Upcoming, InProgress, Completed)</li>
+    <li>Live log streaming for debugging</li>
+    <li>RBAC-based user and client management</li>
+    <li>System-wide notifications and alerts</li>
+  </ul>
+</p>
+
+<h2>My Contributions</h2>
+<ul>
+  <li>Designed and implemented key backend services using <strong>Node.js</strong> with <strong>TypeScript</strong></li>
+  <li>Built REST APIs to integrate with the <strong>Event Exchange Framework</strong></li>
+  <li>Configured <strong>MariaDB</strong> for persistent pipeline and user data</li>
+  <li>Worked on <strong>Dockerizing the entire application</strong>, including DIND for internal service orchestration</li>
+  <li>Implemented client onboarding and live pipeline view with real-time stream statuses</li>
+</ul>
+
+<h2>Technologies Used</h2>
+<ul>
+  <li><strong>Frontend:</strong> React + TypeScript</li>
+  <li><strong>Backend:</strong> Node.js + TypeScript</li>
+  <li><strong>Database:</strong> MariaDB</li>
+  <li><strong>Containerization:</strong> Docker, Docker-in-Docker (DIND)</li>
+  <li><strong>Others:</strong> REST API, WebSocket (for live logs), Role-Based Access Control</li>
+</ul>
+
+<p>This console enables true <strong>self-service DevOps</strong> for real-time media pipelines and eliminates manual effort, making it scalable and maintainable even by non-developers. ⚙️📺</p>
+`
+}
+
+
 ];
 
 export default sdeProjects;
