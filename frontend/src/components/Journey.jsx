@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "../styles/journey.module.css";
+import Styles from "../styles/Journey.module.css";
 import {
   Timeline,
   TimelineItem,
