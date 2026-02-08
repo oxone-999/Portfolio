@@ -53,7 +53,6 @@ const sdeProjects = [
       "MariaDB",
       "AWS",
       "Kafka",
-      "Redis",
       "Docker",
     ],
     description:
@@ -330,25 +329,23 @@ j`,
         <p>This extension is perfect for professionals, students, and anyone looking to optimize their online time management. 🚀</p>`,
   },
   {
-  id: "7",
-  name: "DFB Streaming Pipeline",
-  status: "Completed",
-  skills: [
-    "Kafka",
-    "Redis",
-    "Python",
-    "FFmpeg",
-    "SRT",
-    "HLS",
-    "NGINX",
-    "Elasticsearch",
-    "Kibana",
-    "Logstash",
-    "Microservices",
-  ],
-  description:
-    "A live video streaming pipeline for broadcasting football matches, using Event Exchange framework.",
-  content: `
+    id: "7",
+    name: "DFB Streaming Pipeline",
+    status: "Completed",
+    skills: [
+      "Kafka",
+      "Redis",
+      "Python",
+      "FFmpeg",
+      "NGINX",
+      "Elasticsearch",
+      "Kibana",
+      "Logstash",
+      "Microservices",
+    ],
+    description:
+      "A live video streaming pipeline for broadcasting football matches, using Event Exchange framework.",
+    content: `
 <p><strong>DFB Streaming Pipeline</strong> is a <em>live event streaming architecture</em> designed to ingest, process, enhance, and distribute football match streams to multiple broadcasters using flexible configurations and protocols.</p>
 
 <h2>Project Purpose</h2>
@@ -382,25 +379,25 @@ j`,
 
 <p>This project is ideal for <strong>broadcast-grade live sports delivery</strong>, ensuring <strong>low-latency, multilingual, and customizable output</strong> for modern streaming platforms. ⚽🎥</p>
 `,
-},
-{
-  id: "8",
-  name: "Sports Stream Management Console",
-  status: "In Progress",
-  skills: [
-    "React",
-    "Node.js",
-    "TypeScript",
-    "MariaDB",
-    "Docker",
-    "Docker CLI",
-    "RBAC",
-    "Real-time Logs",
-    "Microservices",
-  ],
-  description:
-    "A web-based GUI for managing real-time football streaming pipelines, built to eliminate manual DevOps and improve observability and control.",
-  content: `
+  },
+  {
+    id: "8",
+    name: "Sports Stream Management Console",
+    status: "Completed",
+    skills: [
+      "React",
+      "Node.js",
+      "TypeScript",
+      "MariaDB",
+      "Docker",
+      "Docker CLI",
+      "RBAC",
+      "Real-time Logs",
+      "Microservices",
+    ],
+    description:
+      "A web-based GUI for managing real-time football streaming pipelines, built to eliminate manual DevOps and improve observability and control.",
+    content: `
 <p>The <strong>Sports Stream Management Console</strong> is a full-featured <em>real-time pipeline orchestration platform</em> built using <strong>React, Node.js, and TypeScript</strong>. It serves as the management interface for the <strong>DFB Streaming Pipeline</strong>, enabling technical and non-technical users to control and monitor live football streaming infrastructure without writing code.</p>
 
 <h2>Problem It Solves</h2>
@@ -445,10 +442,37 @@ j`,
 </ul>
 
 <p>This console enables true <strong>self-service DevOps</strong> for real-time media pipelines and eliminates manual effort, making it scalable and maintainable even by non-developers. ⚙️📺</p>
-`
-}
-
-
+`,
+  },
+  {
+    id: "9",
+    name: "DFB Analytics Dashboard Automation",
+    status: "In Progress",
+    skills: [
+      "Python",
+      "Selenium",
+      "BeautifulSoup",
+      "Node.js",
+      "JavaScript",
+      "Microservices",
+    ],
+    description:
+      "A web automation project to scrape and analyze football match data from the DFB analytics dashboard, providing insights and visualizations.",
+  },
+  {
+    id: "10",
+    name: "Recon+ Framework",
+    status: "In Progress",
+    skills: [
+      "Python",
+      "Airflow",
+      "Kibana",
+      "ElasticSearch",
+      "PySpark",
+    ],
+    description:
+      "A modular and extensible framework which automates the reconciliation of data across distributed systems, ensuring data consistency and integrity.",
+  },
 ];
 
 export default sdeProjects;

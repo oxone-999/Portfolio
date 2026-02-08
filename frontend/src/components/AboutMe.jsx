@@ -45,9 +45,6 @@ function AboutMe() {
               or crafting stunning animations, I strive to leave a unique mark
               in every endeavor.
             </p>
-            {/* <a href={ExampleDoc} download="Anuj_Verma_Resume" target="_blank">
-              <button className={Styles.resume}>Resume</button>
-            </a> */}
           </div>
           <div className={Styles.profile}>
             <img src="me.jpg" />

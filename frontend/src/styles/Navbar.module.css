@@ -35,6 +35,8 @@
   background-color: var(--tertiary);
   color: var(--primary);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .role:hover {
@@ -42,6 +44,29 @@
   color: var(--tertiary);
   background-color: var(--primary);
   transition: all 0.3s ease;
+}
+
+.roleText {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.roleText.hidden {
+  opacity: 0;
+}
+
+.clickMe {
+  position: absolute;
+  opacity: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.clickMe.visible {
+  opacity: 1;
 }
 
 .list {

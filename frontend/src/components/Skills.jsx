@@ -1,8 +1,11 @@
 import React from "react";
 import Styles from "../styles/skills.module.css";
 import skillsData from "../assets/skills.js";
+import { useParams } from "react-router-dom";
 
-function Skills({ role }) {
+function Skills() {
+  const { role } = useParams();
+  console.log(role);
   const { sdeSkills, tdSkills } = skillsData;
   const [skills, setSkills] = React.useState(sdeSkills);
 
@@ -15,31 +18,36 @@ function Skills({ role }) {
   }, [role]);
 
   const skillsProficiency = {
-    kafka: 80,
-    React: 60,
-    mongodb: 85,
-    python: 90,
-    html: 90,
-    css: 90,
-    js: 90,
-    git: 85,
-    docker: 80,
-    jenkins: 80,
-    redis: 80,
-    node: 85,
-    blender: 80,
-    unity: 80,
-    csharp: 80,
-    unreal: 80,
-    maya: 80,
-    zbrush: 80,
-    substance: 80,
-    photoshop: 80,
-    illustrator: 80,
-    aftereffects: 80,
-    premiere: 80,
-    davinci: 80,
-    marvelous: 80
+    React: 80,
+    MongoDB: 80,
+    Python: 60,
+    HTML: 95,
+    CSS: 95,
+    JavaScript: 80,
+    Git: 80,
+    Docker: 85,
+    Jenkins: 50,
+    Redis: 60,
+    "Node.js": 80,
+    kafka: 60,
+    MariaDB: 70,
+    Airflow: 50,
+    Kibana: 50,
+    ElasticSearch: 50,
+    PySpark: 60,
+    Blender: 95,
+    Unity: 75,
+    "C#": 70,
+    "Unreal Engine": 50,
+    Maya: 50,
+    Zbrush: 75,
+    "Substance Painter": 70,
+    Photoshop: 60,
+    Illustrator: 50,
+    "After Effects": 70,
+    "Premiere Pro": 80,
+    "DaVinci Resolve": 40,
+    "Marvelous Designer": 65,
   };
 
   return (
@@ -48,7 +56,7 @@ function Skills({ role }) {
         <div className={Styles.content}>
           {skills.map((skill) => (
             <div className={Styles.skill} key={skill.id}>
-              {/* <span
+              <span
                 style={{
                   width: `${skillsProficiency[skill.name]}%`,
                   height: "0.5rem",
@@ -56,7 +64,7 @@ function Skills({ role }) {
                   backgroundColor: "var(--primary)",
                   border: "none",
                 }}
-              ></span> */}
+              ></span>
               <img
                 src={skill.url}
                 style={skill.name == "Zbrush" ? { filter: "invert(1)" } : {}}

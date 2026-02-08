@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Styles from "../styles/project.module.css";
 import ProjectModal from "./ProjectModal";
 import sdeProjects from "../assets/projects";
+import TDProjects from "../assets/TDprojects";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
 
-function Project({ role }) {
-  let projects = sdeProjects;
+function Project() {
+  const { role } = useParams();
+  let projects = role === "SDE" ? sdeProjects : TDProjects;
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -26,54 +29,34 @@ function Project({ role }) {
       <div className={Styles.main}>
         <div className={Styles.content}>
           <div className={Styles.projectList}>
-            {role == "SDE" ? (
-              projects.map((project) => (
-                <div
-                  className={Styles.project}
-                  onClick={() => handleModalClick(project)}
-                  key={project.id}
-                >
-                  <div className={Styles.header}>
-                    <h6>{project.name}</h6>
-                    <span
-                      className={
-                        project.status == "In Progress"
-                          ? Styles.status_inprogress
-                          : Styles.status_completed
-                      }
-                    >
-                      {project.status}
-                    </span>
-                  </div>
-                  <p>{project.description}</p>
-                  <div className={Styles.skills}>
-                    {project.skills.map((skill) => (
-                      <span key={skill} className={Styles.skill}>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+            {projects.map((project) => (
+              <div
+                className={Styles.project}
+                onClick={() => handleModalClick(project)}
+                key={project.id}
+              >
+                <div className={Styles.header}>
+                  <h6>{project.name}</h6>
+                  <span
+                    className={
+                      project.status == "In Progress"
+                        ? Styles.status_inprogress
+                        : Styles.status_completed
+                    }
+                  >
+                    {project.status}
+                  </span>
                 </div>
-              ))
-            ) : (
-              <div className={Styles.noProject}>
-                No Projects have been added yet, please visit{" "}
-                <a href="https://www.behance.net/anujverma9" target="_blank">
-                  Behance Portfolio
-                </a>
-                <div
-                  className={Styles.project}
-                  dangerouslySetInnerHTML={{
-                    __html: `
-            <div style="height: 140px; padding-bottom: 0;">
-              <a href="https://www.behance.net/anujverma9?" data-iframely-url="//iframely.net/NUKyutj"></a>
-            </div>
-            <script async src="//iframely.net/embed.js"></script>
-          `,
-                  }}
-                />
+                <p>{project.description}</p>
+                <div className={Styles.skills}>
+                  {project.skills.map((skill) => (
+                    <span key={skill} className={Styles.skill}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            )}
+            ))}
           </div>
         </div>
       </div>

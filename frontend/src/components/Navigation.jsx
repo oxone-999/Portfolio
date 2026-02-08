@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Styles from "../styles/Navbar.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Navigation({role, setRole, setDesignation }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [barStyle, setBarStyle] = useState({ left: "2rem", width: "3rem" });
   const [barClicked, setBarClicked] = useState({ left: "2rem", width: "3rem" });
+  const [showClickMe, setShowClickMe] = useState(false);
   const listRefs = useRef([]);
 
   const toggleColor = () => {
@@ -24,14 +26,20 @@ function Navigation({role, setRole, setDesignation }) {
   };
 
   useEffect(() => {
-    // Set default position to "Home" when the component mounts
+    // Set default position to "Home" when the component mounts (only once)
     const homeItem = listRefs.current[0]; // "Home" is the first item
     if (homeItem) {
       const rect = homeItem.getBoundingClientRect();
       setBarStyle({ left: `${rect.left}px`, width: `${rect.width}px` });
       setBarClicked({ left: `${rect.left}px`, width: `${rect.width}px` });
-      navigate("/home");
     }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowClickMe(prev => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleMouseEnter = (e) => {
@@ -47,7 +55,7 @@ function Navigation({role, setRole, setDesignation }) {
     const rect = e.target.getBoundingClientRect();
     setBarClicked({ left: `${rect.left}px`, width: `${rect.width}px` });
 
-    navigate("/" + e.target.textContent.toLowerCase());
+    navigate(`/${role}/${e.target.textContent.toLowerCase()}`);
   };
 
   const navigationList = [
@@ -55,21 +63,18 @@ function Navigation({role, setRole, setDesignation }) {
     "Projects",
     "Skills",
     "Journey",
-    // "Contact",
     "About",
-    // "Extras",
   ];
 
   const handleRole = () => {
-    if (role === "3D") {
-      setRole("SDE");
-      setDesignation("Full Stack Developer");
-      toggleColor();
-    } else {
-      setRole("3D");
-      setDesignation("3D Artist");
-      toggleColor();
-    }
+    const newRole = role === "3D" ? "SDE" : "3D";
+    setRole(newRole);
+    setDesignation(newRole === "3D" ? "3D Artist" : "Full Stack Developer");
+    toggleColor();
+    
+    // Navigate to the same page with the new role
+    const currentPage = location.pathname.split('/')[2] || 'home';
+    navigate(`/${newRole}/${currentPage}`);
   };
   return (
     <div className={Styles.navbar}>
@@ -89,7 +94,12 @@ function Navigation({role, setRole, setDesignation }) {
         </ul>
       </div>
       <div className={Styles.role} onClick={handleRole}>
-        {role}
+        <span className={`${Styles.roleText} ${showClickMe ? Styles.hidden : ''}`}>
+          {role}
+        </span>
+        <span className={`${Styles.clickMe} ${showClickMe ? Styles.visible : ''}`}>
+          Click me
+        </span>
       </div>
       <div
         className={Styles.movingBar}
