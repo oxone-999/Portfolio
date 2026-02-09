@@ -35,20 +35,13 @@ function Navigation({role, setRole, setDesignation }) {
     }
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowClickMe(prev => !prev);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   const handleMouseEnter = (e) => {
     const rect = e.target.getBoundingClientRect();
     setBarStyle({ left: `${rect.left}px`, width: `${rect.width}px` });
   };
 
   const handleMouseLeave = () => {
-    setBarStyle(barClicked); // Reset position (optional)
+    setBarStyle(barClicked);
   };
 
   const handleMouseClick = (e) => {
