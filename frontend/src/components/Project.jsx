@@ -2,7 +2,7 @@ import { useState } from "react";
 import Styles from "../styles/project.module.css";
 import ProjectModal from "./ProjectModal";
 import sdeProjects from "../assets/projects";
-import TDProjects from "../assets/TDprojects";
+import TDProjects from "../assets/TDProjects";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 
