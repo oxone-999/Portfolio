@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
 import Styles from "../styles/AboutMe.module.css";
-import ExampleDoc from "../assets/resume.pdf";
 
 function AboutMe() {
   return (
@@ -47,7 +45,7 @@ function AboutMe() {
             </p>
           </div>
           <div className={Styles.profile}>
-            <img src="me.jpg" />
+            <img src="/me.jpg" />
           </div>
         </div>
         <div className={Styles.handle}>

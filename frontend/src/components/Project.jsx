@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Styles from "../styles/project.module.css";
 import ProjectModal from "./ProjectModal";
 import sdeProjects from "../assets/projects";

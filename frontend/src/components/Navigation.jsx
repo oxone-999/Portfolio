@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Styles from "../styles/Navbar.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -33,6 +33,13 @@ function Navigation({role, setRole, setDesignation }) {
       setBarStyle({ left: `${rect.left}px`, width: `${rect.width}px` });
       setBarClicked({ left: `${rect.left}px`, width: `${rect.width}px` });
     }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowClickMe(prev => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleMouseEnter = (e) => {
