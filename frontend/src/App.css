@@ -1,54 +1,60 @@
+/* Theme Variables */
+
+.theme-sde {
+  --bg-color: #020617; /* Very deep slate/black */
+  --bg-secondary: #0f172a; /* Card background */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-primary: #0d9488; /* Teal */
+  --accent-secondary: #2dd4bf; /* Bright sea-green/teal glow */
+  --border-color: #1e293b;
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(45, 212, 191, 0.1);
+}
+
+.theme-3d {
+  --bg-color: #f0fdfa; /* Extremely light mint/teal background */
+  --bg-secondary: #ffffff; /* Card background */
+  --text-primary: #0f172a; /* Dark text for readability */
+  --text-secondary: #475569;
+  --accent-primary: #0f766e; /* Deep teal for buttons/highlights */
+  --accent-secondary: #14b8a6; /* Vibrant mid-teal */
+  --border-color: #ccfbf1;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(20, 184, 166, 0.15);
+}
+
 #root {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
-  text-align: center;
-
-  --black : #191919;
-  --white : #d8d8d8;
-  --extra-white : #f8f8f8;
-  --light-gray : #d9d9d9;
-  --gray : #808080;
-  --primary : #985ea6;
-  --secondary : #DA498D;
-  --tertiary : #F9E6CF;
-
-  background-color: var(--extra-white);
+  padding: 0 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Reusable Utility Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

@@ -1,71 +1,54 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Styles from "../styles/skills.module.css";
 import skillsData from "../assets/skills.js";
 
 function Skills({ role }) {
   const { sdeSkills, tdSkills } = skillsData;
-  const [skills, setSkills] = React.useState(sdeSkills);
+  const skills = role === "SDE" ? sdeSkills : tdSkills;
 
-  React.useEffect(() => {
-    if (role === "SDE") {
-      setSkills(sdeSkills);
-    } else {
-      setSkills(tdSkills);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
     }
-  }, [role]);
+  };
 
-  const skillsProficiency = {
-    kafka: 80,
-    React: 60,
-    mongodb: 85,
-    python: 90,
-    html: 90,
-    css: 90,
-    js: 90,
-    git: 85,
-    docker: 80,
-    jenkins: 80,
-    redis: 80,
-    node: 85,
-    blender: 80,
-    unity: 80,
-    csharp: 80,
-    unreal: 80,
-    maya: 80,
-    zbrush: 80,
-    substance: 80,
-    photoshop: 80,
-    illustrator: 80,
-    aftereffects: 80,
-    premiere: 80,
-    davinci: 80,
-    marvelous: 80
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    show: { opacity: 1, scale: 1 }
   };
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.main}>
-        <div className={Styles.content}>
-          {skills.map((skill) => (
-            <div className={Styles.skill} key={skill.id}>
-              {/* <span
-                style={{
-                  width: `${skillsProficiency[skill.name]}%`,
-                  height: "0.5rem",
-                  alignSelf: "flex-start",
-                  backgroundColor: "var(--primary)",
-                  border: "none",
-                }}
-              ></span> */}
+      <div className={Styles.header}>
+        <h2 className={Styles.title}>My <span className="gradient-text">Toolkit</span></h2>
+        <div className={Styles.divider}></div>
+      </div>
+
+      <motion.div 
+        className={Styles.grid}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-50px" }}
+      >
+        {skills.map((skill) => (
+          <motion.div variants={itemVariants} className={`${Styles.skillCard} glass-panel`} key={skill.id}>
+            <div className={Styles.iconWrapper}>
               <img
                 src={skill.url}
-                style={skill.name == "Zbrush" ? { filter: "invert(1)" } : {}}
+                alt={skill.name}
+                style={skill.name === "Zbrush" ? { filter: "invert(1)" } : {}}
               />
-              <span>{skill.name}</span>
             </div>
-          ))}
-        </div>
-      </div>
+            <span className={Styles.skillName}>{skill.name}</span>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 }
