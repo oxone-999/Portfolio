@@ -113,4 +113,12 @@ function App() {
   );
 }
 
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
 export default App;
