@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ecda",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#081a18",
+                        "teal-surface": "#0d2b28",
+                        "teal-accent": "#1ebfb0",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(19, 236, 218, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(19, 236, 218, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(19, 236, 218, 0.15) 0%, rgba(8, 26, 24, 1) 70%);
+        }
+        .floating-shape {
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-background-dark">
+<div class="relative min-h-screen overflow-x-hidden">
+<!-- Background Decorations -->
+<div class="absolute top-20 left-10 size-64 bg-primary/20 rounded-full floating-shape"></div>
+<div class="absolute top-1/2 right-[-5%] size-96 bg-teal-accent/10 rounded-full floating-shape"></div>
+<div class="absolute bottom-10 left-1/4 size-72 bg-primary/15 rounded-full floating-shape"></div>
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary/20 rounded-lg flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary">view_in_ar</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-100">Anuj Verma</h2>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Projects</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Stats</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-6">
+<!-- Toggle Switch -->
+<div class="flex h-11 w-48 items-center justify-center rounded-xl bg-teal-surface/50 border border-primary/20 p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 has-[:checked]:bg-primary has-[:checked]:text-background-dark text-primary/60 text-xs font-bold uppercase tracking-wider transition-all">
+<span>3D Artist</span>
+<input checked="" class="hidden" name="role-toggle" type="radio" value="3D Artist"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-2 has-[:checked]:bg-primary has-[:checked]:text-background-dark text-primary/60 text-xs font-bold uppercase tracking-wider transition-all">
+<span>SDE</span>
+<input class="hidden" name="role-toggle" type="radio" value="SDE"/>
+</label>
+</div>
+<button class="bg-primary hover:bg-teal-accent text-background-dark font-bold py-2.5 px-6 rounded-xl transition-all">
+                        Hire Me
+                    </button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-20 pb-32 px-6 hero-gradient">
+<div class="max-w-5xl mx-auto text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-8">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    Available for new projects
+                </div>
+<h1 class="text-6xl md:text-8xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-primary/40 mb-8 leading-tight">
+                    Creative Director <br/> &amp; 3D Artist
+                </h1>
+<p class="max-w-2xl mx-auto text-lg md:text-xl text-primary/70 font-light leading-relaxed mb-12">
+                    Crafting immersive digital ecosystems with organic aesthetics, precision modeling, and high-fidelity lighting environments.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-background-dark font-bold px-8 py-4 rounded-xl hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">play_circle</span>
+                        View Showreel
+                    </button>
+<button class="w-full sm:w-auto glass-card text-white font-bold px-8 py-4 rounded-xl hover:bg-primary/10 transition-colors">
+                        Explore Works
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="px-6 -mt-16 relative z-10">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card p-8 rounded-2xl flex flex-col gap-4 border-l-4 border-l-primary group hover:bg-primary/10 transition-colors">
+<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<div>
+<p class="text-primary/60 text-sm font-bold uppercase tracking-widest">Digital Assets</p>
+<p class="text-4xl font-bold text-white mt-1">50+</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col gap-4 border-l-4 border-l-primary group hover:bg-primary/10 transition-colors">
+<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">language</span>
+</div>
+<div>
+<p class="text-primary/60 text-sm font-bold uppercase tracking-widest">Worlds Created</p>
+<p class="text-4xl font-bold text-white mt-1">10+</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col gap-4 border-l-4 border-l-primary group hover:bg-primary/10 transition-colors">
+<div class="size-12 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">camera_video</span>
+</div>
+<div>
+<p class="text-primary/60 text-sm font-bold uppercase tracking-widest">Frames Rendered</p>
+<p class="text-4xl font-bold text-white mt-1">5M+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Grid -->
+<section class="py-32 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-end justify-between mb-16">
+<div class="space-y-4">
+<h2 class="text-4xl font-bold text-white">Project Showcase</h2>
+<p class="text-primary/60 max-w-md">Selected works across game design, character modeling, and environment art.</p>
+</div>
+<div class="flex gap-2">
+<button class="size-12 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
+<span class="material-symbols-outlined">west</span>
+</button>
+<button class="size-12 rounded-full bg-primary text-background-dark flex items-center justify-center hover:bg-teal-accent transition-all">
+<span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden glass-card">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60 z-10"></div>
+<img alt="Cyberpunk city environment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Futuristic cyberpunk city street with teal neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzgL42i_VUuDQMgA1OLf4OId3DssMU4EtUCW2H-Qc571wVmAxMkTvfg1UG1rEqkbO5Sl3c-Tuzit8BrVM_qHb_k6yH3R1Y4-U2LmnwEXX2lyISPS4-lzCh4-VA3IByEagFtLzbeakY5euIunbEttdlt0TXt7hf6rXHlLuJU2ou9f2j7W_tZ5HrosGK5z7J7MNSwpZJROtWaaxv3kgKA2WpdMCqOJYgYq6RDA1xfqJNJrMo3DZp0KptUs6lyvkFih0C_-VnfRq2Of5f"/>
+<div class="absolute inset-0 z-20 p-8 flex flex-col justify-end">
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Game Development</span>
+<h3 class="text-2xl font-bold text-white mb-4">Neo-Tokyo 2088</h3>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">Unreal Engine 5</span>
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">Real-time</span>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden glass-card">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60 z-10"></div>
+<img alt="Organic abstract 3D shape" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Flowing organic 3D ribbon shape in sea-green gradient" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA9VhHQmKhnKhf2LqmUvNfwGtwA13OHClKqjkpf61xwJdu8DqOTbib4m4TNo_XzIRjwfzTGRUTnq5GzuBTRFR87-7owTgCRXkzEwGdUmWbeOXSM1ucUsbPT3gGkBqm9JtxjGO0EwR4W3kRsctg3H-z3McsfPTunRFQOPqYlImFNgRyZRcCQcueaIkxyRp3_Z5TUl-EotvLNZn_IfeFcLRw1Hk0Zal_OGXeCFQV0xtigfbrtEkARxYF9qMcCEshWzictZSTjUhu2AnH"/>
+<div class="absolute inset-0 z-20 p-8 flex flex-col justify-end">
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2">Maya &amp; ZBrush</span>
+<h3 class="text-2xl font-bold text-white mb-4">Organic Synthesis</h3>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">Substance</span>
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">Procedural</span>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group relative aspect-[4/5] rounded-3xl overflow-hidden glass-card">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60 z-10"></div>
+<img alt="Hard surface modeling project" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Close up of a complex mechanical 3D model engine part" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJRuNzIEGu6Lz6DhwjIbqOPcD67T9TwfofBkoEmp0tLwWL_yGZVAlkoFRFYLi8LbECA2eD-JSt0fxo4VY_ib58IvPgQI1b2yxm-RUflx9N8fbxGme1TD_qtmYCbd_H_hHRVpDy0Q4rgCemob7IOC0Bj_l_H_cx2r9s-63_5uV0tx8CxJwhd5lORBeraslcj3j6lHEoyaPTJ9vSz7wm2o08X4QJww3_OI0hpr9C6gfjK-YXpiDCa2guHPILQBxjzXd_Q667IyZaN_PE"/>
+<div class="absolute inset-0 z-20 p-8 flex flex-col justify-end">
+<span class="text-xs font-bold text-primary uppercase tracking-widest mb-2">3D Modeling</span>
+<h3 class="text-2xl font-bold text-white mb-4">Heavy Mech Unit</h3>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">Hard Surface</span>
+<span class="px-3 py-1 rounded-full bg-white/10 text-xs text-white backdrop-blur-md">V-Ray</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="border-t border-primary/10 py-12 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">view_in_ar</span>
+<p class="text-primary font-bold">Anuj Verma © 2024</p>
+</div>
+<div class="flex items-center gap-12 text-sm font-medium text-primary/60">
+<a class="hover:text-primary transition-colors" href="#">ArtStation</a>
+<a class="hover:text-primary transition-colors" href="#">Behance</a>
+<a class="hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary transition-colors" href="#">Twitter</a>
+</div>
+<button class="size-12 rounded-xl bg-teal-surface flex items-center justify-center border border-primary/20 text-primary">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

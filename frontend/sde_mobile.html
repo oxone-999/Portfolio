@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df2df",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#080f0e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(13, 242, 223, 0.15);
+        }
+        .terminal-text {
+            font-family: 'ui-monospace', 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto border-x border-slate-200 dark:border-primary/10">
+<!-- Header / Mode Toggle -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-4 py-4 border-b border-slate-200 dark:border-primary/10">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">terminal</span>
+<span class="text-xs font-bold tracking-widest uppercase text-slate-500 dark:text-primary/60">System.Initialize()</span>
+</div>
+<button class="material-symbols-outlined text-slate-500 dark:text-slate-400">settings</button>
+</div>
+<div class="flex h-12 w-full items-center justify-center rounded-xl bg-slate-200 dark:bg-primary/5 p-1.5 border border-slate-300 dark:border-primary/20">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 transition-all duration-300 has-[:checked]:bg-primary has-[:checked]:text-background-dark text-slate-500 dark:text-primary/40 font-bold text-sm tracking-wider">
+<span class="truncate">SDE MODE</span>
+<input checked="" class="invisible w-0" name="mode-toggle" type="radio" value="SDE"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 transition-all duration-300 has-[:checked]:bg-primary has-[:checked]:text-background-dark text-slate-500 dark:text-primary/40 font-bold text-sm tracking-wider">
+<span class="truncate">3D ARTIST</span>
+<input class="invisible w-0" name="mode-toggle" type="radio" value="3D Artist"/>
+</label>
+</div>
+</header>
+<!-- Profile Section -->
+<section class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-6">
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
+<div class="relative size-32 rounded-xl border-2 border-primary p-1 bg-background-dark overflow-hidden">
+<img alt="Portrait of Anuj Verma" class="w-full h-full object-cover rounded-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a male software architect" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpBwfijR6JL3qTnBSpdQRbDlU9gtKJYJE3dIudlgmIIkiM0ESI8iVNp90-PxdK9mxaVZvjQsILc7HkAXbLJbAFEZEjK5eC41s7giJPOC9HBEfC8Cq-KALNerzByVTmk9mnm8F-xsEdeiH6uqmgNMe4n8ZazbeHYxorSPGAI2p4r-Cn3EjG450YwukQcnn9zfBmtWTQfmSMxL-amkAeA-XUnQ6Q-sOhLAFN6UUGVHJkvb-ojKHoMCnabIT8TFZSs3hQPDUppnTLdqbi"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-background-dark text-[10px] font-black px-2 py-1 rounded border border-background-dark uppercase">Verified_Architect</div>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Anuj Verma</h1>
+<p class="text-primary font-medium tracking-wide terminal-text mt-1 text-sm uppercase">Senior Systems Architect</p>
+<div class="flex gap-2 mt-4 flex-wrap justify-center">
+<div class="flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1">
+<span class="material-symbols-outlined text-sm text-primary">hub</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-slate-600 dark:text-primary/80">Distributed Systems</span>
+</div>
+<div class="flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1">
+<span class="material-symbols-outlined text-sm text-primary">javascript</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-slate-600 dark:text-primary/80">React Engine</span>
+</div>
+<div class="flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/20 px-3 py-1">
+<span class="material-symbols-outlined text-sm text-primary">database</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-slate-600 dark:text-primary/80">PostgreSQL</span>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<main class="flex-1 px-4 pb-24">
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="text-lg font-bold tracking-tight flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                    Featured Projects
+                </h2>
+<span class="text-[10px] terminal-text text-slate-500 uppercase">View_All.exe</span>
+</div>
+<!-- Project Card -->
+<div class="group relative rounded-2xl bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-primary/10 p-5 overflow-hidden transition-all hover:border-primary/40 glow-accent">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors">deployed_code</span>
+</div>
+<div class="mb-4">
+<h3 class="text-xl font-bold text-slate-900 dark:text-primary mb-1">Quantum Ledger</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">High-throughput distributed transaction engine for sub-millisecond settlement.</p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 gap-4 mb-6">
+<div class="space-y-1.5">
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-primary/60">
+<span>Optimization Core</span>
+<span class="terminal-text text-primary">98%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 98%;"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Architecture</p>
+<p class="text-lg font-bold terminal-text text-slate-900 dark:text-slate-100">142 <span class="text-xs font-normal text-slate-500">Nodes</span></p>
+</div>
+<div class="p-3 rounded-xl bg-slate-100 dark:bg-primary/5 border border-slate-200 dark:border-primary/10">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Stability</p>
+<p class="text-lg font-bold terminal-text text-slate-900 dark:text-slate-100">99.9% <span class="text-xs font-normal text-slate-500">SLA</span></p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-200 dark:border-primary/10 pt-4">
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-slate-700"></div>
+<div class="size-6 rounded-full border border-background-dark bg-slate-600"></div>
+<div class="size-6 rounded-full border border-background-dark bg-primary flex items-center justify-center text-[8px] font-bold text-background-dark">+5</div>
+</div>
+<button class="flex items-center gap-2 text-xs font-bold text-primary group-hover:translate-x-1 transition-transform uppercase tracking-widest">
+                        Access Repo
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Second Small Project -->
+<div class="mt-4 rounded-xl bg-slate-200/50 dark:bg-primary/5 border border-dashed border-slate-300 dark:border-primary/20 p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">cloud_done</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">Nebula Vault</h4>
+<p class="text-[10px] text-slate-500 uppercase tracking-tighter">Encrypted S3 Wrapper</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-50 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-primary/10 px-6 py-3 pb-6 flex justify-between items-center shadow-2xl">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Index</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Source</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Skills</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Ping</span>
+</a>
+</nav>
+</div>
+</body></html>

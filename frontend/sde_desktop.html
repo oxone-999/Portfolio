@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25f4e2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#102221",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass {
+            background: rgba(37, 244, 226, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(37, 244, 226, 0.1);
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #25f4e2;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/10 px-6 py-4 lg:px-20">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Anuj Verma</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Architecture</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Stack</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Logs</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Connect</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1200px] mx-auto w-full px-6 py-8">
+<div class="flex mb-12">
+<div class="flex h-12 w-full max-w-md mx-auto items-center justify-center rounded-xl bg-primary/5 p-1 border border-primary/10">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-4 text-slate-400 text-sm font-medium hover:text-primary transition-all">
+<span class="truncate">Design Mode</span>
+<input class="hidden" name="mode-toggle" type="radio" value="design"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-4 bg-primary text-background-dark text-sm font-bold shadow-lg shadow-primary/20">
+<span class="truncate">SDE Mode</span>
+<input checked="" class="hidden" name="mode-toggle" type="radio" value="sde"/>
+</label>
+</div>
+</div>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+<div class="flex flex-col gap-8">
+<div class="space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                                System Operational
+                            </div>
+<h1 class="text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+                                Building <span class="text-primary">Scalable</span> Backend Infrastructure
+                            </h1>
+<p class="text-lg text-slate-400 max-w-lg leading-relaxed">
+                                Senior Software Engineer specialized in distributed consensus, high-throughput messaging, and cloud-native systems. Currently optimizing real-time data pipelines.
+                            </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary text-background-dark font-bold hover:brightness-110 transition-all">
+                                Inspect Documentation
+                            </button>
+<button class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary/10 text-primary border border-primary/20 font-bold hover:bg-primary/20 transition-all">
+                                View Core Stack
+                            </button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/10 blur-3xl rounded-full"></div>
+<div class="relative aspect-square rounded-2xl overflow-hidden border border-primary/20 bg-background-dark shadow-2xl" data-alt="Abstract technical representation of server nodes and data connections">
+<div class="absolute inset-0 flex items-center justify-center opacity-20">
+<span class="material-symbols-outlined text-[200px] text-primary">hub</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6 p-4 glass rounded-xl border border-primary/20">
+<div class="flex justify-between items-center mb-2">
+<span class="text-xs font-mono text-primary">node_status.sh</span>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+</div>
+</div>
+<div class="font-mono text-[10px] text-primary/70 leading-tight">
+                                    $ nexus --health-check<br/>
+                                    &gt; Cluster status: HEALTHY (5/5 nodes online)<br/>
+                                    &gt; Latency: 0.42ms p99<br/>
+                                    &gt; Throughput: 1.2M req/sec
+                                </div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-24">
+<div class="flex items-end justify-between mb-8">
+<div>
+<h2 class="text-3xl font-bold mb-2">Featured: Nexus Core</h2>
+<p class="text-slate-400">Distributed consensus and message orchestration engine</p>
+</div>
+<a class="text-primary text-sm font-bold flex items-center gap-2 hover:underline" href="#">
+                            RESOURCES <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="glass rounded-2xl p-8 flex flex-col lg:flex-row gap-8 items-center border border-primary/20">
+<div class="w-full lg:w-1/2 space-y-6">
+<div class="flex gap-4">
+<div class="p-3 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">account_tree</span>
+</div>
+<div>
+<h3 class="text-xl font-bold">Raft Consensus Implementation</h3>
+<p class="text-slate-400 text-sm">Custom implementation for deterministic state replication across 100+ nodes.</p>
+</div>
+</div>
+<div class="code-block p-6 rounded-lg font-mono text-sm overflow-x-auto">
+<div class="flex gap-2 mb-4">
+<span class="text-blue-400">const</span> <span class="text-emerald-400">cluster</span> = <span class="text-blue-400">new</span> <span class="text-yellow-400">NexusCluster</span>({<br/>
+                                      nodes: <span class="text-orange-400">5</span>,<br/>
+                                      strategy: <span class="text-emerald-400">'quorum'</span>,<br/>
+                                      heartbeat: <span class="text-orange-400">150</span><br/>
+                                    });<br/>
+<br/>
+<span class="text-slate-500">// Initialize distributed ledger</span><br/>
+<span class="text-emerald-400">cluster</span>.<span class="text-yellow-400">on</span>(<span class="text-emerald-400">'leader_election'</span>, (node) =&gt; {<br/>
+                                      <span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-emerald-400">`New leader: ${node.id}`</span>);<br/>
+                                    });
+                                </div>
+</div>
+<div class="flex gap-4">
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Go</span>
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">gRPC</span>
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Protobuf</span>
+</div>
+</div>
+<div class="w-full lg:w-1/2">
+<div class="rounded-xl overflow-hidden border border-primary/20 shadow-inner" data-alt="Dashboard interface showing network traffic and server health metrics" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAflErBBj9Uf5ns-94POB6VN3mIAWfSNAGeLgDUoggxzd72SLOmSzMPBr6mTmR4YjaC7m8OjIYIaAQ4m0StvGirh0q7A9OusVkOmGt7jHI-2HvVlTtC8-BFVEnF35rnX0wMtTRiutosk8ji0EEgoOHzUKyeFSgacLQ4adOjsLh4eoHxPqWPtfcT9UMHTxjCOL9mqJe-ErAWntY60-CFFG4DbgriB-VhLHPQYRlucwCZdHbS_oWTjwyqt29hGizJV9cQgdN3e8XF8MZ9');">
+<div class="aspect-video bg-background-dark/40 backdrop-blur-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary/40">monitoring</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+<div class="lg:col-span-2">
+<h2 class="text-2xl font-bold mb-6">Core Stack</h2>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="glass p-6 rounded-xl border border-primary/10 flex flex-col items-center gap-3 hover:border-primary/40 transition-all group">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">storage</span>
+<span class="font-bold">PostgreSQL</span>
+</div>
+<div class="glass p-6 rounded-xl border border-primary/10 flex flex-col items-center gap-3 hover:border-primary/40 transition-all group">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">cloud</span>
+<span class="font-bold">Kubernetes</span>
+</div>
+<div class="glass p-6 rounded-xl border border-primary/10 flex flex-col items-center gap-3 hover:border-primary/40 transition-all group">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">javascript</span>
+<span class="font-bold">Node.js</span>
+</div>
+<div class="glass p-6 rounded-xl border border-primary/10 flex flex-col items-center gap-3 hover:border-primary/40 transition-all group">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:scale-110 transition-transform">lan</span>
+<span class="font-bold">Redis</span>
+</div>
+</div>
+</div>
+<div>
+<h2 class="text-2xl font-bold mb-6">System Logs</h2>
+<div class="flex flex-col gap-4">
+<div class="flex gap-4 p-4 border-l-2 border-primary bg-primary/5 rounded-r-lg">
+<div class="text-primary">
+<span class="material-symbols-outlined text-sm">commit</span>
+</div>
+<div class="space-y-1">
+<p class="text-xs font-mono text-primary/80">02:14:55 AM</p>
+<p class="text-sm font-medium">Refactored Raft log compaction engine</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 border-l-2 border-slate-700 bg-slate-800/20 rounded-r-lg">
+<div class="text-slate-500">
+<span class="material-symbols-outlined text-sm">merge</span>
+</div>
+<div class="space-y-1">
+<p class="text-xs font-mono text-slate-500">Yesterday</p>
+<p class="text-sm font-medium">Merged #442: Prometheus metrics export</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 border-l-2 border-slate-700 bg-slate-800/20 rounded-r-lg">
+<div class="text-slate-500">
+<span class="material-symbols-outlined text-sm">bug_report</span>
+</div>
+<div class="space-y-1">
+<p class="text-xs font-mono text-slate-500">2 days ago</p>
+<p class="text-sm font-medium">Fixed race condition in shard rebalancing</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-primary/10 py-12 px-6 lg:px-20 bg-background-dark">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">terminal</span>
+<span class="font-bold text-lg">Anuj Verma</span>
+</div>
+<p class="text-sm text-slate-500">Engineering for performance and reliability.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Twitter</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Email</a>
+</div>
+<p class="text-xs text-slate-600">© 2024 Systems Portfolio. All processes running.</p>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
