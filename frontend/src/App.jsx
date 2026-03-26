@@ -1,43 +1,56 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Home from "./components/Home";
-import Navigation from "./components/Navigation";
-import AboutMe from "./components/AboutMe";
-import Skills from "./components/Skills";
-import Projects from "./components/Project";
 import Journey from "./components/Journey";
+import Project from "./components/Project";
+import Skills from "./components/Skills";
+import Marketplace from "./components/Marketplace";
 
 function AppContent() {
-  const [designation, setDesignation] = React.useState("Full Stack Developer");
-  const [role, setRole] = React.useState("SDE");
-  const { role: urlRole } = useParams();
+  const identityMode = useSelector((state) => state.identity.mode);
 
-  React.useEffect(() => {
-    if (urlRole) {
-      setRole(urlRole);
-      setDesignation(urlRole === "3D" ? "3D Artist" : "Full Stack Developer");
+  // You can dynamically adjust body classes if 3D vs SDE mode requires separate root theming
+  // Stitch tailwind output primarily assumes static tokens for both modes, but handles accents via different class usages or dynamic css variables if needed.
+  useEffect(() => {
+    if (identityMode === "3D") {
+      document.documentElement.style.setProperty("--color-primary", "var(--color-tertiary)");
+      document.documentElement.style.setProperty("--color-on-primary", "var(--color-on-tertiary)");
+      document.documentElement.style.setProperty("--color-primary-dim", "var(--color-tertiary-dim)");
+    } else {
+      document.documentElement.style.setProperty("--color-primary", "#a3a6ff");
+      document.documentElement.style.setProperty("--color-on-primary", "#0d00a4");
+      document.documentElement.style.setProperty("--color-primary-dim", "#5d61f9");
     }
-  }, [urlRole]);
+  }, [identityMode]);
+
+  const selectionBg = identityMode === "3D" ? "#6fffe8" : "#a3a6ff";
+  const selectionColor = identityMode === "3D" ? "#006055" : "#0d00a4";
 
   return (
-    <>
-      <Navigation
-        role={role}
-        setRole={setRole}
-        setDesignation={setDesignation}
-      />
-      <Routes>
-        <Route
-          path="/:role/home"
-          element={<Home designation={designation} />}
-        />
-        <Route path="/:role/about" element={<AboutMe />} />
-        <Route path="/:role/skills" element={<Skills />} />
-        <Route path="/:role/projects" element={<Projects />} />
-        <Route path="/:role/journey" element={<Journey />} />
-      </Routes>
-    </>
+    <div className="flex flex-col min-h-screen bg-bg-surface">
+      <style>{`
+        ::selection {
+          background-color: ${selectionBg} !important;
+          color: ${selectionColor} !important;
+        }
+      `}</style>
+      <NavBar />
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/story" element={<Journey />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/about" element={<Skills />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
   );
 }
 

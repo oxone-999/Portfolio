@@ -1,79 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
 
-:root {
-  font-family: "Poppins", serif;
-  font-style: normal;
-  line-height: 1.5;
-  font-weight: 200;
+@theme {
+  --color-primary: #a3a6ff;
+  --color-primary-container: #9396ff;
+  --color-primary-dim: #5d61f9;
+  --color-primary-fixed: #9396ff;
+  --color-primary-fixed-dim: #8287ff;
+  --color-on-primary: #0d00a4;
+  --color-on-primary-container: #080082;
+  --color-on-primary-fixed: #000000;
+  --color-on-primary-fixed-variant: #0c009d;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --color-secondary: #e5e2e1;
+  --color-secondary-container: #474646;
+  --color-secondary-dim: #d7d4d3;
+  --color-secondary-fixed: #e5e2e1;
+  --color-secondary-fixed-dim: #d7d4d3;
+  --color-on-secondary: #525151;
+  --color-on-secondary-container: #d2d0cf;
+  --color-on-secondary-fixed: #403f3f;
+  --color-on-secondary-fixed-variant: #5c5b5b;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-tertiary: #6fffe8;
+  --color-tertiary-container: #51f2da;
+  --color-tertiary-dim: #3de3cc;
+  --color-tertiary-fixed: #51f2da;
+  --color-tertiary-fixed-dim: #3de3cc;
+  --color-on-tertiary: #006055;
+  --color-on-tertiary-container: #00574c;
+  --color-on-tertiary-fixed: #00423a;
+  --color-on-tertiary-fixed-variant: #006156;
+
+  --color-error: #ff6e84;
+  --color-error-container: #a70138;
+  --color-error-dim: #d73357;
+  --color-on-error: #490013;
+  --color-on-error-container: #ffb2b9;
+
+  --color-surface: #0e0e0e;
+  --color-surface-dim: #0e0e0e;
+  --color-surface-bright: #2c2c2c;
+  --color-surface-container-lowest: #000000;
+  --color-surface-container-low: #131313;
+  --color-surface-container: #1a1919;
+  --color-surface-container-high: #201f1f;
+  --color-surface-container-highest: #262626;
+  --color-surface-variant: #262626;
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #adaaaa;
+
+  --color-outline: #767575;
+  --color-outline-variant: #484847;
+
+  --color-inverse-surface: #fcf9f8;
+  --color-inverse-on-surface: #565555;
+  --color-inverse-primary: #4648e2;
+
+  --color-background: #0e0e0e;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+
+  --radius-DEFAULT: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
 }
 
-* {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE/Edge */
-  user-select: none; /* Standard */
-}
-
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
   }
 }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0e0e0e; }
+::-webkit-scrollbar-thumb { background: #262626; }
+::-webkit-scrollbar-thumb:hover { background: #a3a6ff; }
