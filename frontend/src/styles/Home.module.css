@@ -1,21 +1,41 @@
 .heroContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 60vh;
+  background-color: var(--extra-white);
+
+  color: var(--primary);
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.main {
   width: 100%;
-  padding: 4rem 0;
-  position: relative;
+  height: 85%;
+  overflow-y: hidden;
+  background-color: transparent;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.content {
+  padding-top: 5rem;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--primary);
 }
 
 .heroContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 800px;
-  gap: 1.5rem;
-  z-index: 10;
+  align-items: flex-start;
+  z-index: 999;
+  font-size: 2rem;
+  background-color: transparent;
+  font-weight: 300;
 }
 
 .badge {

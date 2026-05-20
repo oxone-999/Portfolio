@@ -1,14 +1,11 @@
 import React from "react";
-import { motion } from "framer-motion";
-import Styles from "../styles/skills.module.css";
+import { useSelector } from "react-redux";
 import skillsData from "../assets/skills.js";
-import { useParams } from "react-router-dom";
 
-function Skills() {
-  const { role } = useParams();
-  console.log(role);
+export default function Skills() {
+  const mode = useSelector((state) => state.identity.mode);
   const { sdeSkills, tdSkills } = skillsData;
-  const skills = role === "SDE" ? sdeSkills : tdSkills;
+  const skillsList = mode === "SDE" ? sdeSkills : tdSkills;
 
   const skillsProficiency = {
     React: 90,
@@ -41,51 +38,61 @@ function Skills() {
     "Premiere Pro": 80,
     "DaVinci Resolve": 60,
     "Marvelous Designer": 75,
-    "Kubernetes": 70,
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    show: { opacity: 1, scale: 1 }
+    Kubernetes: 70,
   };
 
   return (
-    <div className={Styles.container}>
-      <div className={Styles.header}>
-        <h2 className={Styles.title}>My <span className="gradient-text">Toolkit</span></h2>
-        <div className={Styles.divider}></div>
+    <main className="pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen">
+      <div className="mb-16">
+        <h1 className="text-5xl md:text-7xl font-headline font-bold uppercase tracking-tighter mb-4">
+          Technical <span className="text-primary-dim">Arsenal</span>
+        </h1>
+        <p className="text-on-surface-variant font-light text-lg max-w-2xl">
+          {mode === "SDE"
+            ? "A comprehensive overview of programming languages, frameworks, and deployment technologies I leverage to build scalable systems."
+            : "The creative software suite I employ to model, texture, and render high-fidelity 3D assets and environments."}
+        </p>
       </div>
 
-      <motion.div 
-        className={Styles.grid}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-50px" }}
-      >
-        {skills.map((skill) => (
-          <motion.div variants={itemVariants} className={`${Styles.skillCard} glass-panel`} key={skill.id}>
-            <div className={Styles.iconWrapper}>
-              <img
-                src={skill.url}
-                alt={skill.name}
-                style={skill.name === "Zbrush" ? { filter: "invert(1)" } : {}}
-              />
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {skillsList?.map((skill) => {
+          const profLevel = skillsProficiency[skill.name] || 50;
+          return (
+            <div
+              key={skill.id}
+              className={`bg-surface-container p-6 relative overflow-hidden group border border-outline-variant/10 ${mode === "3D" ? "rounded-2xl" : "rounded-sm"}`}
+            >
+              <div className="absolute top-0 left-0 h-1 bg-surface-container-highest w-full mb-4">
+                <div
+                  className="h-full bg-primary transition-all duration-1000 ease-in-out"
+                  style={{ width: `${profLevel}%` }}
+                ></div>
+              </div>
+
+              <div className="flex flex-col items-center gap-4 mt-6">
+                <div className="w-16 h-16 flex items-center justify-center p-2 bg-surface rounded-full shadow-inner border border-outline-variant/5">
+                  <img
+                    src={skill.url}
+                    alt={skill.name}
+                    className="max-w-full max-h-[80%] object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                    style={
+                      skill.name === "Zbrush" ? { filter: "invert(1)" } : {}
+                    }
+                  />
+                </div>
+                <div className="text-center">
+                  <span className="block font-headline font-bold text-sm tracking-wide text-on-surface mb-1">
+                    {skill.name}
+                  </span>
+                  <span className="text-[10px] font-body text-primary uppercase tracking-widest">
+                    {profLevel}% Proficiency
+                  </span>
+                </div>
+              </div>
             </div>
-            <span className={Styles.skillName}>{skill.name}</span>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
+          );
+        })}
+      </div>
+    </main>
   );
 }
-
-export default Skills;
