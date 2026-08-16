@@ -7,7 +7,18 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 export default [
   { ignores: ['dist'] },
   {
+    // Netlify Functions run on Node, not in the browser.
+    files: ['netlify/functions/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: globals.node,
+    },
+    rules: js.configs.recommended.rules,
+  },
+  {
     files: ['**/*.{js,jsx}'],
+    ignores: ['netlify/functions/**'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

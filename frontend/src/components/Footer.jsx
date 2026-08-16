@@ -1,81 +1,78 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { href, counterpartPath, LENS_COPY, SYSTEMS, CRAFT } from '../utils/lens';
+import { useLens } from '../hooks/useLens';
+
+const LINKS = {
+  [SYSTEMS]: [
+    { label: 'GitHub', url: 'https://github.com/oxone-999' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/anuj-verma-b430431b1/' },
+    { label: 'Email', url: 'mailto:anujverma11062002@gmail.com' },
+  ],
+  [CRAFT]: [
+    { label: 'ArtStation', url: 'https://www.artstation.com/anujverma' },
+    { label: 'Behance', url: 'https://www.behance.net/anujverma9' },
+    { label: 'Email', url: 'mailto:anujverma11062002@gmail.com' },
+  ],
+};
 
 export default function Footer() {
-  const mode = useSelector((state) => state.identity.mode);
+  const lens = useLens();
+  const { pathname } = useLocation();
+  const other = lens === SYSTEMS ? CRAFT : SYSTEMS;
 
-  if (mode === 'SDE') {
-    // SDE Mode: Brutalist, terminal-like, monospace accents, structural borders
-    return (
-      <footer className="w-full py-12 px-6 border-t border-outline-variant/20 bg-surface-container-lowest">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-7xl mx-auto">
-          <div className="flex flex-col gap-1">
-            <div className="inline-flex items-center gap-2 font-headline font-bold text-xs tracking-[0.2em] text-primary uppercase">
-              <span className="w-2 h-2 bg-primary"></span>
-              SYSTEM.FOOTER_
-            </div>
-            <p className="font-mono text-xs text-on-surface-variant/60 uppercase tracking-wider mt-2">
-              <span className="text-primary/50">&gt;</span> BUILD_VER: 2026 // ANUJ VERMA
+  return (
+    <footer className="mt-24 border-t border-rule">
+      <div className="mx-auto grid max-w-[1080px] gap-8 px-6 py-10 md:grid-cols-[132px_minmax(0,1fr)] md:gap-8">
+        <span className="rail-label text-ch">Colophon</span>
+
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+          <div>
+            <p className="font-display text-[17px] font-semibold tracking-tight text-ink">
+              Anuj Verma
+            </p>
+            <p className="mt-1 max-w-[46ch] text-[14px] text-ink-2">
+              {LENS_COPY[lens].eyebrow}. Currently at TCG Digital.
+            </p>
+            <p className="mt-4 font-data text-[10px] uppercase tracking-[0.08em] text-ink-3">
+              Set in Iowan Old Style, Segoe UI and Cascadia Mono · No web fonts
             </p>
           </div>
-          
-          <div className="flex flex-wrap md:justify-end gap-6 font-headline text-[10px] font-bold tracking-[0.15em] uppercase">
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" target="_blank" rel="noreferrer" href="https://github.com/oxone-999">
-              [ GitHub ]
-            </a>
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/anuj-verma-b430431b1/">
-              [ LinkedIn ]
-            </a>
-            <a className="text-on-surface-variant hover:text-primary transition-colors duration-300" target="_blank" rel="noreferrer" href="mailto:anujverma11062002@gmail.com">
-              [ Contact ]
-            </a>
-            <div className="h-4 w-[1px] bg-outline-variant/30 hidden md:block"></div>
-            <a className="text-on-surface-variant/50 hover:text-tertiary transition-colors duration-300" target="_blank" rel="noreferrer" href="https://www.artstation.com/anujverma">
-              ArtStation
-            </a>
-            <a className="text-on-surface-variant/50 hover:text-tertiary transition-colors duration-300" target="_blank" rel="noreferrer" href="https://www.behance.net/anujverma9">
-              Behance
-            </a>
+
+          <div className="flex flex-col gap-3 md:items-end">
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              {LINKS[lens].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.url}
+                  target={link.url.startsWith('http') ? '_blank' : undefined}
+                  rel="noreferrer"
+                  className="font-data text-[10.5px] uppercase tracking-[0.09em] text-ink-2 transition-colors hover:text-ch"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <Link
+              to={counterpartPath(pathname)}
+              className="font-data text-[10.5px] uppercase tracking-[0.09em] text-ink-3 transition-colors hover:text-ch"
+            >
+              → Switch to the {LENS_COPY[other].label.toLowerCase()} lens
+            </Link>
           </div>
         </div>
-      </footer>
-    );
-  }
+      </div>
 
-  // 3D Artist Mode: Cinematic, atmospheric, softer gradients, focus on visual portfolios
-  return (
-    <footer className="w-full py-16 px-8 relative overflow-hidden bg-surface-container-low">
-      {/* Subtle atmospheric glow effect at the bottom */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 relative z-10">
-        <div className="text-center">
-          <div className="font-headline text-xl font-medium tracking-[0.3em] text-on-surface uppercase mb-3">
-            Anuj Verma
-          </div>
-          <div className="w-12 h-[1px] bg-primary-dim/50 mx-auto mb-3"></div>
-          <p className="font-body text-xs tracking-widest text-on-surface-variant uppercase italic">
-            © 2026 Crafted in Polygon
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-10 font-headline text-xs tracking-widest uppercase">
-          <a className="text-on-surface hover:text-white transition-all duration-500 hover:tracking-[0.2em]" target="_blank" rel="noreferrer" href="https://www.artstation.com/anujverma">
-            ArtStation
-          </a>
-          <a className="text-on-surface hover:text-white transition-all duration-500 hover:tracking-[0.2em]" target="_blank" rel="noreferrer" href="https://www.behance.net/anujverma9">
-            Behance
-          </a>
-          <a className="text-on-surface hover:text-white transition-all duration-500 hover:tracking-[0.2em]" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/anuj-verma-b430431b1/">
-            LinkedIn
-          </a>
-          <a className="text-on-surface hover:text-white transition-all duration-500 hover:tracking-[0.2em]" target="_blank" rel="noreferrer" href="mailto:anujverma11062002@gmail.com">
-            Contact
-          </a>
-          <a className="text-on-surface-variant/40 hover:text-on-surface transition-all duration-500" target="_blank" rel="noreferrer" href="https://github.com/oxone-999">
-            GitHub
-          </a>
-        </div>
+      <div className="mx-auto flex max-w-[1080px] flex-wrap gap-x-5 gap-y-1 border-t border-rule-soft px-6 py-4 font-data text-[10px] uppercase tracking-[0.08em] text-ink-3">
+        <span>© {new Date().getFullYear()} Anuj Verma</span>
+        <Link to={href(lens, '/work')} className="hover:text-ch">
+          {LENS_COPY[lens].workLabel}
+        </Link>
+        <Link to={href(lens, '/about')} className="hover:text-ch">
+          About
+        </Link>
+        <Link to={href(lens, '/contact')} className="hover:text-ch">
+          Contact
+        </Link>
       </div>
     </footer>
   );

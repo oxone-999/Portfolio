@@ -1,0 +1,15 @@
+# Normalise to LF in the repository.
+#
+# content/portfolio.json holds case-study HTML whose line endings end up in
+# the database. Letting Git hand out CRLF working copies on Windows makes the
+# content diff report phantom changes on every project. The scripts normalise
+# defensively too (see normalizeText in scripts/lib/content.mjs), but keeping
+# LF in the tree stops the problem at the source.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.svg text eol=lf
+*.pdf binary
+*.ico binary

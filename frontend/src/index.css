@@ -1,85 +1,230 @@
 @import "tailwindcss";
 
+/* ============================================================
+   SIGNAL PLATE
+   An engineering plate, not a terminal.
+
+   Theming is done entirely at token level — no `dark:` utilities.
+   Every component styles through a token, so all three viewer
+   states (light / dark / unset-system) resolve as a complete set.
+
+   Channel accent (--color-ch) is rebound by [data-lens] on <html>:
+     systems -> channel A (teal ink)
+     craft   -> channel B (ochre)
+   ============================================================ */
+
 @theme {
-  --color-primary: #a3a6ff;
-  --color-primary-container: #9396ff;
-  --color-primary-dim: #5d61f9;
-  --color-primary-fixed: #9396ff;
-  --color-primary-fixed-dim: #8287ff;
-  --color-on-primary: #0d00a4;
-  --color-on-primary-container: #080082;
-  --color-on-primary-fixed: #000000;
-  --color-on-primary-fixed-variant: #0c009d;
+  /* ground + ink — neutrals biased cool-green toward channel A,
+     so the paper never reads as an unconsidered grey */
+  --color-paper: #e8eae7;
+  --color-paper-2: #f1f2f0;
+  --color-paper-3: #dcdfdb;
 
-  --color-secondary: #e5e2e1;
-  --color-secondary-container: #474646;
-  --color-secondary-dim: #d7d4d3;
-  --color-secondary-fixed: #e5e2e1;
-  --color-secondary-fixed-dim: #d7d4d3;
-  --color-on-secondary: #525151;
-  --color-on-secondary-container: #d2d0cf;
-  --color-on-secondary-fixed: #403f3f;
-  --color-on-secondary-fixed-variant: #5c5b5b;
+  --color-ink: #14201e;
+  --color-ink-2: #4a5654;
+  --color-ink-3: #6e7a77;
 
-  --color-tertiary: #6fffe8;
-  --color-tertiary-container: #51f2da;
-  --color-tertiary-dim: #3de3cc;
-  --color-tertiary-fixed: #51f2da;
-  --color-tertiary-fixed-dim: #3de3cc;
-  --color-on-tertiary: #006055;
-  --color-on-tertiary-container: #00574c;
-  --color-on-tertiary-fixed: #00423a;
-  --color-on-tertiary-fixed-variant: #006156;
+  --color-rule: #c6cac6;
+  --color-rule-soft: #d5d8d4;
 
-  --color-error: #ff6e84;
-  --color-error-container: #a70138;
-  --color-error-dim: #d73357;
-  --color-on-error: #490013;
-  --color-on-error-container: #ffb2b9;
+  /* the two channels */
+  --color-ch-a: #0a6e68;
+  --color-ch-b: #8f5c18;
+  --color-ch: var(--color-ch-a);
+  --color-ch-soft: #0a6e6814;
 
-  --color-surface: #0e0e0e;
-  --color-surface-dim: #0e0e0e;
-  --color-surface-bright: #2c2c2c;
-  --color-surface-container-lowest: #000000;
-  --color-surface-container-low: #131313;
-  --color-surface-container: #1a1919;
-  --color-surface-container-high: #201f1f;
-  --color-surface-container-highest: #262626;
-  --color-surface-variant: #262626;
-  --color-on-surface: #ffffff;
-  --color-on-surface-variant: #adaaaa;
+  /* semantic only — never decorative */
+  --color-flag: #a03a2b;
+  --color-flag-soft: #a03a2b12;
+  --color-good: #2f6b45;
 
-  --color-outline: #767575;
-  --color-outline-variant: #484847;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    Palatino, Georgia, serif;
+  --font-body: "Segoe UI Variable Text", "Segoe UI", -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-data: "Cascadia Mono", Consolas, ui-monospace, "SF Mono", "Roboto Mono",
+    Menlo, monospace;
 
-  --color-inverse-surface: #fcf9f8;
-  --color-inverse-on-surface: #565555;
-  --color-inverse-primary: #4648e2;
+  --radius-DEFAULT: 0px;
+  --radius-sm: 0px;
+  --radius-lg: 0px;
+}
 
-  --color-background: #0e0e0e;
+/* system dark, only when no explicit light choice is stamped */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #0f1413;
+    --color-paper-2: #161d1c;
+    --color-paper-3: #1d2524;
 
-  --font-headline: "Space Grotesk", sans-serif;
-  --font-body: "Manrope", sans-serif;
-  --font-label: "Space Grotesk", sans-serif;
+    --color-ink: #e6eae8;
+    --color-ink-2: #97a3a0;
+    --color-ink-3: #737f7c;
 
-  --radius-DEFAULT: 0.125rem;
-  --radius-lg: 0.25rem;
-  --radius-xl: 0.5rem;
-  --radius-full: 0.75rem;
+    --color-rule: #2b3534;
+    --color-rule-soft: #212927;
+
+    --color-ch-a: #57cfc5;
+    --color-ch-b: #d9a25c;
+    --color-ch-soft: #57cfc518;
+
+    --color-flag: #e8806e;
+    --color-flag-soft: #e8806e14;
+    --color-good: #6dbb8b;
+  }
+}
+
+/* explicit dark choice wins over a light OS */
+:root[data-theme="dark"] {
+  --color-paper: #0f1413;
+  --color-paper-2: #161d1c;
+  --color-paper-3: #1d2524;
+
+  --color-ink: #e6eae8;
+  --color-ink-2: #97a3a0;
+  --color-ink-3: #737f7c;
+
+  --color-rule: #2b3534;
+  --color-rule-soft: #212927;
+
+  --color-ch-a: #57cfc5;
+  --color-ch-b: #d9a25c;
+  --color-ch-soft: #57cfc518;
+
+  --color-flag: #e8806e;
+  --color-flag-soft: #e8806e14;
+  --color-good: #6dbb8b;
+}
+
+/* channel binding — the accent encodes which identity you're reading */
+:root[data-lens="craft"] {
+  --color-ch: var(--color-ch-b);
+  --color-ch-soft: #8f5c1814;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-lens="craft"]:not([data-theme="light"]) {
+    --color-ch-soft: #d9a25c18;
+  }
+}
+:root[data-theme="dark"][data-lens="craft"] {
+  --color-ch-soft: #d9a25c18;
 }
 
 @layer base {
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  /* the artifact of the composited ground: always paint explicitly */
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.62;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
   }
 
   ::selection {
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
+    background-color: var(--color-ch);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ch);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0e0e0e; }
-::-webkit-scrollbar-thumb { background: #262626; }
-::-webkit-scrollbar-thumb:hover { background: #a3a6ff; }
+@layer components {
+  /* the marginal annotation label that runs beside every section */
+  .rail-label {
+    font-family: var(--font-data);
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .data {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  /* case-study prose — authored HTML rendered through DOMPurify */
+  .prose-plate {
+    max-width: 68ch;
+    color: var(--color-ink-2);
+    font-size: 16.5px;
+    line-height: 1.68;
+  }
+  .prose-plate > * + * { margin-top: 1.1em; }
+  .prose-plate h2 {
+    font-family: var(--font-display);
+    font-size: 25px;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin-top: 2.2em;
+    padding-top: 0.6em;
+    border-top: 1px solid var(--color-rule);
+  }
+  .prose-plate h3 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--color-ink);
+    margin-top: 1.8em;
+  }
+  .prose-plate strong { color: var(--color-ink); font-weight: 650; }
+  .prose-plate em { font-style: italic; color: var(--color-ink); }
+  .prose-plate ul,
+  .prose-plate ol { padding-left: 1.15em; }
+  .prose-plate li { margin-top: 0.45em; }
+  .prose-plate li::marker { color: var(--color-ch); }
+  .prose-plate a { color: var(--color-ch); text-underline-offset: 3px; }
+  .prose-plate code {
+    font-family: var(--font-data);
+    font-size: 0.87em;
+    background: var(--color-paper-3);
+    padding: 1px 5px;
+  }
+  .prose-plate pre {
+    background: var(--color-paper-2);
+    border: 1px solid var(--color-rule);
+    padding: 16px;
+    overflow-x: auto;
+  }
+  .prose-plate pre code { background: transparent; padding: 0; }
+  .prose-plate img { max-width: 100%; height: auto; }
+  .prose-plate table { width: 100%; border-collapse: collapse; }
+  .prose-plate th,
+  .prose-plate td {
+    border: 1px solid var(--color-rule);
+    padding: 7px 10px;
+    text-align: left;
+  }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: var(--color-rule); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-3); }

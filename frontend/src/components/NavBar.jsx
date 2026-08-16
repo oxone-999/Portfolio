@@ -1,60 +1,121 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setIdentity } from '../store/identitySlice';
+import { useState, useEffect } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import {
+  lensFromPath,
+  counterpartPath,
+  href,
+  LENS_COPY,
+  SYSTEMS,
+  CRAFT,
+} from '../utils/lens';
 
 export default function NavBar() {
-  const dispatch = useDispatch();
-  const identityMode = useSelector((state) => state.identity.mode);
+  const { pathname } = useLocation();
+  const lens = lensFromPath(pathname);
+  const [open, setOpen] = useState(false);
 
-  const navLinkClasses = ({ isActive }) =>
-    isActive
-      ? "text-primary border-b-2 border-current pb-1 transition-colors duration-300 pointer-events-none"
-      : "text-zinc-400 hover:text-zinc-100 transition-colors";
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const items = [
+    { to: href(lens, '/work'), label: LENS_COPY[lens].workLabel },
+    { to: href(lens, '/log'), label: 'Log' },
+    { to: href(lens, '/about'), label: 'About' },
+    { to: href(lens, '/contact'), label: 'Contact' },
+  ];
+
+  const linkClass = ({ isActive }) =>
+    `font-data text-[10.5px] uppercase tracking-[0.1em] transition-colors ${
+      isActive ? 'text-ch' : 'text-ink-3 hover:text-ink'
+    }`;
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-6 py-4 bg-zinc-950/60 backdrop-blur-xl no-border tonal-elevation-surface-variant shadow-none">
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
-        <div className="text-xl font-bold tracking-tighter text-zinc-100 font-headline uppercase">
-            ANUJ VERMA
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-rule bg-paper/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-[1080px] items-center justify-between gap-4 px-6 py-3">
+        <Link
+          to={href(lens, '/')}
+          className="font-display text-[17px] font-semibold tracking-tight text-ink"
+        >
+          Anuj Verma
+        </Link>
+
+        <div className="hidden items-center gap-6 md:flex">
+          {items.map((item) => (
+            <NavLink key={item.to} to={item.to} className={linkClass} end>
+              {item.label}
+            </NavLink>
+          ))}
         </div>
 
-        <div className="hidden md:flex items-center space-x-8 font-headline font-bold tracking-tight uppercase text-sm">
-          <NavLink to="/" className={navLinkClasses}>Home</NavLink>
-          <NavLink to="/story" className={navLinkClasses}>Story</NavLink>
-          <NavLink to="/projects" className={navLinkClasses}>Projects</NavLink>
-          {identityMode === '3D' && <NavLink to="/marketplace" className={navLinkClasses}>Marketplace</NavLink>}
-          <NavLink to="/about" className={navLinkClasses}>About</NavLink>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="flex items-center bg-surface-container-highest p-1 rounded-sm border border-outline-variant/10">
-            <button
-              onClick={() => dispatch(setIdentity('SDE'))}
-              className={`px-3 py-1 text-[10px] font-headline font-bold rounded-sm transition-all ${
-                identityMode === 'SDE'
-                  ? 'bg-primary text-on-primary'
-                  : 'text-on-surface-variant hover:text-on-surface'
+        <div className="flex items-center gap-3">
+          {/* The lens switch. Changes the URL, not just a colour. */}
+          <div
+            className="flex border border-rule"
+            role="group"
+            aria-label="Portfolio lens"
+          >
+            <Link
+              to={lens === SYSTEMS ? href(SYSTEMS, '/') : counterpartPath(pathname)}
+              aria-current={lens === SYSTEMS ? 'true' : undefined}
+              className={`px-3 py-1.5 font-data text-[10px] uppercase tracking-[0.1em] transition-colors ${
+                lens === SYSTEMS
+                  ? 'bg-ch text-paper'
+                  : 'text-ink-3 hover:text-ink'
               }`}
             >
-              SOFTWARE
-            </button>
-            <button
-              onClick={() => dispatch(setIdentity('3D'))}
-              className={`px-3 py-1 text-[10px] font-headline font-bold rounded-sm transition-all ${
-                identityMode === '3D'
-                  ? 'bg-primary text-on-primary'
-                  : 'text-on-surface-variant hover:text-on-surface'
+              Systems
+            </Link>
+            <Link
+              to={lens === CRAFT ? href(CRAFT, '/') : counterpartPath(pathname)}
+              aria-current={lens === CRAFT ? 'true' : undefined}
+              className={`px-3 py-1.5 font-data text-[10px] uppercase tracking-[0.1em] transition-colors ${
+                lens === CRAFT ? 'bg-ch text-paper' : 'text-ink-3 hover:text-ink'
               }`}
             >
-              3D ARTIST
-            </button>
+              3D
+            </Link>
           </div>
-          <span className="material-symbols-outlined text-zinc-400 hover:text-zinc-100 cursor-pointer">
-            account_circle
-          </span>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="border border-rule px-2.5 py-1.5 text-ink-2 transition-colors hover:text-ink md:hidden"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+              {open ? (
+                <path
+                  d="M2 2l10 10M12 2L2 12"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  fill="none"
+                />
+              ) : (
+                <path
+                  d="M1 3h12M1 7h12M1 11h12"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  fill="none"
+                />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
+
+      {open ? (
+        <div className="border-t border-rule bg-paper px-6 py-4 md:hidden">
+          <div className="flex flex-col gap-3">
+            {items.map((item) => (
+              <NavLink key={item.to} to={item.to} className={linkClass} end>
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </nav>
   );
 }
