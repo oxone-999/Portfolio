@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import EdgeAppConsole from './EdgeAppConsole';
+import SportsConsole from './SportsConsole';
 
 /**
  * UI recreations, keyed by name and referenced from a project's `uiPreview`
@@ -9,6 +10,7 @@ import EdgeAppConsole from './EdgeAppConsole';
  */
 const REGISTRY = {
   'edge-app-console': EdgeAppConsole,
+  'sports-console': SportsConsole,
 };
 
 export default function InterfacePreview({ name }) {
