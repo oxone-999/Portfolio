@@ -5,6 +5,7 @@ import MultilingualStreamPipeline from './MultilingualStreamPipeline';
 import ConsoleTemplatePipeline from './ConsoleTemplatePipeline';
 import ReconMetamodelPipeline from './ReconMetamodelPipeline';
 import CodeSearchIndexPipeline from './CodeSearchIndexPipeline';
+import AppSpecCodegenPipeline from './AppSpecCodegenPipeline';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -21,6 +22,7 @@ const REGISTRY = {
   'console-template-pipeline': ConsoleTemplatePipeline,
   'recon-metamodel-pipeline': ReconMetamodelPipeline,
   'code-search-index-pipeline': CodeSearchIndexPipeline,
+  'app-spec-codegen-pipeline': AppSpecCodegenPipeline,
 };
 
 export default function Diagram({ name }) {
