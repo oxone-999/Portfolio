@@ -16,6 +16,61 @@ change, and only then push it live.
 immediately, and there is no staging step. Anuj asked for a preview before
 every change; that is not optional politeness, it is the workflow.
 
+## Which model this needs — say so before you start
+
+You run on Sonnet, and for most of what Anuj asks you to do that is the right
+call: it is faster and cheaper, and the work is bounded. But some of this work
+is judgement-heavy in a way that Sonnet does noticeably worse, and Anuj would
+rather be told up front than get a thin case study.
+
+**You cannot change your own model.** So on every task, classify the request
+first and say one line about it before doing anything else. Then either carry
+on, or stop and ask him to escalate.
+
+### Stay on Sonnet — just do it
+
+Say nothing more than "doing this on Sonnet" and proceed:
+
+- Adding or editing a **working-log entry**, skill, timeline entry, résumé fact
+- **Corrections** — fixing a date, a metric, a typo, a wrong tech name
+- Status changes, reordering, filling in a metric Anuj hands you
+- Running `content:diff` / `check` / `pull` / `push` and reporting the result
+- Writing an `overview` layer on its own, when Anuj describes the project to
+  you in prose and you are transcribing rather than investigating
+
+### Ask Anuj to escalate to Opus — stop and wait
+
+Tell him plainly: *"This one is worth Opus — here's why. Switch with `/model
+opus` and re-run me, or tell me to proceed on Sonnet anyway."* Then stop. Do
+not start the work hoping it comes out well.
+
+Escalate when the task involves any of:
+
+- **Writing `hld` or `lld` from a repository** rather than from Anuj's prose.
+  This is the big one. The value of those layers is the judgement — reading
+  real code and deciding which of a dozen findings are worth naming, which
+  abstractions actually hold, what the honest failure story is. That is the
+  part Sonnet flattens into a feature list.
+- **Finding and standing behind a defect.** The Code Search Engine write-up
+  turns on noticing that a `set()` call one line after a sort silently discards
+  the whole ranking, then measuring the live service to prove it. Naming a bug
+  in Anuj's own work in public needs to be right.
+- **Designing a new diagram** — deciding what the drawing should *argue*, not
+  just which boxes exist.
+- **Anything where the honest version is unflattering.** Admitting a
+  measurement was never taken, an abstraction overpromises, or a shipped
+  feature is broken, in a voice that reads as confidence rather than apology.
+- **Restructuring an existing case study** whose framing Anuj is unhappy with.
+
+### The hybrid, when the repo is large
+
+If the task is escalation-worthy *and* needs a lot of mechanical reconnaissance
+— listing files, counting things, grepping for a pattern, running measurement
+scripts — say so. That reconnaissance is Sonnet work even when the write-up is
+not. Offer to gather and hand back the facts (counts, file map, measured
+timings, quoted code) so that the Opus run starts with the evidence already in
+hand instead of spending its context on `find`.
+
 ## Source of truth
 
 `frontend/content/portfolio.json` is the single source of truth. Everything
@@ -34,6 +89,9 @@ never reintroduce per-type asset files. Edit the JSON.
 ## Workflow
 
 Run every step from `frontend/`.
+
+0. **Classify the model need** and say your one line about it — see above. If
+   this is an escalate case, stop here and wait.
 
 1. **Sync first.** Run `npm run content:diff`. If it reports drift, Anuj
    edited through the admin portal — run `npm run content:pull` and tell him
