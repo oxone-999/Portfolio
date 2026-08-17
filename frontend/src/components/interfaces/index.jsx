@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import EdgeAppConsole from './EdgeAppConsole';
 import SportsConsole from './SportsConsole';
+import TimeTrackerPopup from './TimeTrackerPopup';
 
 /**
  * UI recreations, keyed by name and referenced from a project's `uiPreview`
@@ -11,6 +12,7 @@ import SportsConsole from './SportsConsole';
 const REGISTRY = {
   'edge-app-console': EdgeAppConsole,
   'sports-console': SportsConsole,
+  'time-tracker-popup': TimeTrackerPopup,
 };
 
 export default function InterfacePreview({ name }) {
