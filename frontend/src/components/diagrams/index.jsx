@@ -8,6 +8,7 @@ import CodeSearchIndexPipeline from './CodeSearchIndexPipeline';
 import AppSpecCodegenPipeline from './AppSpecCodegenPipeline';
 import SessionAttributionTimeline from './SessionAttributionTimeline';
 import GdeltRiskRadarPipeline from './GdeltRiskRadarPipeline';
+import CcwcSinglePassScan from './CcwcSinglePassScan';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -27,6 +28,7 @@ const REGISTRY = {
   'app-spec-codegen-pipeline': AppSpecCodegenPipeline,
   'session-attribution-timeline': SessionAttributionTimeline,
   'gdelt-risk-radar-pipeline': GdeltRiskRadarPipeline,
+  'ccwc-single-pass-scan': CcwcSinglePassScan,
 };
 
 export default function Diagram({ name }) {
