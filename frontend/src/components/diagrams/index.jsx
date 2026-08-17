@@ -10,6 +10,7 @@ import SessionAttributionTimeline from './SessionAttributionTimeline';
 import GdeltRiskRadarPipeline from './GdeltRiskRadarPipeline';
 import CcwcSinglePassScan from './CcwcSinglePassScan';
 import AssistantTurnRouting from './AssistantTurnRouting';
+import RigArtBoundary from './RigArtBoundary';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -31,6 +32,7 @@ const REGISTRY = {
   'gdelt-risk-radar-pipeline': GdeltRiskRadarPipeline,
   'ccwc-single-pass-scan': CcwcSinglePassScan,
   'assistant-turn-routing': AssistantTurnRouting,
+  'rig-art-boundary': RigArtBoundary,
 };
 
 export default function Diagram({ name }) {
