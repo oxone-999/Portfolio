@@ -3,6 +3,8 @@ import EventExchangePipeline from './EventExchangePipeline';
 import EdgeViolationPipeline from './EdgeViolationPipeline';
 import MultilingualStreamPipeline from './MultilingualStreamPipeline';
 import ConsoleTemplatePipeline from './ConsoleTemplatePipeline';
+import ReconMetamodelPipeline from './ReconMetamodelPipeline';
+import CodeSearchIndexPipeline from './CodeSearchIndexPipeline';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -17,6 +19,8 @@ const REGISTRY = {
   'edge-violation-pipeline': EdgeViolationPipeline,
   'multilingual-stream-pipeline': MultilingualStreamPipeline,
   'console-template-pipeline': ConsoleTemplatePipeline,
+  'recon-metamodel-pipeline': ReconMetamodelPipeline,
+  'code-search-index-pipeline': CodeSearchIndexPipeline,
 };
 
 export default function Diagram({ name }) {
