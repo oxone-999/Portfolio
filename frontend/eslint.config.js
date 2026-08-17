@@ -5,7 +5,9 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  // `.netlify/` holds bundles the CLI generates from our own sources; linting
+  // the build output just reports the same code twice, in CommonJS form.
+  { ignores: ['dist', '.netlify'] },
   {
     // Netlify Functions run on Node, not in the browser.
     files: ['netlify/functions/**/*.js'],

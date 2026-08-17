@@ -171,6 +171,27 @@
     letter-spacing: 0.02em;
   }
 
+  /* Descending a depth layer: the new stratum rises and settles. Short and
+     small on purpose — it should read as arrival, not as a slide transition. */
+  .depth-enter {
+    animation: depth-rise 300ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  @keyframes depth-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .depth-enter {
+      animation: none;
+    }
+  }
+
   /* case-study prose — authored HTML rendered through DOMPurify */
   .prose-plate {
     max-width: 68ch;

@@ -10,28 +10,39 @@ export const profile = portfolio.profile;
 export const summary = portfolio.summary;
 export const hero = portfolio.hero;
 
+const toProject = (p) => ({
+  id: p.slug,
+  name: p.name,
+  status: p.status,
+  description: p.description,
+  content: p.content,
+  overview: p.overview || '',
+  hld: p.hld || '',
+  lld: p.lld || '',
+  diagram: p.diagram || '',
+  uiPreview: p.uiPreview || '',
+  metrics: p.metrics || [],
+  skills: p.skills,
+});
+
 export const defaultProjects = {
-  SDE: portfolio.projects.SDE.map((p) => ({
-    id: p.slug,
-    name: p.name,
-    status: p.status,
-    description: p.description,
-    content: p.content,
-    skills: p.skills,
-  })),
-  '3D': portfolio.projects['3D'].map((p) => ({
-    id: p.slug,
-    name: p.name,
-    status: p.status,
-    description: p.description,
-    content: p.content,
-    skills: p.skills,
-  })),
+  SDE: portfolio.projects.SDE.map(toProject),
+  '3D': portfolio.projects['3D'].map(toProject),
 };
 
 export const defaultSkills = {
-  SDE: portfolio.skills.SDE.map((s, i) => ({ id: `sde-${i}`, name: s.name, url: s.url })),
-  '3D': portfolio.skills['3D'].map((s, i) => ({ id: `td-${i}`, name: s.name, url: s.url })),
+  SDE: portfolio.skills.SDE.map((s, i) => ({
+    id: `sde-${i}`,
+    name: s.name,
+    url: s.url,
+    group: s.group || '',
+  })),
+  '3D': portfolio.skills['3D'].map((s, i) => ({
+    id: `td-${i}`,
+    name: s.name,
+    url: s.url,
+    group: s.group || '',
+  })),
 };
 
 /**

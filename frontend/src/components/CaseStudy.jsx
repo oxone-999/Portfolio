@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
-import { Page, Section, Tag, Eyebrow } from './Plate';
+import { Page, Section, Tag, Eyebrow, Metric, MetricRow } from './Plate';
+import Diagram from './diagrams';
+import InterfacePreview from './interfaces';
+import DepthDeck from './DepthDeck';
 import { href, slugify, findProjectBySlug, LENS_COPY } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
 
@@ -55,9 +58,25 @@ export default function CaseStudy() {
     );
   }
 
-  const body = project.content
-    ? DOMPurify.sanitize(project.content, { USE_PROFILES: { html: true } })
-    : '';
+  const clean = (html) =>
+    html ? DOMPurify.sanitize(html, { USE_PROFILES: { html: true } }) : '';
+
+  /**
+   * Layered case study: overview reads for anyone, HLD is what a hiring
+   * manager probes in a system-design conversation, LLD is the implementation
+   * detail underneath.
+   *
+   * Layers are bands on one scrolling page, not tabs — hidden depth is depth
+   * nobody reads and search engines never see. A project only gets the layers
+   * it has real material for; `content` is the pre-layer fallback.
+   */
+  const layers = [
+    { key: 'overview', label: 'Overview', note: 'What it is, for anyone.', html: clean(project.overview) },
+    { key: 'hld', label: 'Architecture', note: 'High-level design: shape, guarantees, failure behaviour.', html: clean(project.hld) },
+    { key: 'lld', label: 'Implementation', note: 'Low-level design: the contracts and the measurements.', html: clean(project.lld) },
+  ].filter((l) => l.html);
+
+  const legacyBody = layers.length === 0 ? clean(project.content) : '';
 
   return (
     <Page>
@@ -91,26 +110,55 @@ export default function CaseStudy() {
         ) : null}
       </header>
 
-      <Section
-        label="Detail"
-        note="Authored content, sanitised before render."
-      >
-        {body ? (
-          <div
-            className="prose-plate"
-            /* Sanitised immediately above; DOMPurify strips scripts and handlers. */
-            dangerouslySetInnerHTML={{ __html: body }}
-          />
-        ) : (
-          <p className="border-l-2 border-flag bg-flag-soft px-4 py-3.5 text-[14.5px] text-ink-2">
-            <span className="mb-1 block font-data text-[10px] uppercase tracking-[0.1em] text-flag">
-              Needs writing
-            </span>
-            This entry has a summary but no case study yet. Add the problem, the
-            architecture, the tradeoff you rejected, and one measured number.
-          </p>
-        )}
-      </Section>
+      {(project.metrics || []).length > 0 ? (
+        <div className="mt-8">
+          <MetricRow>
+            {project.metrics.map((m) => (
+              <Metric
+                key={m.label}
+                figure={m.value}
+                unit={m.unit}
+                label={m.label}
+                source={m.source}
+              />
+            ))}
+          </MetricRow>
+        </div>
+      ) : null}
+
+      {project.uiPreview ? (
+        <Section label="Interface" note="A recreation, rebuilt from the app's own components.">
+          <InterfacePreview name={project.uiPreview} />
+        </Section>
+      ) : null}
+
+      {project.diagram ? (
+        <Section label="Shape" note="Drawn from the project's own code and config.">
+          <Diagram name={project.diagram} />
+        </Section>
+      ) : null}
+
+      {layers.length > 0 ? <DepthDeck layers={layers} /> : null}
+
+      {layers.length === 0 ? (
+        <Section label="Detail" note="Authored content, sanitised before render.">
+          {legacyBody ? (
+            <div
+              className="prose-plate"
+              /* Sanitised immediately above; DOMPurify strips scripts and handlers. */
+              dangerouslySetInnerHTML={{ __html: legacyBody }}
+            />
+          ) : (
+            <p className="border-l-2 border-flag bg-flag-soft px-4 py-3.5 text-[14.5px] text-ink-2">
+              <span className="mb-1 block font-data text-[10px] uppercase tracking-[0.1em] text-flag">
+                Needs writing
+              </span>
+              This entry has a summary but no case study yet. Add the problem, the
+              architecture, the tradeoff you rejected, and one measured number.
+            </p>
+          )}
+        </Section>
+      ) : null}
 
       {relatedLog.length > 0 ? (
         <Section label="History" note="Dated entries from the working log.">

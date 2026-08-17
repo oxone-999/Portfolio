@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Page, Section, Eyebrow } from './Plate';
+import StackPlate from './StackPlate';
 import { SYSTEMS } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
 
@@ -9,10 +10,15 @@ import { useLens } from '../hooks/useLens';
  * The old skill cards carried percentage bars — self-assessed numbers styled
  * as measurements. They're gone: a tool list states what you use, which is
  * true, where "React 90%" asserts something no one can verify.
+ *
+ * The list is now grouped by kind of technology (see StackPlate) because one
+ * flat grid of ~24 logos reads as clutter — a language, a broker and a video
+ * codec are not the same kind of claim and shouldn't sit in the same run.
  */
 export default function About() {
   const lens = useLens();
   const skills = useSelector((state) => state.admin.content.skills?.[lens] || []);
+  const projects = useSelector((state) => state.admin.content.projects?.[lens] || []);
   const journey = useSelector((state) => state.admin.content.journey || []);
   const timeline = [...journey].reverse();
 
@@ -52,34 +58,7 @@ export default function About() {
         }
       >
         <h2 className="mb-6 text-[clamp(24px,3.2vw,30px)]">Tools</h2>
-        {skills.length > 0 ? (
-          <ul className="grid gap-px border border-rule bg-rule [grid-template-columns:repeat(auto-fill,minmax(158px,1fr))]">
-            {skills.map((skill) => (
-              <li
-                key={skill.id}
-                className="flex items-center gap-3 bg-paper-2 px-3.5 py-3"
-              >
-                {skill.url ? (
-                  <img
-                    src={skill.url}
-                    alt=""
-                    loading="lazy"
-                    width="20"
-                    height="20"
-                    className="h-5 w-5 shrink-0 object-contain"
-                  />
-                ) : null}
-                <span className="min-w-0 truncate font-data text-[11.5px] tracking-wide text-ink">
-                  {skill.name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="border border-rule bg-paper-2 p-5 text-[14.5px] text-ink-2">
-            No tools listed for this lens yet.
-          </p>
-        )}
+        <StackPlate skills={skills} projects={projects} lens={lens} />
       </Section>
 
       <Section

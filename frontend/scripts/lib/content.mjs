@@ -83,6 +83,12 @@ export function validateContent(content) {
       if (seen.has(p.slug)) errors.push(`${at}.slug "${p.slug}" is duplicated — case-study URLs would collide.`);
       seen.add(p.slug);
       if (!p.description) errors.push(`${at}.description is required — it is the card copy on /work.`);
+      // HLD/LLD without an overview means the page opens at depth, which
+      // defeats the point of layering. An empty project is merely unwritten
+      // (the UI says so) — that is reported separately, not as an error.
+      if ((p.hld || p.lld) && !p.overview) {
+        errors.push(`${at} has hld/lld but no overview — the first layer must read for anyone.`);
+      }
       if (p.status && !['Completed', 'In Progress'].includes(p.status)) {
         errors.push(`${at}.status must be "Completed" or "In Progress", got "${p.status}".`);
       }
@@ -154,12 +160,24 @@ export function toRows(content) {
         status: p.status || 'Completed',
         description: normalizeText(p.description || ''),
         content: normalizeText(p.content || ''),
+        overview: normalizeText(p.overview || ''),
+        hld: normalizeText(p.hld || ''),
+        lld: normalizeText(p.lld || ''),
+        diagram: p.diagram || '',
+        ui_preview: p.uiPreview || '',
+        metrics: p.metrics || [],
         skills: p.skills || [],
         sort_order: i,
       });
     });
     (content.skills?.[lens] || []).forEach((s, i) => {
-      skills.push({ lens, name: s.name, url: s.url || '', sort_order: i });
+      skills.push({
+        lens,
+        name: s.name,
+        url: s.url || '',
+        skill_group: s.group || '',
+        sort_order: i,
+      });
     });
   }
 
@@ -207,10 +225,50 @@ function truncate(value, n = 72) {
   return s.length > n ? `${s.slice(0, n)}…` : s;
 }
 
+/** Renders a value for the diff view — arrays of primitives join with commas,
+ * arrays of objects (e.g. metrics) get a compact per-item summary instead of
+ * `[object Object]`. */
+function displayValue(value) {
+  if (!Array.isArray(value)) return value;
+  if (value.length === 0) return '';
+  if (typeof value[0] === 'object' && value[0] !== null) {
+    return value
+      .map((v) => {
+        const label = v.label ?? v.name ?? '';
+        const val = v.value ?? v.url ?? '';
+        return val !== '' ? `${label}: ${val}` : label;
+      })
+      .join(' · ');
+  }
+  return value.join(', ');
+}
+
 /**
  * Compares two row sets keyed by a stable identity, and reports
  * added / removed / changed with per-field before→after.
  */
+/**
+ * JSON.stringify with object keys sorted recursively.
+ *
+ * Postgres jsonb does not preserve key insertion order, so a metrics object
+ * written as {label, value, unit, source} comes back as {unit, label, value,
+ * source}. A plain JSON.stringify equality check treats that as a change on
+ * every diff forever — the same class of bug as the CRLF phantom-diff (see
+ * normalizeText above). Array *element* order still matters (skills, tags),
+ * so only object keys are sorted, never array order.
+ */
+function canonical(value) {
+  if (Array.isArray(value)) return value.map(canonical);
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.keys(value)
+        .sort()
+        .map((k) => [k, canonical(value[k])]),
+    );
+  }
+  return value;
+}
+
 export function diffRows(before, after, keyOf, fields) {
   const beforeMap = new Map(before.map((r) => [keyOf(r), r]));
   const afterMap = new Map(after.map((r) => [keyOf(r), r]));
@@ -227,8 +285,8 @@ export function diffRows(before, after, keyOf, fields) {
     const prev = beforeMap.get(key);
     const fieldDiffs = [];
     for (const field of fields) {
-      const a = JSON.stringify(prev[field] ?? '');
-      const b = JSON.stringify(row[field] ?? '');
+      const a = JSON.stringify(canonical(prev[field] ?? ''));
+      const b = JSON.stringify(canonical(row[field] ?? ''));
       if (a !== b) fieldDiffs.push({ field, from: prev[field], to: row[field] });
     }
     if (fieldDiffs.length) changed.push({ key, fieldDiffs });
@@ -259,8 +317,8 @@ export function printDiffSection(title, diff) {
     console.log(`  ${C.yellow}~ CHANGED  ${key}${C.reset}`);
     for (const { field, from, to } of fieldDiffs) {
       console.log(`      ${C.cyan}${field}${C.reset}`);
-      console.log(`        ${C.red}- ${truncate(Array.isArray(from) ? from.join(', ') : from)}${C.reset}`);
-      console.log(`        ${C.green}+ ${truncate(Array.isArray(to) ? to.join(', ') : to)}${C.reset}`);
+      console.log(`        ${C.red}- ${truncate(displayValue(from))}${C.reset}`);
+      console.log(`        ${C.green}+ ${truncate(displayValue(to))}${C.reset}`);
     }
   }
   console.log('');

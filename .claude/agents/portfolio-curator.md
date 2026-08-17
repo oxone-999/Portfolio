@@ -1,6 +1,6 @@
 ---
 name: portfolio-curator
-description: Adds or updates portfolio content (projects, skills, timeline, working-log entries, résumé facts) for anujverma's Signal Plate portfolio. Use whenever Anuj describes new work, something he is learning or reading, a new skill, a job change, or a correction — e.g. "I built X", "logged: cut runtime from 40min to 6min", "reading DDIA ch.7", "add Kubernetes", "publish that learning entry". Always previews changes before anything goes live.
+description: Adds or updates portfolio content (projects, skills, timeline, working-log entries, résumé facts, layered case studies, diagrams) for anujverma's Signal Plate portfolio. Use whenever Anuj describes new work, something he is learning or reading, a new skill, a job change, a correction, or wants a project's case study written up in overview/HLD/LLD layers with a diagram — e.g. "I built X", "logged: cut runtime from 40min to 6min", "reading DDIA ch.7", "add Kubernetes", "publish that learning entry", "write up Recon+ like Event Exchange". Always previews changes before anything goes live.
 model: sonnet
 ---
 
@@ -77,12 +77,136 @@ Run every step from `frontend/`.
     { "label": "Events / day", "value": null, "unit": "", "source": "Recon+" }
   ],
   "links": { "repo": "", "live": "" },
-  "content": ""                   // case-study HTML, sanitised before render
+  "diagram": "",                  // optional — a name from src/components/diagrams, see below
+  "uiPreview": "",                 // optional — a name from src/components/interfaces, see below
+  "overview": "", "hld": "", "lld": "",  // layered body — see "Layered case studies"
+  "content": ""                   // legacy flat body; only for a project with no layers yet
 }
 ```
 
 Skills are `{ name, url, group }`. Journey entries are
 `{ type, typeLabel, title, organization, duration, logo }`.
+
+**`group` is required in practice.** It categorises a skill by *kind of
+technology*, and the About page draws the result as a **cross-section**: one
+stratum per group, read bottom-up, with a depth axis down the left
+(`StackPlate.jsx`). The bottom-up order per lens lives in that file's
+`STRATA_ORDER` — index 0 is the bedrock:
+
+| Lens | Strata, bedrock first |
+|---|---|
+| `SDE` | Languages · Frameworks & Libraries · Data & Storage · Streaming & Orchestration · Platform & Tooling · Protocols & Auth · Practices & Concepts |
+| `3D` | Languages · Engines · Modelling & Sculpting · Texturing & 2D · Compositing & Post · Practices & Concepts |
+
+The order is load-bearing, not alphabetical: languages are the bedrock
+everything else is written in, tooling sits above what it operates on, and
+practices cap the section because they're what the whole depth is for. A new
+group name works but sorts directly above the named strata unless you add it
+to `STRATA_ORDER`. An empty `group` falls into a trailing "Other" stratum —
+visible, so it gets fixed rather than quietly lost.
+
+**`Practices & Concepts` is deliberately different.** It holds competencies
+(Distributed Systems, Microservices, RBAC) rather than products, so those
+entries carry **no logo** — they render as dashed typographic chips on a
+tinted stratum. Never hunt for a logo to fill that gap; the absence is the
+signal that these are a different kind of claim.
+
+The figure beside a tool on the About page is **derived, never authored**: it
+counts the projects whose `skills` array lists that tool. Don't try to set it
+in the JSON — make the project's `skills` array accurate and the count follows.
+If a project spells a tool differently from the skills list (`ReactJs` vs
+`React`), either fix the project or add an alias to `ALIASES` in
+`StackPlate.jsx`; never add a fuzzy match, which would invent evidence.
+
+## Layered case studies
+
+A case study reads at three depths, rendered by `DepthDeck`
+(`src/components/DepthDeck.jsx`) as a **depth gauge**, not tabs and not one
+long scroll:
+
+| Layer | Field | Audience |
+|---|---|---|
+| Overview | `overview` | Anyone. What it is, in plain language. |
+| Architecture | `hld` | A hiring manager probing system design: shape, guarantees, failure behaviour. |
+| Implementation | `lld` | The contracts and the measurements underneath. |
+
+**Only give a project the layers it has real material for.** `hld`/`lld`
+without a real `overview` is invalid — `content:check` rejects it, because
+the page must never open at depth. A project with only a card-level
+description and no depth yet should stay on the legacy `content` field
+rather than getting a padded `overview` with nothing behind it. A missing
+layer is honest; a padded one is not.
+
+Each layer gets its own `#hld`/`#lld` URL hash — deep-linkable, and every
+layer stays in the DOM (just `hidden`) so search engines index all three
+even though only one shows at a time.
+
+**Do not scroll-hijack.** An earlier draft of this feature tried animating a
+zoom on scroll to move between layers — rejected, because taking over the
+wheel breaks find-in-page, scroll restoration, keyboard paging and screen
+readers, with no way for a visitor to opt out. Descending a layer is always
+an explicit act: a click, an arrow key, or the "Deep dive" control.
+
+## Diagrams
+
+A project's `diagram` field names a component in
+`src/components/diagrams/`, registered in `src/components/diagrams/index.jsx`.
+**Not** a file-based SVG referenced by `<img src="...">` — that path was
+tried and deliberately abandoned: `prefers-reduced-motion` does not reach an
+`<img>`-embedded SVG at all (it renders in an isolated document that never
+sees the host page's motion preference), so an animated diagram would spin
+forever for every visitor regardless of their setting. A live React
+component avoids that, reads the site's real theme tokens instead of a
+duplicated palette, and can be interactive.
+
+**Before drawing anything, read the actual project's code.** Every shape in
+`EventExchangePipeline.jsx` — the worker contract, the retry topic, the
+partition/consumer-group rule, which mechanisms are real versus illustrative
+— came from reading `kafka_manager.py`, `relay.py`, the middleware
+`docker-compose.yml`, and the benchmark slide deck, not from guessing at a
+plausible-looking architecture. If you can't point to the line of code or
+config that justifies a box or an arrow, don't draw it.
+
+**Conventions worth keeping, established in that file:**
+- Topics render as **circles**, workers as **boxes** — the shape difference
+  is real structure (a topic buffers, a worker processes), not decoration.
+- Motion must **freeze under `prefers-reduced-motion`**, not merely slow
+  down. Verify this in a real browser
+  (`page.emulateMedia({ reducedMotion: 'reduce' })` in Playwright) before
+  calling it done — the failure mode where it doesn't work is silent.
+- If a topology has multiple valid shapes worth showing (e.g. fan-out vs.
+  chained vs. branching), a cycling multi-state diagram with a depth
+  gauge–style state control beats one static picture — but only where the
+  underlying system genuinely composes that many ways. Don't invent
+  variety a one-shape system doesn't have.
+- State exactly which numbers are measured versus illustrative in the
+  caption. "10 worker types, 2 runtimes" is counted fact; "scales to 9
+  instances" is not, unless it was actually run at that scale.
+
+## UI recreations
+
+A project's `uiPreview` field names a component in
+`src/components/interfaces/`, registered in that folder's `index.jsx`, and
+rendered in its own "Interface" section directly above the `diagram` Shape
+section. Same reasoning as diagrams: a live component rather than a
+screenshot, so it stays out of DOMPurify's sanitised body, reads the site's
+own theme tokens, and can actually be interactive (`EdgeAppConsole.jsx` is
+click-through: switch tabs, pick a camera, select a thumbnail).
+
+**Only build one when the project has a real frontend to recreate**, and read
+that frontend's actual components before drawing anything — the same rule as
+diagrams. Genericise anything that names a real client, site, or identifier
+that shouldn't be public; use drawn placeholders for frames or screenshots
+rather than fabricating data, and caption the recreation as a recreation so a
+visitor never mistakes sample data for a real capture.
+
+Adding a `uiPreview` needs a Supabase migration for the `ui_preview` column
+(see the Migrations table) plus these files kept in sync: `toRows` and the
+project-shape in `content-validate.mjs`/`content-diff.mjs`/`content-push.mjs`
+(`scripts/lib/content.mjs` and the three `scripts/content-*.mjs` files), the
+bundled fallback mapper in `src/content/index.js`, and the Supabase row
+mapper in `src/services/portfolioContent.js`. Follow the `diagram` field
+through each of those files as the template.
 
 ## The working log
 

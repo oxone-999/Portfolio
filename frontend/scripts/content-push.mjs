@@ -46,12 +46,22 @@ total += printDiffSection(
     'description',
     'skills',
     'content',
+    'overview',
+    'hld',
+    'lld',
+    'diagram',
+    'ui_preview',
+    'metrics',
     'sort_order',
   ]),
 );
 total += printDiffSection(
   'SKILLS',
-  diffRows(live.skills, local.skills, (r) => `${r.lens} / ${r.name}`, ['url', 'sort_order']),
+  diffRows(live.skills, local.skills, (r) => `${r.lens} / ${r.name}`, [
+    'url',
+    'skill_group',
+    'sort_order',
+  ]),
 );
 total += printDiffSection(
   'JOURNEY',

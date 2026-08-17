@@ -82,6 +82,26 @@ pushing. Anuj rarely uses the admin portal — the agent is the main path.
 Case studies are **routed pages** (`/work/:slug`), never modals — they must
 stay linkable and indexable.
 
+### Layered case studies + diagrams
+
+A case study is read at three depths — `overview` (anyone), `hld`
+(architecture: shape, guarantees, failure behaviour), `lld` (implementation:
+contracts and measurements) — rendered by `DepthDeck`
+(`src/components/DepthDeck.jsx`) as a depth gauge on one page, not tabs and
+not a scroll-jacked zoom. Only give a project the layers it has real
+material for; `hld`/`lld` without `overview` fails validation. Full rules,
+including the schema, live in the **portfolio-curator** agent — that's the
+canonical doc, this is just the pointer.
+
+Diagrams are React components in `src/components/diagrams/`, registered in
+that folder's `index.jsx` and referenced by a project's `diagram` field —
+not `<img>`-referenced SVG files. That path was tried and abandoned:
+`prefers-reduced-motion` never reaches an `<img>`-embedded SVG, so an
+animated one would run forever regardless of the visitor's setting. See
+`EventExchangePipeline.jsx` for the working pattern (topics as circles,
+workers as boxes, motion that actually freezes under reduced-motion,
+architecture drawn from reading the real repo rather than guessed).
+
 ## Working log
 
 A private lab notebook that becomes public proof on promotion.
@@ -104,7 +124,22 @@ stale: if Anuj stops writing it shows less, rather than showing an
 out-of-date claim. That is deliberate — it is why there is no standing
 "currently learning" list.
 
-Existing projects need `supabase/migrations/001_add_log.sql` run once.
+## Migrations
+
+Run once each, in order, in the Supabase SQL editor, on any project that
+predates them:
+
+| File | Adds |
+|---|---|
+| `supabase/migrations/001_add_log.sql` | The `log` table (working log) |
+| `supabase/migrations/002_project_layers.sql` | `overview`, `hld`, `lld`, `diagram`, `metrics` columns on `projects` |
+| `supabase/migrations/003_project_ui_preview.sql` | `ui_preview` column on `projects` |
+| `supabase/migrations/004_skill_groups.sql` | `skill_group` column on `skills` |
+
+`content:diff` / `content:push` detect a missing **log table** specifically
+and tell you which migration to run. Missing **project columns** (i.e.
+002 not yet run) surface as a raw Postgres error on push — less graceful,
+but still loud rather than silent.
 
 ## Environment
 

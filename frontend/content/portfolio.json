@@ -63,49 +63,123 @@
   "projects": {
     "SDE": [
       {
-        "slug": "event-exchange-platform",
-        "name": "Event Exchange Platform",
+        "slug": "event-exchange-framework",
+        "name": "Event Exchange Framework",
         "status": "Completed",
-        "description": "A distributed messaging backbone for event-driven systems using Kafka and Redis.",
+        "description": "A platform for moving live data between systems that were never built to talk — 10 interchangeable worker types, shipped in two languages, on clustered Kafka and Redis, and proven with a purpose-built 15-run benchmark.",
         "skills": [
-          "JavaScript",
           "Python",
+          "TypeScript",
           "Kafka",
           "Redis",
           "Docker",
-          "REST API",
-          "Microservices"
+          "Elasticsearch",
+          "Logstash",
+          "Kibana",
+          "JMeter",
+          "Microservices",
+          "Distributed Systems"
         ],
-        "role": "",
-        "org": "",
-        "period": "",
-        "highlights": [],
-        "metrics": [],
+        "role": "Software Developer",
+        "org": "TCG Digital Solutions",
+        "period": "2024 - 2025",
+        "highlights": [
+          "Built an event-streaming platform that integrates systems with no shared interface, delivering 10 interchangeable worker types across ingestion, transformation and delivery.",
+          "Shipped and maintained parity implementations in Python and TypeScript so teams could choose a runtime without changing the operational model, config format or extension contract.",
+          "Designed a declarative worker model where one container image serves any role from config alone, with configuration held in Redis so running instances are repointed without a rebuild.",
+          "Built a benchmarking stack with JMeter, Logstash, Elasticsearch and Kibana measuring throughput, end-to-end latency and per-worker load across 15 runs, three cluster shapes and a 5× dataset range.",
+          "Established that doubling the processing tier changed throughput under 1% while cutting latency ~2.4×, redirecting optimisation effort away from the tier the team assumed was the bottleneck."
+        ],
+        "metrics": [
+          {
+            "label": "Worker types built",
+            "value": "10",
+            "unit": "",
+            "source": "Across 3 stages"
+          },
+          {
+            "label": "Runtimes shipped",
+            "value": "2",
+            "unit": "",
+            "source": "Python + TypeScript"
+          },
+          {
+            "label": "Benchmark runs",
+            "value": "15",
+            "unit": "",
+            "source": "3 configs × 5 sizes"
+          }
+        ],
         "links": {},
-        "content": "\n<p>The <strong>Event Exchange Framework</strong> is a <em>distributed messaging backbone</em> designed to facilitate seamless data flow between different systems. It enables users to <strong>receive, process, and transmit events</strong> across predefined sources and destinations, allowing the creation of <strong>customized data processing pipelines</strong> with minimal effort.</p>\n\n    <h2>Problem It Solves</h2>\n    <p>Many applications require <strong>real-time data exchange</strong> between multiple systems, but managing message communication efficiently across distributed architectures can be complex. This framework <strong>simplifies event-driven communication</strong>, ensuring <strong>reliable, scalable, and structured data processing</strong> through its modular design of <em>receivers, processors, and senders</em>.</p>\n\n    <h2>How It Works</h2>\n    <ul>\n        <li><strong>Receivers</strong> (Web Hook, Web API, Web Pull, Stream RTSP) <em>ingest data</em> from external systems into <strong>message topics</strong>.</li>\n        <li><strong>Processors</strong> (such as a relay) <em>consume and process</em> events before passing them to the next stage.</li>\n        <li><strong>Senders</strong> (e.g., Web Post) <em>transmit processed events</em> to external systems over HTTP.</li>\n        <li>The <strong>Topic Console UI</strong> allows users to <em>monitor and manage</em> event topics, processors, and senders.</li>\n        <li>The <strong>eStore (Event Exchange Store)</strong> serves as a <em>central storage</em> for logs, metadata, and mappings related to the event pipeline.</li>\n    </ul>\n\n    <h2>Technologies Used</h2>\n    <ul>\n        <li><strong>Messaging & Event Handling:</strong> Custom message topics for structured data flow</li>\n        <li><strong>Data Ingestion:</strong> Web API, Web Hooks, Streaming (RTSP)</li>\n        <li><strong>Processing:</strong> Relay-based event transformation</li>\n        <li><strong>Delivery Mechanisms:</strong> HTTP API calls to external systems</li>\n        <li><strong>Monitoring & Storage:</strong> Topic Console UI, eStore for logs and metadata</li>\n    </ul>\n\n    <p>This framework is ideal for <strong>real-time event-driven applications</strong>, <strong>data pipelines</strong>, and <strong>distributed system integrations</strong> where structured messaging and reliable communication are essential. 🚀</p>\n"
+        "content": "",
+        "diagram": "event-exchange-pipeline",
+        "overview": "<p><strong>Event Exchange moves live data between systems that were never designed to\ntalk to each other.</strong> A team connects a source, describes how the data should be\nreshaped, points it at a destination — and the platform handles buffering, retries,\nfailures and scale underneath.</p>\n\n<p>It ships as a kit rather than a single pipeline: <strong>ten interchangeable worker\ntypes</strong> across three stages, assembled into whatever route a use case needs. I built\nit end to end, shipped it in <strong>two languages</strong>, then built a second system whose\nonly job was to find out whether it actually held up under load.</p>\n\n<ul>\n  <li><strong>10 worker types</strong> — HTTP endpoints, scheduled pollers, live video\n      stream capture, routing, transformation, and delivery to APIs, search indexes and\n      streaming playlists</li>\n  <li><strong>2 full implementations</strong> — Python and TypeScript with matching\n      contracts, so a team picks the runtime that fits without relearning the platform</li>\n  <li><strong>Clustered infrastructure</strong> — multi-node Kafka and Redis, containerised,\n      deployed across multiple hosts</li>\n  <li><strong>15-run benchmark</strong> — a purpose-built measurement stack answering\n      whether the design scaled, and where it stopped</li>\n</ul>",
+        "hld": "<p>The shape is deliberately boring in the middle: <strong>every stage is separated from\nthe next by a queue.</strong> Receivers never call processors, processors never call\nsenders. Nothing in the pipeline knows what comes after it.</p>\n\n<p>That buys the properties that matter operationally. A slow or failing destination\napplies no backpressure to ingestion — events accumulate in a topic instead of being\ndropped or timing out at the edge. Any stage can be restarted, scaled or redeployed\nwithout coordinating with its neighbours. And because Kafka retains rather than\nconsumes, a stage that was down comes back and works through the backlog.</p>\n\n<h2>Message identity and ordering</h2>\n\n<p>Every event carries a <strong>ULID</strong> as its message key, in a header that travels\nwith it the whole way. ULIDs are lexicographically sortable by creation time, which\nmakes a trace of one event's journey readable without joining on timestamps —\nthat turned out to matter more than I expected once benchmarking started.</p>\n\n<p>Partitioning is <strong>caller-controlled</strong>. Producers may supply a partition key at\nthe ingest endpoint; when they do, every downstream stage propagates that same key\nwhen it republishes. The consequence is the useful part: <strong>events sharing a key\nkeep their relative order across the entire pipeline</strong>, not just within one hop.\nWhen no key is supplied, events distribute across partitions and ordering is not\npromised — which is the right default for independent events, and the wrong one for\na per-entity update stream. Choosing that is left to the caller because only the\ncaller knows which they have.</p>\n\n<h2>Failure behaviour</h2>\n\n<p>A worker that throws while handling an event republishes the <em>original</em> payload —\nheaders and partition key intact — to a dedicated <strong>retry topic</strong>, then continues\nconsuming. Two things follow from that choice.</p>\n\n<p>The failure is preserved rather than discarded, and it is preserved <em>with enough\ncontext to replay it</em>: same key, same headers, same body. And one bad event cannot\nwedge the pipeline, because the consumer does not block or crash on it.</p>\n\n<p>Replay is deliberately an operator decision — a worker can be pointed at the retry\ntopic to drain it — rather than an automatic loop. Automatic replay without a bound is\nhow a poison message becomes an infinite cycle.</p>\n\n<h2>Delivery semantics, and the tradeoff I would revisit</h2>\n\n<p>The design targets <strong>at-least-once</strong>: the retry path means handled failures are\nkept, and the producer is not configured for idempotence, so a republish can produce a\nduplicate. <strong>Consumers therefore have to tolerate seeing an event twice</strong> — that is\na real constraint the design pushes onto rule authors, and it should be stated plainly\nrather than glossed.</p>\n\n<p>Offsets commit on the client's default interval rather than explicitly after a rule\ncompletes. That favours throughput and keeps the consume loop simple, at the cost of a\nnarrow window where a hard crash could advance past an event still in flight.</p>\n\n<p>If I were tightening the guarantee, the order would be: commit offsets manually after\nthe rule returns, enable producer idempotence, and give the retry topic an attempt\ncounter with backoff so replay is bounded. Each of those trades some throughput or\nlatency for strictness — which is exactly the conversation worth having with whoever\nowns the SLA, rather than a decision to make silently in the framework.</p>\n\n<h2>Deployment</h2>\n\n<p>Kafka runs as a multi-node cluster in <strong>KRaft</strong> mode, so there is no ZooKeeper\nensemble to operate alongside it. Redis runs clustered with replicas, distributing keys\nacross hash slots. Both are containerised, authenticated, and were deployed split across\nmultiple hosts during benchmarking to make sure nothing depended on colocation.</p>",
+        "lld": "<h2>A worker is config plus one function</h2>\n\n<p>A processor's entire wiring — which queue it reads, which it writes, which consumer\ngroup it joins, where failures go — is a short config file:</p>\n\n<pre>MINION_NAME:    relay1\nCONSUMER_GROUP: PROCESSORS\nCONSUME_TOPIC:  DEMO_RECEIVED\nPRODUCE_TOPIC:  DEMO_PROCESSED\nRETRY_TOPIC:    DEMO_RETRY</pre>\n\n<p>Behaviour comes from a separate rules file exposing exactly one hook:</p>\n\n<pre>async def execute_rules(json_data, received_topic, e2_util) -> dict:\n    ...</pre>\n\n<p>That signature is the contract, and the boundary it draws is the whole design.\nThe framework owns transport, retries, logging, configuration and lifecycle. The rules\nfile owns the transformation and nothing else. Returning <code>None</code> drops the event\ndeliberately; raising sends it to the retry topic.</p>\n\n<p><strong>The same container image becomes a different worker from config alone.</strong>\nBecause that config lives in Redis rather than baked into the image, a running instance\ncan be repointed without a rebuild or redeploy. Getting that boundary right is what made\nten worker types maintainable instead of ten codebases.</p>\n\n<h2>Two runtimes held to one contract</h2>\n\n<p>The framework exists twice. The Python and TypeScript trees carry the same ten workers\nand the same four connectors — Kafka, Redis, Elasticsearch, HTTP — down to matching\nlogging configuration. A team picks the runtime that suits the workload without changing\nthe operational model, the config format or the extension contract.</p>\n\n<p>Keeping parity is a real ongoing cost. It is worth it because the alternative —\none runtime, and a rewrite whenever a use case does not fit it — is a worse cost paid\nlater.</p>\n\n<h2>Building something that could tell the truth</h2>\n\n<p>Building the platform was half the work. The other half was building a system that\ncould measure it honestly.</p>\n\n<p>Every worker emits structured logs keyed by test, worker and message identifier.\n<strong>Logstash</strong> parses those as they arrive, <strong>Elasticsearch</strong> indexes them,\nand <strong>Kibana</strong> computes four KPIs live: system throughput, end-to-end latency,\nper-worker processing time, and load distribution across the fleet. <strong>JMeter</strong>\ndrives stepped load from three concurrent producers.</p>\n\n<p>Because the message key travels end to end, a single event's full path is queryable —\nwhich is what makes end-to-end latency a measurement rather than an estimate.</p>\n\n<p>Then fifteen runs: three cluster shapes against five dataset sizes spanning a 5× range,\ndistributed across multiple hosts.</p>\n\n<h2>What the numbers said — including the part I did not expect</h2>\n\n<p><strong>Doubling the processing and delivery tiers changed throughput by under 1%.</strong>\nThe obvious lever did almost nothing. At every dataset size, the baseline and the\ndouble-capacity configuration landed within a percent of each other.</p>\n\n<p>What did change was responsiveness: end-to-end latency fell roughly\n<strong>2.4×</strong>. The extra capacity drained queues faster without lifting the ceiling.</p>\n\n<p>Adding deliberately expensive transformation logic cost about <strong>2%</strong>, so the work\nthe platform was doing was not the constraint either. And throughput fell by roughly a\nthird as the dataset grew 5×, so the system was not holding a flat rate under sustained\nload.</p>\n\n<h2>The open question</h2>\n\n<p>Those results locate a ceiling without explaining it. Two things were held constant\nacross all fifteen runs — the ingest tier and the load generator itself — which makes them\nthe obvious suspects. But that is an inference, not a result, and I will not present it\nas a finding.</p>\n\n<p>The experiments that would settle it are straightforward: vary partition count\nindependently of consumer count to test whether queue parallelism is the real cap, scale\nthe ingest tier while holding everything downstream fixed, and drive load from hardware\nthat is not itself a plausible bottleneck.</p>\n\n<p>I would rather ship a measured negative result and name the next experiment than a\nconfident story the data does not support.</p>"
       },
       {
         "slug": "video-analytics-project",
         "name": "Video Analytics Project",
         "status": "Completed",
-        "description": "An AI-powered platform for real-time violation detection using Event Exchange Framework.",
+        "description": "Site surveillance for a fuel-retail operator: four RTSP cameras sampled to Kafka, face detection running as a stream consumer, and flagged frames pushed to an operator's browser over WebSockets. Built on an earlier version of the Event Exchange Framework, which it extended with a video-capture worker type.",
         "skills": [
-          "Javascript",
-          "Node.js",
           "Python",
-          "Redis",
-          "MariaDB",
-          "AWS",
+          "FastAPI",
           "Kafka",
+          "Redis",
+          "OpenCV",
+          "dlib",
+          "MariaDB",
+          "SQLModel",
+          "React",
+          "Redux",
+          "WebSockets",
+          "JWT",
           "Docker"
         ],
-        "role": "",
-        "org": "",
-        "period": "",
-        "highlights": [],
-        "metrics": [],
+        "role": "Software Developer",
+        "org": "TCG Digital Solutions",
+        "period": "2024",
+        "highlights": [
+          "Built a camera-to-browser violation detection system on the Event Exchange Framework, extending it with a stream-producer worker type that samples RTSP feeds with OpenCV and publishes frames as Kafka events.",
+          "Split each camera onto two topics so the live-view lane and the detection lane run as independent consumer groups, keeping the operator live feed at full rate regardless of detection lag.",
+          "Ran detection as a single relay consuming all four camera topics and republishing only frames containing a detection, so the storage tier is sized for detections rather than for ingest.",
+          "Built the FastAPI + SQLModel + MariaDB backend and React/Redux client: JWT auth, per-camera WebSocket fan-out for live frames, and a violation gallery over disk-stored JPEGs with a bounded retention window.",
+          "Deployed seven pipeline containers and a three-tier app stack against a 3-node Kafka (KRaft) and 6-node Redis cluster, with each worker config held in Redis so instances are repointed without a rebuild."
+        ],
+        "metrics": [
+          {
+            "label": "Cameras streamed",
+            "value": "4",
+            "unit": "",
+            "source": "Across 2 sites"
+          },
+          {
+            "label": "Frame sample rate",
+            "value": "1",
+            "unit": "/s per camera",
+            "source": "GAP_BETWEEN_FRAMES"
+          },
+          {
+            "label": "Kafka topics",
+            "value": "6",
+            "unit": "",
+            "source": "4 camera + live + violations"
+          },
+          {
+            "label": "End-to-end latency",
+            "value": null,
+            "unit": "ms",
+            "source": "Not instrumented"
+          }
+        ],
         "links": {},
-        "content": "<h2>Overview</h2>\n    <p>\n        The <strong>Intelligent Violation Detection & Alert System</strong> is an AI-powered platform that uses the \n        <strong>Event Exchange Framework</strong> to stream real-time data from surveillance cameras across multiple sites. \n        By applying <strong>AI/ML models</strong>, the system detects violations and automatically sends alerts to the \n        designated point of contact. \n    </p>\n    <p>\n        A <strong>central cloud server</strong> collects all violation data from different locations, enabling \n        multi-user access with <strong>Role-Based Access Control (RBAC)</strong> for in-depth analysis and reporting. \n    </p>\n\n    <h2>Key Features</h2>\n    <ul>\n        <li><strong>Real-Time Video Streaming:</strong> Captures and processes live camera feeds using the Event Exchange Framework.</li>\n        <li><strong>AI-Powered Violation Detection:</strong> Uses deep learning models to identify safety breaches, unauthorized access, and traffic violations.</li>\n        <li><strong>Automated Alert System:</strong> Sends real-time notifications to security teams via email, SMS, or in-app alerts.</li>\n        <li><strong>Central Cloud Storage:</strong> Aggregates violation data from multiple sites for secure storage and analysis.</li>\n        <li><strong>Role-Based Access Control (RBAC):</strong> Provides different access levels for admins, security officers, and analysts.</li>\n        <li><strong>Advanced Analytics:</strong> Generates reports, insights, and trends to improve security measures.</li>\n    </ul>\n\n    <h2>How It Works</h2>\n    <ol>\n        <li><strong>Data Ingestion:</strong> Surveillance cameras capture live video feeds from various locations.</li>\n        <li><strong>AI Processing:</strong> Machine learning models analyze video feeds in near real-time.</li>\n        <li><strong>Violation Detection & Alerting:</strong> Identified violations trigger instant alerts to the appropriate personnel.</li>\n        <li><strong>Centralized Storage:</strong> All detected violations are stored in a cloud database for further review.</li>\n        <li><strong>Role-Based Access & Monitoring:</strong> Authorized users access violation data based on predefined roles.</li>\n    </ol>\n\n    <h2>Technologies Used</h2>\n    <ul>\n        <li><strong>Event Streaming & Processing:</strong> Event Exchange Framework, Kafka</li>\n        <li><strong>AI/ML for Violation Detection:</strong> TensorFlow, OpenCV, YOLO</li>\n        <li><strong>Backend & Data Storage:</strong> Node.js, Python, Redis, MariaDB</li>\n        <li><strong>Cloud Infrastructure:</strong> AWS, GCP, Azure</li>\n        <li><strong>RBAC & Security:</strong> JWT Authentication, Role-Based Access Control</li>\n    </ul>\n\n    <h2>Why Use This System?</h2>\n    <ul>\n        <li>🚀 <strong>Automates violation detection</strong> using AI, reducing manual effort.</li>\n        <li>📢 <strong>Real-time alerts</strong> ensure quick response to security breaches.</li>\n        <li>☁️ <strong>Cloud-based architecture</strong> supports scalability across multiple locations.</li>\n        <li>🔐 <strong>RBAC security</strong> ensures secure and structured user access.</li>\n        <li>📊 <strong>Detailed analytics</strong> help organizations improve compliance and safety.</li>\n    </ul>\n\n    <p><strong>The Intelligent Violation Detection & Alert System revolutionizes automated surveillance, ensuring safety and compliance across various industries.</strong></p>\n"
+        "content": "",
+        "diagram": "edge-violation-pipeline",
+        "overview": "<p><strong>A surveillance system for a fuel-retail operator's forecourts.</strong> Four\nfixed cameras across two sites are sampled continuously; each frame travels through\na Kafka pipeline to a detector, and anything the detector flags lands in an\noperator's browser as a timestamped, reviewable still.</p>\n\n<p>It runs on an <strong>earlier version of the Event Exchange Framework</strong> — my\nown event-streaming platform — and extending it was part of the work: video needed a\nworker type the framework did not have, one that opens an RTSP stream and turns it into\nevents. Things the framework grew later — ULID message keys, a dedicated retry topic —\nare not in the version deployed here, so the failure behaviour described below is the\nearlier, simpler version of it.</p>\n\n<p>The system runs two lanes side by side, and keeping them separate is the whole\ndesign:</p>\n\n<ul>\n  <li><strong>Live lane</strong> — every sampled frame from every camera, pushed\n      straight to whoever is watching. Nothing analyses it; it just has to arrive.</li>\n  <li><strong>Violation lane</strong> — the same frames, but through the detector.\n      Only frames with a detection continue, get written to disk and the database,\n      and appear in the violation gallery.</li>\n</ul>\n\n<p><strong>On what the detector actually is:</strong> the version in this repo runs\n<em>dlib's frontal-face detector</em> — a classical HOG + linear-SVM model, not a deep\nnetwork — configured as a violation type called <code>FACE_DETECTED</code>. The\ndetector is a pluggable stage rather than the point of the system: the pipeline\naround it treats \"what counts as a violation\" as configuration, and face detection\nwas the first thing wired through it end to end.</p>",
+        "hld": "<p>The camera never talks to the detector, and the detector never talks to the\nbrowser. <strong>Every stage is separated from the next by a Kafka topic</strong>, which\nis what makes the two lanes independent instead of merely parallel.</p>\n\n<h2>Why each camera publishes twice</h2>\n\n<p>Each capture service publishes every sampled frame to <strong>two</strong> topics: its\nown per-camera topic, and a shared live topic. That looks redundant until you ask what\nhappens when detection gets slow.</p>\n\n<p>The detector consumes the per-camera topics. The live-view forwarder consumes the\nshared topic. They are <strong>separate consumer groups with separate offsets</strong>, so\na detector that falls behind — a heavier model, a stalled container, a restart —\naccumulates lag on its own topics and nothing else. The operator's live view keeps\nrunning at full rate, because nothing in its path is waiting on inference. Had both\nlanes shared one stream, every second of detection latency would have been a second of\nlive-view latency.</p>\n\n<h2>Fan-in, not fan-out</h2>\n\n<p>One relay service subscribes to all four camera topics at once and merges them into\na single stream — the framework's consume-topic setting splits on commas, so this is\nconfiguration, not code. Frames carry their own camera and site identity in the\npayload, so a merged stream loses nothing.</p>\n\n<p>That relay is also the <strong>filter</strong>. It republishes to the violations topic\nonly when the detector fires. Everything downstream — the writer, the database, the\ndisk — is sized for detections rather than for ingest, which is the difference between\nstoring what matters and storing every frame from every camera forever.</p>\n\n<h2>Failure behaviour</h2>\n\n<p>Because Kafka retains rather than consumes, a stage that dies comes back and works\nthrough its backlog from its committed offset; the frames it missed are still there.\nContainers are declared <code>restart: always</code>, so recovery is the default state\nrather than an operator action.</p>\n\n<p>The pipeline is deliberately <strong>lossy at the edge and lossless after it</strong>.\nThe capture service samples one frame per second and discards the rest of the stream\nbefore anything is published — the camera runs at full frame rate, the pipeline does\nnot. That sampling is the real backpressure control: it fixes the ingest rate at the\none place where dropping data is cheap and obvious, instead of letting a queue silently\ndecide later.</p>\n\n<h2>Configuration lives outside the container</h2>\n\n<p>Each service loads its YAML config once at startup and writes it into a\n<strong>Redis cluster</strong>, then reads every setting back from Redis at runtime.\nTwo consequences follow. A running instance can be repointed — different topic,\ndifferent violation type — by changing a key, with no rebuild. And because each\nservice registers itself in a per-type set on startup and removes its own keys on\nshutdown, Redis doubles as a <strong>live inventory of what is actually running</strong>,\nwhich is otherwise surprisingly hard to answer for a fleet of identical containers.</p>\n\n<h2>What the app tier guarantees</h2>\n\n<p>The backend holds one WebSocket channel per camera and broadcasts to whoever is\nattached to it. Live frames are pushed; violations are polled, because a violation is\na record with a row and a file behind it, and the client wants the newest <em>N</em>\nrather than a stream.</p>\n\n<p>Storage is explicitly <strong>bounded, not archival</strong>: after each write the\noldest records past a fixed retention count are deleted, file and row together. This is\na monitoring console, not evidence retention — and a bounded store that cannot fill the\ndisk was the right trade for an on-site box.</p>\n\n<h2>Access scoping — and what it is not</h2>\n\n<p>Each user is bound to a site, and the client fetches only that site's cameras, so an\noperator at one forecourt does not see another's feeds. This is\n<strong>site-scoped access, not role-based access control</strong> — there is no role\nmodel in the schema. Calling it RBAC would overstate what is implemented.</p>",
+        "lld": "<h2>The event on the wire</h2>\n\n<p>Every message in the pipeline is one JSON object describing one frame:</p>\n\n<ul>\n  <li><code>frame</code> — the image, JPEG-encoded then base64'd</li>\n  <li><code>camera_id</code>, <code>camera_model</code></li>\n  <li><code>site_id</code>, <code>site_location</code>, <code>site_region</code></li>\n  <li><code>violation_type</code> — <code>\"NA\"</code> until a detector sets it</li>\n  <li><code>timestamp</code> — capture time</li>\n</ul>\n\n<p><strong>Base64-over-JSON was a deliberate trade, and it is the one I would revisit\nfirst.</strong> It costs roughly a third more bytes on every message than the raw JPEG\nwould, and image payloads on a broker is not what a broker is for. What it buys is\nuniformity: every worker in the framework is a plain JSON transform, one deserialiser,\none contract, no binary serde and no second storage system to keep in sync with the\nevent stream. At four cameras and one frame per second that trade is comfortable; it is\nthe first thing that stops being comfortable as cameras are added, and the fix — put the\nbytes in object storage, put a reference on the topic — is well understood.</p>\n\n<h2>Capture</h2>\n\n<p>OpenCV opens the RTSP URL and reads frames in a loop. A frame is only encoded and\npublished once the configured gap since the last published frame has elapsed\n(<code>GAP_BETWEEN_FRAMES: 1</code> second in this deployment); everything in between is\nread and dropped. Site and camera identity are attached at publish time from config, so\nadding a camera is a new config file and a compose entry, not new code — the four\ncapture services are the same program with different configuration.</p>\n\n<h2>Detection</h2>\n\n<p>The relay decodes base64 → JPEG bytes → OpenCV matrix, scales the longest edge to\n640px, converts to greyscale and runs <code>dlib.get_frontal_face_detector()</code> at\none upsample pass. Each hit is drawn as a labelled rectangle onto the frame, and the\nannotated frame is re-encoded and swapped back into the same JSON object — so what an\noperator reviews is the frame <em>with the detection marked on it</em>, not a raw still\nplus coordinates. Consumption is handed to a four-thread pool so decode-detect-encode on\none frame does not block reading the next.</p>\n\n<p>Two implementation warts I would fix before this scaled:</p>\n\n<ul>\n  <li>The republish loop emits <strong>one message per detected face</strong>, so a\n      frame with three faces produces three identical events and three stored images.\n      The detection count should be a field, not a repeat count.</li>\n  <li>The capture service registers itself under the framework's <em>pull</em> service\n      type although a <em>stream</em> type exists in the enum — harmless at runtime, but\n      it makes the Redis service inventory lie about what is running, which is exactly\n      the thing that inventory is for.</li>\n</ul>\n\n<h2>The app tier</h2>\n\n<p>FastAPI with SQLModel over MariaDB. Three tables — violation, camera, site — plus\nusers. The write path decodes the frame to a JPEG file on disk and stores the\n<em>path</em> in the row rather than the image, then upserts the camera and site records\nso the topology registers itself from the traffic; the read path re-encodes files to\nbase64 for the client. The cleanup pass runs on every write and trims to the newest 50\nviolations, deleting file and row together.</p>\n\n<table>\n  <tr><td><code>POST /emit/live/{camera_id}</code></td><td>broadcast a frame to that camera's WebSocket subscribers</td></tr>\n  <tr><td><code>POST /emit/{camera_id}</code></td><td>persist a violation, upsert camera + site, trim old records</td></tr>\n  <tr><td><code>GET /frames/{camera_id}?limit=N</code></td><td>newest N violations, images inlined as base64</td></tr>\n  <tr><td><code>GET /cameras/site/{site_id}</code></td><td>cameras and site detail for a user's site</td></tr>\n  <tr><td><code>WS /ws/live/{camera_id}</code></td><td>live frame channel, one per camera</td></tr>\n</table>\n\n<p>Auth is bcrypt password hashing and an HS256 JWT with a 20-minute expiry; the client\nre-validates its token on an interval and drops to the login screen the moment the\nserver rejects it, so an expired session cannot sit on screen showing stale frames.</p>\n\n<h2>Client</h2>\n\n<p>React with Redux Toolkit. On mount it opens one WebSocket per camera and writes\nincoming frames into a per-camera slice of the store, so switching cameras is a store\nread rather than a reconnect and the view is populated instantly. The violations tab\npolls the frames endpoint on an interval and renders a thumbnail strip against a\ndetail pane showing violation type, timestamp and source camera.</p>\n\n<h2>Deployment</h2>\n\n<p>Two compose stacks against shared middleware. The pipeline stack runs seven\ncontainers — four capture services, one detection relay, two forwarders — each bind-mounting\nthe single framework utility file so every worker runs the same copy. The app stack runs\nthe client, the API and MariaDB. Underneath sit a <strong>three-node Kafka cluster in\nKRaft mode</strong> (no ZooKeeper) and a <strong>six-node Redis cluster</strong>, three\nmasters and three replicas, with HAProxy fronting both for access from outside the\nDocker network.</p>\n\n<p>Startup ordering is handled by staggered sleeps in the container commands — producers\nfirst, relay after, forwarders last. It works, and it is the wrong mechanism: these\nshould be health checks and retry-on-connect, so that a slow broker delays startup rather\nthan failing it.</p>\n\n<h2>What I would change</h2>\n\n<ul>\n  <li>Frame bytes to object storage, references on the topic.</li>\n  <li>Detection count as a field rather than duplicate messages.</li>\n  <li>Timestamps as UTC ISO-8601 end to end — the current path formats a local-offset\n      string at capture, parses it back at write, and re-localises it, which is three\n      chances to be wrong for no benefit.</li>\n  <li>Bounded work queues in the forwarders; they currently spawn a thread per message,\n      which is fine at this rate and unbounded at any other.</li>\n  <li>Broker and camera credentials out of the config files and into injected secrets.</li>\n  <li>Health checks instead of startup sleeps.</li>\n</ul>",
+        "uiPreview": "edge-app-console"
       },
       {
         "slug": "code-search-engine",
@@ -302,154 +376,264 @@
       {
         "name": "React",
         "url": "/images/react.png",
-        "group": ""
+        "group": "Frameworks & Libraries"
       },
       {
         "name": "MongoDB",
         "url": "/images/mongodb.png",
-        "group": ""
+        "group": "Data & Storage"
       },
       {
         "name": "Python",
         "url": "/images/python.png",
-        "group": ""
+        "group": "Languages"
       },
       {
         "name": "HTML",
         "url": "/images/html.png",
-        "group": ""
+        "group": "Languages"
       },
       {
         "name": "CSS",
         "url": "/images/css.png",
-        "group": ""
+        "group": "Languages"
       },
       {
         "name": "JavaScript",
         "url": "/images/js.jpg",
-        "group": ""
+        "group": "Languages"
       },
       {
         "name": "Git",
         "url": "/images/git.png",
-        "group": ""
+        "group": "Platform & Tooling"
       },
       {
         "name": "Docker",
         "url": "/images/docker.png",
-        "group": ""
+        "group": "Platform & Tooling"
       },
       {
         "name": "Jenkins",
         "url": "/images/jenkins.png",
-        "group": ""
+        "group": "Platform & Tooling"
       },
       {
         "name": "Redis",
         "url": "/images/redis.png",
-        "group": ""
+        "group": "Data & Storage"
       },
       {
         "name": "Node.js",
         "url": "/images/node.png",
-        "group": ""
+        "group": "Frameworks & Libraries"
       },
       {
-        "name": "kafka",
+        "name": "Kafka",
         "url": "/images/kafka.png",
-        "group": ""
+        "group": "Streaming & Orchestration"
       },
       {
         "name": "MariaDB",
         "url": "/images/mariadb.png",
-        "group": ""
+        "group": "Data & Storage"
       },
       {
         "name": "Airflow",
         "url": "/images/apache-airflow.png",
-        "group": ""
+        "group": "Streaming & Orchestration"
       },
       {
         "name": "Kibana",
         "url": "/images/elastic-kibana-logo.png",
-        "group": ""
+        "group": "Platform & Tooling"
       },
       {
         "name": "ElasticSearch",
         "url": "/images/elastic-elasticsearch-logo.png",
-        "group": ""
+        "group": "Data & Storage"
       },
       {
         "name": "PySpark",
         "url": "/images/PySpark-logo-1.jpg",
-        "group": ""
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "FastAPI",
+        "url": "/images/fastapi.svg",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "OpenCV",
+        "url": "/images/opencv.svg",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "dlib",
+        "url": "/images/dlib.svg",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "SQLModel",
+        "url": "/images/sqlmodel.png",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "Redux",
+        "url": "/images/redux.svg",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "WebSockets",
+        "url": "",
+        "group": "Protocols & Auth"
+      },
+      {
+        "name": "JWT",
+        "url": "/images/jwt.svg",
+        "group": "Protocols & Auth"
+      },
+      {
+        "name": "TypeScript",
+        "url": "/images/typescript.svg",
+        "group": "Languages"
+      },
+      {
+        "name": "Express",
+        "url": "/images/express.svg",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "BeautifulSoup",
+        "url": "",
+        "group": "Frameworks & Libraries"
+      },
+      {
+        "name": "Logstash",
+        "url": "/images/logstash.svg",
+        "group": "Streaming & Orchestration"
+      },
+      {
+        "name": "NGINX",
+        "url": "/images/nginx.svg",
+        "group": "Platform & Tooling"
+      },
+      {
+        "name": "Selenium",
+        "url": "/images/selenium.svg",
+        "group": "Platform & Tooling"
+      },
+      {
+        "name": "JMeter",
+        "url": "/images/jmeter.svg",
+        "group": "Platform & Tooling"
+      },
+      {
+        "name": "FFmpeg",
+        "url": "/images/ffmpeg.svg",
+        "group": "Platform & Tooling"
+      },
+      {
+        "name": "Distributed Systems",
+        "url": "",
+        "group": "Practices & Concepts"
+      },
+      {
+        "name": "Microservices",
+        "url": "",
+        "group": "Practices & Concepts"
+      },
+      {
+        "name": "RBAC",
+        "url": "",
+        "group": "Practices & Concepts"
+      },
+      {
+        "name": "Real-time Logs",
+        "url": "",
+        "group": "Practices & Concepts"
+      },
+      {
+        "name": "TF-IDF",
+        "url": "",
+        "group": "Practices & Concepts"
+      },
+      {
+        "name": "Chrome Extension",
+        "url": "",
+        "group": "Practices & Concepts"
       }
     ],
     "3D": [
       {
         "name": "Blender",
         "url": "/images/blender.png",
-        "group": ""
+        "group": "Modelling & Sculpting"
       },
       {
         "name": "Unity",
         "url": "/images/unity.png",
-        "group": ""
+        "group": "Engines"
       },
       {
         "name": "C#",
         "url": "/images/csharp.png",
-        "group": ""
+        "group": "Languages"
       },
       {
         "name": "Unreal Engine",
         "url": "/images/unreal.jpg",
-        "group": ""
+        "group": "Engines"
       },
       {
         "name": "Maya",
         "url": "/images/maya.png",
-        "group": ""
+        "group": "Modelling & Sculpting"
       },
       {
         "name": "Zbrush",
         "url": "/images/zbrush.png",
-        "group": ""
+        "group": "Modelling & Sculpting"
       },
       {
         "name": "Substance Painter",
         "url": "/images/substance.png",
-        "group": ""
+        "group": "Texturing & 2D"
       },
       {
         "name": "Photoshop",
         "url": "/images/photoshop.png",
-        "group": ""
+        "group": "Texturing & 2D"
       },
       {
         "name": "Illustrator",
         "url": "/images/illustrator.jpg",
-        "group": ""
+        "group": "Texturing & 2D"
       },
       {
         "name": "After Effects",
         "url": "/images/aftereffects.jpg",
-        "group": ""
+        "group": "Compositing & Post"
       },
       {
         "name": "Premiere Pro",
         "url": "/images/premiere.jpg",
-        "group": ""
+        "group": "Compositing & Post"
       },
       {
         "name": "DaVinci Resolve",
         "url": "/images/davinci.png",
-        "group": ""
+        "group": "Compositing & Post"
       },
       {
         "name": "Marvelous Designer",
         "url": "/images/marvelous.png",
-        "group": ""
+        "group": "Modelling & Sculpting"
+      },
+      {
+        "name": "OOPs",
+        "url": "",
+        "group": "Practices & Concepts"
       }
     ]
   },

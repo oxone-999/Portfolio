@@ -61,7 +61,7 @@ export function assertConfigured() {
 /** Read-only client. Anon key is enough — RLS allows public select. */
 export function readClient() {
   assertConfigured();
-  return createClient(SUPABASE_URL, ANON_KEY, { auth: { persistSession: false } });
+  return createClient(SUPABASE_URL, ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
 }
 
 /** Write client. Prefers the service-role key, else signs in as the admin user. */
@@ -69,11 +69,11 @@ export async function writeClient() {
   assertConfigured();
 
   if (SERVICE_KEY) {
-    return createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
+    return createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
   }
 
   if (ADMIN_EMAIL && ADMIN_PASSWORD) {
-    const client = createClient(SUPABASE_URL, ANON_KEY, { auth: { persistSession: false } });
+    const client = createClient(SUPABASE_URL, ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
     const { error } = await client.auth.signInWithPassword({
       email: ADMIN_EMAIL,
       password: ADMIN_PASSWORD,

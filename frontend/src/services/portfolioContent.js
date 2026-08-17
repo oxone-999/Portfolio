@@ -25,12 +25,18 @@ function rowToProject(row) {
     status: row.status,
     description: row.description,
     content: row.content,
+    overview: row.overview || '',
+    hld: row.hld || '',
+    lld: row.lld || '',
+    diagram: row.diagram || '',
+    uiPreview: row.ui_preview || '',
+    metrics: row.metrics || [],
     skills: row.skills || [],
   };
 }
 
 function rowToSkill(row) {
-  return { id: row.id, name: row.name, url: row.url };
+  return { id: row.id, name: row.name, url: row.url, group: row.skill_group || '' };
 }
 
 function rowToJourney(row) {
@@ -237,8 +243,20 @@ export async function reseedFromBundledDefaults() {
   if (insProjects) throw insProjects;
 
   const skillRows = [
-    ...defaults.skills.SDE.map((s, i) => ({ lens: 'SDE', name: s.name, url: s.url, sort_order: i })),
-    ...defaults.skills['3D'].map((s, i) => ({ lens: '3D', name: s.name, url: s.url, sort_order: i })),
+    ...defaults.skills.SDE.map((s, i) => ({
+      lens: 'SDE',
+      name: s.name,
+      url: s.url,
+      skill_group: s.group || '',
+      sort_order: i,
+    })),
+    ...defaults.skills['3D'].map((s, i) => ({
+      lens: '3D',
+      name: s.name,
+      url: s.url,
+      skill_group: s.group || '',
+      sort_order: i,
+    })),
   ];
   const { error: insSkills } = await supabase.from('skills').insert(skillRows);
   if (insSkills) throw insSkills;

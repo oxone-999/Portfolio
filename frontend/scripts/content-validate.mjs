@@ -34,6 +34,30 @@ for (const [k, v] of Object.entries(counts)) {
   console.log(`  ${k.padEnd(14)} ${v}`);
 }
 
+// Case-study coverage: which projects have real depth, and which are still
+// just a card. Reported, not enforced — an unwritten project is honest.
+const layerReport = [];
+for (const lens of ['SDE', '3D']) {
+  for (const p of content.projects[lens]) {
+    const layers = ['overview', 'hld', 'lld'].filter((k) => p[k]);
+    const legacy = !layers.length && p.content;
+    layerReport.push({
+      name: `${lens} / ${p.name}`,
+      state: layers.length ? layers.join(' + ') : legacy ? 'legacy body' : 'EMPTY',
+      diagram: p.diagram || '',
+      uiPreview: p.uiPreview || '',
+    });
+  }
+}
+
+console.log(`\n${C.bold}Case studies${C.reset}`);
+for (const r of layerReport) {
+  const colour = r.state === 'EMPTY' ? C.yellow : r.state.includes('overview') ? C.green : C.dim;
+  const diagram = r.diagram ? `${C.cyan}  ◈ ${r.diagram}${C.reset}` : '';
+  const uiPreview = r.uiPreview ? `${C.cyan}  ▣ ${r.uiPreview}${C.reset}` : '';
+  console.log(`  ${colour}${r.state.padEnd(24)}${C.reset}${r.name}${diagram}${uiPreview}`);
+}
+
 if (log.length) {
   console.log(`\n${C.bold}Log${C.reset}  ${log.length} entries`);
   console.log(`  ${C.green}public (shipped)  ${byKind('shipped')}${C.reset}`);

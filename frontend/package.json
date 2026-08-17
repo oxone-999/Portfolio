@@ -13,7 +13,8 @@
     "content:pull": "node scripts/content-pull.mjs",
     "content:seed": "node scripts/export-seed-sql.mjs > supabase/seed.sql",
     "content:check": "node scripts/content-validate.mjs",
-    "resume:build": "node scripts/build-resume.mjs"
+    "resume:build": "node scripts/build-resume.mjs",
+    "preview:case": "node scripts/preview-case-study.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.13.0",
+    "netlify-cli": "^27.1.1",
     "tailwindcss": "^4.2.2",
     "vite": "^6.0.3"
   },
