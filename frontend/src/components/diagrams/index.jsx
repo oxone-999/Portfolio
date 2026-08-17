@@ -7,6 +7,7 @@ import ReconMetamodelPipeline from './ReconMetamodelPipeline';
 import CodeSearchIndexPipeline from './CodeSearchIndexPipeline';
 import AppSpecCodegenPipeline from './AppSpecCodegenPipeline';
 import SessionAttributionTimeline from './SessionAttributionTimeline';
+import GdeltRiskRadarPipeline from './GdeltRiskRadarPipeline';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -25,6 +26,7 @@ const REGISTRY = {
   'code-search-index-pipeline': CodeSearchIndexPipeline,
   'app-spec-codegen-pipeline': AppSpecCodegenPipeline,
   'session-attribution-timeline': SessionAttributionTimeline,
+  'gdelt-risk-radar-pipeline': GdeltRiskRadarPipeline,
 };
 
 export default function Diagram({ name }) {
