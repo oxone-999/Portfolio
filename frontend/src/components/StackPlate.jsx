@@ -37,6 +37,7 @@ const STRATA_ORDER = {
     'Frameworks & Libraries',
     'Data & Storage',
     'Streaming & Orchestration',
+    'AI & Models',
     'Platform & Tooling',
     'Protocols & Auth',
     'Practices & Concepts',

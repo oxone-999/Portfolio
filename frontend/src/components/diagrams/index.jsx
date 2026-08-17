@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import EventExchangePipeline from './EventExchangePipeline';
 import EdgeViolationPipeline from './EdgeViolationPipeline';
+import MultilingualStreamPipeline from './MultilingualStreamPipeline';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -13,6 +14,7 @@ import EdgeViolationPipeline from './EdgeViolationPipeline';
 const REGISTRY = {
   'event-exchange-pipeline': EventExchangePipeline,
   'edge-violation-pipeline': EdgeViolationPipeline,
+  'multilingual-stream-pipeline': MultilingualStreamPipeline,
 };
 
 export default function Diagram({ name }) {

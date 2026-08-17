@@ -259,28 +259,70 @@
         "content": "\n        <h2>Overview</h2>\n        <p>The <strong>Time Spent Chrome Extension</strong> helps users track the amount of time they spend on various websites, providing insights into browsing habits.</p>\n\n        <h2>Latest Version: 0.2.0 (Released on 17-09-2023)</h2>\n        <p>New features added in this release:</p>\n        <ul>\n            <li>📊 <span class=\"highlight\">Top 5 Most Visited Websites:</span> View a list of the websites where you have spent the most time.</li>\n            <li>📅 <span class=\"highlight\">Date-wise Time Tracking:</span> Track time spent on different websites for specific dates using the Select Date menu.</li>\n        </ul>\n\n        <h2>Problem It Solves</h2>\n        <p>Many users are unaware of how much time they spend on different websites. This extension provides <strong>real-time insights</strong> into browsing behavior, helping users:</p>\n        <ul>\n            <li>Improve productivity by identifying time-wasting websites.</li>\n            <li>Manage screen time more effectively.</li>\n            <li>Gain a better understanding of daily web usage trends.</li>\n        </ul>\n\n        <h2>How It Works</h2>\n        <ol>\n            <li>The extension automatically tracks time spent on different websites.</li>\n            <li>Users can <strong>view their browsing history in an intuitive dashboard</strong>.</li>\n            <li>Data can be analyzed based on <strong>daily usage or cumulative top websites</strong>.</li>\n        </ol>\n\n        <h2>Project Links</h2>\n        <ul>\n            <li><strong>GitHub Repository:</strong> <a href=\"https://github.com/oxone-999/Time-Spent-Chrome-Extension\" target=\"_blank\">View on GitHub</a></li>\n        </ul>\n\n        <h2>Project Contributor</h2>\n        <p>👤 <strong>Name:</strong> Anuj Verma</p>\n        <p>🏫 <strong>Institute:</strong> IIT Kharagpur</p>\n        <p>👥 <strong>Team:</strong> Individual</p>\n\n        <p>This extension is perfect for professionals, students, and anyone looking to optimize their online time management. 🚀</p>"
       },
       {
-        "slug": "dfb-streaming-pipeline",
-        "name": "DFB Streaming Pipeline",
+        "slug": "multilingual-stream-pipeline",
+        "name": "Multilingual Stream Pipeline",
         "status": "Completed",
-        "description": "A live video streaming pipeline for broadcasting football matches, using Event Exchange framework.",
+        "description": "A live sports feed dubbed into five languages as it plays — transcribed with Whisper, translated per language, re-voiced with TTS, mixed over stadium audio and muxed back into multi-audio HLS with frame-accurate subtitles. Built on the Event Exchange Framework.",
         "skills": [
+          "Python",
           "Kafka",
           "Redis",
-          "Python",
           "FFmpeg",
+          "HLS",
+          "SRT",
           "NGINX",
-          "Elasticsearch",
-          "Kibana",
-          "Logstash",
-          "Microservices"
+          "Whisper",
+          "OpenAI",
+          "ElevenLabs",
+          "Docker",
+          "Microservices",
+          "Distributed Systems",
+          "Gemini",
+          "TwelveLabs",
+          "AWS S3"
         ],
-        "role": "",
-        "org": "",
-        "period": "",
-        "highlights": [],
-        "metrics": [],
+        "role": "Software Developer",
+        "org": "TCG Digital Solutions",
+        "period": "2025",
+        "highlights": [
+          "Built a real-time dubbing pipeline that transcribes live match commentary, translates it into five languages, re-voices it with TTS and muxes the result back into multi-audio HLS with frame-accurate subtitles.",
+          "Designed the fan-out/barrier topology: five independent language lanes reconverge on a muxer that gates each segment on a Redis completion hash, so no segment ships with a missing audio track.",
+          "Preserved MPEG-TS presentation timestamps end to end and anchored WebVTT with X-TIMESTAMP-MAP so subtitles stay locked to the picture across every encode and mux stage.",
+          "Cut dub overrun by predicting synthesised speech duration with a regression model before the TTS call and compressing the translation against a syllables-per-second budget when it would overshoot.",
+          "Added an independent highlights branch on the same ingest topic — video-understanding model for detection, a second model to reject false positives, clips uploaded to S3 — isolated so it cannot affect the dubbing path."
+        ],
+        "metrics": [
+          {
+            "label": "Target languages",
+            "value": "5",
+            "unit": "",
+            "source": "Independent lanes"
+          },
+          {
+            "label": "Processor services",
+            "value": "13",
+            "unit": "",
+            "source": "Deployed runtime"
+          },
+          {
+            "label": "Transcription context",
+            "value": "4",
+            "unit": "segments",
+            "source": "~24 s window"
+          },
+          {
+            "label": "Glass-to-glass latency",
+            "value": null,
+            "unit": "s",
+            "source": "Not instrumented"
+          }
+        ],
         "links": {},
-        "content": "\n<p><strong>DFB Streaming Pipeline</strong> is a <em>live event streaming architecture</em> designed to ingest, process, enhance, and distribute football match streams to multiple broadcasters using flexible configurations and protocols.</p>\n\n<h2>Project Purpose</h2>\n<p>This pipeline enables real-time acquisition and transformation of live football match streams received from production companies in formats like <strong>HLS, SRT, and RTMP</strong>. It enhances the streams with <strong>multilingual audio and subtitles</strong>, and delivers them to broadcasters in their desired format and quality.</p>\n\n<h2>How It Works</h2>\n<ul>\n  <li>Streams are ingested from external production sources using the <strong>Receiver Adapters</strong> (SRT, HLS, RTMP).</li>\n  <li>Data passes through the <strong>Event Exchange Framework</strong> for pipeline handling using Kafka topics and Redis caching.</li>\n  <li>The pipeline <strong>processes video streams</strong>, applies audio/subtitle overlays, and transforms them using <strong>FFmpeg</strong>.</li>\n  <li>Output is sent via <strong>Sender Adapters</strong> to broadcasters in configurable formats.</li>\n  <li><strong>Monitoring and performance metrics</strong> are tracked through the ELK stack (Logstash, Elasticsearch, Kibana).</li>\n</ul>\n\n<h2>My Contributions</h2>\n<ul>\n  <li>Developed custom <strong>Receiver and Sender Adapters</strong> for live stream protocols including <strong>SRT and HLS</strong>.</li>\n  <li>Researched and implemented stream transformation logic for optimal live video quality.</li>\n  <li>Collaborated on adapting <strong>FFmpeg</strong> pipelines for real-time transcoding and protocol conversion.</li>\n  <li>Ensured integration of <strong>Event Exchange</strong> messaging components for stable stream lifecycle management.</li>\n</ul>\n\n<h2>Technologies Used</h2>\n<ul>\n  <li><strong>Streaming Protocols:</strong> SRT, HLS, RTMP</li>\n  <li><strong>Media Processing:</strong> FFmpeg, NGINX (RTMP module)</li>\n  <li><strong>Framework:</strong> Event Exchange (Kafka, Redis, Topic Console, eStore)</li>\n  <li><strong>Logic Layer:</strong> Python for processing and control flow</li>\n  <li><strong>Monitoring:</strong> Logstash, Elasticsearch, Kibana (ELK Stack)</li>\n</ul>\n\n<p>This project is ideal for <strong>broadcast-grade live sports delivery</strong>, ensuring <strong>low-latency, multilingual, and customizable output</strong> for modern streaming platforms. ⚽🎥</p>\n"
+        "content": "",
+        "diagram": "multilingual-stream-pipeline",
+        "overview": "<p><strong>A live football match is dubbed into five languages while it is still\nbeing played.</strong> Commentary arrives as part of a live video feed, and roughly a\ndozen seconds later the same match is going out with Hindi, Bengali, Gujarati, Marathi\nand Malayalam audio tracks and matching subtitles — none of which existed when the ball\nwas kicked.</p>\n\n<p>The chain per language is: hear it, write it down, translate it, say it in a\nsynthetic voice, mix that voice over the real stadium noise, and glue it back onto the\nvideo without the lips and the words drifting apart. Doing that <em>once, offline</em>\nis a scripting exercise. Doing it <strong>continuously, for five languages at once, on a\nfeed that never pauses</strong>, is the actual problem.</p>\n\n<p>It is built on the <strong>Event Exchange Framework</strong> — my own event-streaming\nplatform — using its \"minion\" model, where each stage is a container running the same\ngeneric runtime and differing only in a mounted rules file and config.</p>\n\n<ul>\n  <li><strong>5 target languages</strong>, each an independent lane — translation,\n      speech synthesis, and its own subtitle track</li>\n  <li><strong>13 processor services</strong> across transcription, translation, speech,\n      muxing and highlights</li>\n  <li><strong>Whisper</strong> for transcription, LLM translation per language,\n      <strong>ElevenLabs</strong> and <strong>OpenAI</strong> for voice</li>\n  <li><strong>A separate AI branch</strong> that watches the same feed and cuts\n      highlight reels on its own</li>\n</ul>\n\n<p>Client and broadcaster names are omitted throughout — the real deployment carries a\nrights-holder and four named broadcasters.</p>",
+        "hld": "<p>The pipeline is a chain of Kafka topics with one structural feature that\nshapes everything else: <strong>it fans out to five language lanes and then has to put\nthem back together again.</strong></p>\n\n<h2>Why the barrier is the hard part</h2>\n\n<p>Each language lane runs at its own speed. An LLM translation takes as long as it\ntakes; a speech synthesis call takes as long as it takes; Hindi and Malayalam have no\nreason to finish together. But the output is a <em>single</em> video segment carrying\n<em>all</em> the audio tracks, so segment 412 cannot be assembled until every language\nhas produced its copy of segment 412.</p>\n\n<p>That makes the muxer a <strong>barrier</strong>. It doesn't consume a queue and work;\nit waits. Each finished track writes a field into a Redis hash keyed by match and\nsegment number, and the muxer proceeds only when the field count equals the configured\ntrack total — and only if that segment isn't already in a \"done\" set, so a duplicate\ndelivery can't mux the same segment twice.</p>\n\n<p>The consequence is the honest tradeoff of the design: <strong>the slowest language\nsets the latency for everybody.</strong> Adding a sixth language cannot make the output\nfaster and can easily make it slower. That's the price of shipping one stream with every\ntrack in it rather than one stream per language.</p>\n\n<h2>Buffering: why four segments, not one</h2>\n\n<p>The receiver doesn't publish a segment the moment it lands. It holds a rolling window\nof <strong>four segments</strong> and publishes them together, and the transcriber\ntranscribes the whole window but keeps only the words belonging to the\n<strong>middle</strong> segment.</p>\n\n<p>This is a deliberate accuracy-for-latency trade. Speech recognition is much worse at\na hard cut — a word split across a segment boundary is a word it gets wrong, and\nfootball commentary is full of names it can only resolve from surrounding context.\nGiving it roughly twenty-four seconds of continuous audio and then trusting only the\ncentre means every word is transcribed with real context on <em>both</em> sides. The\ncost is paid once, in fixed delay, rather than continuously in mistranscribed names.</p>\n\n<h2>Failure behaviour</h2>\n\n<p>Every stage is separated from the next by a topic, so a stage that dies comes back and\nresumes from its committed offset rather than losing the backlog. A rules failure doesn't\nkill the consumer: the original message is republished to that service's\n<strong>retry topic</strong> and the loop continues, so one malformed segment cannot wedge\na language lane.</p>\n\n<p>Segment numbering survives restarts through Redis — the receiver reads the last media\nsequence back on startup and continues from it, instead of restarting at zero and\nproducing a playlist that jumps backwards.</p>\n\n<p>Delivery has its own health notion. The processes that re-encapsulate the output for\neach broadcaster parse their own encoder progress, and <strong>exit deliberately when\nthroughput drops below three-quarters of the expected frame rate</strong>, letting the\ncontainer restart policy rebuild the connection. A stalled-but-alive encoder is worse\nthan a dead one, because nothing downstream notices.</p>\n\n<h2>Configuration as the unit of change</h2>\n\n<p>Almost every processor is the <em>same</em> container image. A translator and a\nspeech synthesiser differ by the rules file and config mounted into them, not by their\nruntime. Config is loaded into Redis at startup and read from there, so a running\nservice can be repointed without a rebuild, and the set of live services is inspectable\nbecause each one registers itself and cleans up its own keys on shutdown.</p>\n\n<p>Adding a language is therefore a directory, two topics and a compose entry — no new\nprogram.</p>\n\n<h2>Three things hang off the side</h2>\n\n<p>Beyond the dubbing path, the same material feeds three services that the live\npipeline never waits on.</p>\n\n<p><strong>Highlight reels</strong> come from a branch reading the same receiver topic\nas the transcriber, sharing nothing else with it. It accumulates a much longer window,\nsends the stitched video to a video-understanding model to find goals and near-misses,\nhas a second model re-check the result to throw out false positives, and uploads what\nsurvives. Because it is a separate consumer group it can fall behind, fail, or be\nswitched off entirely and the dubbing pipeline never notices — which is exactly why it\nhangs off a topic rather than being bolted into the transcriber.</p>\n\n<p><strong>A full-match highlights cut</strong> is assembled on request from the clips\nthat branch produced, concatenated in order with a broadcast bumper spliced onto both\nends.</p>\n\n<p><strong>Match reports</strong> are the neatest reuse in the project. The report\nservice takes the <em>subtitles the pipeline has already produced</em> as its source,\nfeeds the stitched commentary to a language model, and writes a written match report\nfrom it — then translates that report into ten languages. The live path's byproduct\nbecomes another product's raw material at no extra cost to it.</p>\n\n<p>Its one genuinely clever step is proper-noun correction. Speech recognition reliably\nmangles player names, and a match report full of misspelt footballers is worthless. So\nthe model is handed a search-grounded squad list for the fixture and told to correct\nnames against it before writing — repairing upstream transcription errors at the point\nwhere they would actually be noticed, rather than trying to make the recogniser\nperfect.</p>\n",
+        "lld": "<h2>Keeping subtitles on the video</h2>\n\n<p>This is the part that looks trivial and isn't. Subtitles are published per segment,\nbut a player needs to know where a segment's cue times sit on the <em>video's</em>\ntimeline, not on a timeline starting at zero.</p>\n\n<p>MPEG-TS timestamps run on a <strong>90 kHz clock</strong> — 90 ticks per millisecond.\nEach subtitle file is written with cue times relative to its own segment, plus a header\nline anchoring local zero to that segment's real presentation timestamp:</p>\n\n<ul>\n  <li><code>X-TIMESTAMP-MAP=LOCAL:00:00:00.000,MPEGTS:&lt;start_ms × 90&gt;</code></li>\n</ul>\n\n<p>For that anchor to be true, the original timestamps have to survive every single\nmedia operation in the pipeline. Which is why <code>-copyts</code> and\n<code>-mpegts_copyts 1</code> appear on <strong>every</strong> encoder invocation —\nsegmenting, audio extraction, speech alignment, muxing. Miss them once and that stage\nhelpfully resets timestamps to zero, the anchor becomes a lie, and subtitles drift\nagainst the picture in a way that looks like a subtitle bug but is actually a muxing\nbug several stages upstream.</p>\n\n<p>The full journey of one timestamp: source PTS → preserved through segmentation →\nread back out with a probe in milliseconds → carried on the Kafka message → added to\nthe word offsets the recogniser returns → subtracted again to make cue times\nsegment-relative → multiplied by 90 to write the anchor.</p>\n\n<h2>Making a translation fit the time it has</h2>\n\n<p>A sentence translated into another language is a different length, and a dub has a\nfixed slot: the segment it belongs to. Overrun and either the audio is cut off or it\nwalks into the next segment.</p>\n\n<p>The Hindi lane is the one built out furthest, and handles this in three stages:</p>\n\n<ul>\n  <li><strong>Translate</strong> in a commentary register — native script, but keeping\n      the English football loanwords commentators actually say rather than \"correct\"\n      translations nobody uses.</li>\n  <li><strong>Predict the spoken duration before synthesising it</strong>, using a small\n      regression model trained on text features. If the prediction overruns the English\n      source by more than a couple of seconds, the text is sent back to be\n      <em>compressed</em> — rewritten shorter against a syllables-per-second budget.\n      This is the interesting bit: it fixes length before spending an API call, rather\n      than generating audio and discovering it doesn't fit.</li>\n  <li><strong>Tag for delivery</strong> — emotion markers the voice model understands,\n      chosen from match intensity measured as a rolling words-per-second window, with\n      recent context read back so the same tag isn't repeated every segment.</li>\n</ul>\n\n<p>The other four lanes are single-stage translation and take the simpler route: if the\nsynthesised audio overruns, it is sped up with a filter, capped at 1.2× so it never\nbecomes a chipmunk.</p>\n\n<h2>Stitching speech into a fixed slot</h2>\n\n<p>Synthesised phrases don't add up to exactly one segment. The gaps between them are\nadjustable and the segment length is not, so the audio is assembled in two passes:\nfirst absorbing any carry-over left by the previous segment, then shrinking the silences\nif the total still overruns. Anything that <em>still</em> doesn't fit becomes carry-over\nfor the next segment — with a hard cap, because an uncapped carry-over is a slow drift\nthat gets worse for the whole match.</p>\n\n<p>The synthetic commentary is mixed against the real stadium audio rather than\nreplacing it: crowd noise ducked, commentary lifted. Losing the stadium is what makes a\ndub feel like a voiceover instead of a broadcast.</p>\n\n<h2>Output and delivery</h2>\n\n<p>The final stage writes the media playlist, the per-language subtitle playlists and a\nmaster playlist advertising the audio and subtitle tracks. Segment durations are\n<em>measured</em> with a probe rather than assumed, because a playlist whose declared\ndurations don't match its segments desynchronises players slowly.</p>\n\n<p>Every playlist write is <strong>atomic</strong> — written to a temporary file,\nflushed, then renamed over the target. Players poll these files constantly, and a\nnon-atomic write means eventually serving a half-written playlist to somebody.</p>\n\n<p>From there the output is served over HTTP by a small nginx cluster and separately\nre-encapsulated to SRT per broadcaster. The cache policy splits the two kinds of file:\nplaylists are explicitly uncacheable because they change every few seconds, while the\nvideo segments are immutable once written and cached hard. Getting that backwards is\neither a stale-playlist bug or a pointless origin hammering.</p>\n\n<h2>Adaptors</h2>\n\n<p>A set of small single-purpose services around the edges: protocol conversion into and\nout of the pipeline, and a time-shifted output that republishes the playlist a fixed\nnumber of segments behind live. The delay is done by rewriting sequence numbers, which\nis cheap and correct as long as segments are uniform — and they are, because the\nsegmenter forces keyframes at segment boundaries.</p>\n\n<h2>What I would change</h2>\n\n<ul>\n  <li>The barrier has no timeout — one permanently stuck language lane stalls output for\n      every language. It should degrade to shipping the tracks that <em>are</em> ready\n      and backfill, rather than blocking.</li>\n  <li>Two copies of the logic exist: the built image and the volume-mounted runtime copy\n      that overrides it. Convenient for hot-fixing mid-match, but the two drift and the\n      running copy is the only one that's true.</li>\n  <li>Several long-running services rely on the container restart policy rather than\n      their own recovery loop — restart-as-error-handling works until the thing that\n      failed is the restart.</li>\n  <li>Encoder settings are nominally variable bitrate but set to identical target and\n      maximum, so they are constant bitrate with extra steps.</li>\n  <li>Credentials sit inline in service configs; they belong in injected secrets.</li>\n</ul>"
       },
       {
         "slug": "sports-stream-management-console",
@@ -562,6 +604,46 @@
         "name": "Chrome Extension",
         "url": "",
         "group": "Practices & Concepts"
+      },
+      {
+        "name": "HLS",
+        "url": "",
+        "group": "Protocols & Auth"
+      },
+      {
+        "name": "SRT",
+        "url": "",
+        "group": "Protocols & Auth"
+      },
+      {
+        "name": "Whisper",
+        "url": "",
+        "group": "AI & Models"
+      },
+      {
+        "name": "OpenAI",
+        "url": "",
+        "group": "AI & Models"
+      },
+      {
+        "name": "ElevenLabs",
+        "url": "/images/elevenlabs.svg",
+        "group": "AI & Models"
+      },
+      {
+        "name": "Gemini",
+        "url": "/images/gemini.svg",
+        "group": "AI & Models"
+      },
+      {
+        "name": "TwelveLabs",
+        "url": "",
+        "group": "AI & Models"
+      },
+      {
+        "name": "AWS S3",
+        "url": "",
+        "group": "Data & Storage"
       }
     ],
     "3D": [
