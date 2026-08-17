@@ -6,7 +6,7 @@ import { Page, Section, Tag, Eyebrow, Metric, MetricRow } from './Plate';
 import Diagram from './diagrams';
 import InterfacePreview from './interfaces';
 import DepthDeck from './DepthDeck';
-import { href, slugify, findProjectBySlug, LENS_COPY } from '../utils/lens';
+import { href, slugify, findProjectBySlug, LENS_COPY, statusTone } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
 
 /**
@@ -30,8 +30,17 @@ export default function CaseStudy() {
     if (project) document.title = `${project.name} — Anuj Verma`;
   }, [project]);
 
-  const index = projects.findIndex((p) => p === project);
-  const next = index >= 0 ? projects[(index + 1) % projects.length] : null;
+  // "Next" only chains through front-line work — an archived project never
+  // gets surfaced as the next thing to read. Reading an archived page instead
+  // points back to the first piece of front-line work, rather than dead-ending.
+  const shipped = projects.filter((p) => p.status !== 'Archived');
+  const shippedIndex = shipped.findIndex((p) => p === project);
+  const next =
+    shippedIndex >= 0
+      ? shipped.length > 1
+        ? shipped[(shippedIndex + 1) % shipped.length]
+        : null
+      : shipped[0] || null;
 
   // Published log entries for this project, giving the case study a history.
   const relatedLog = logEntries
@@ -92,9 +101,7 @@ export default function CaseStudy() {
           <h1 className="text-[clamp(32px,5.4vw,54px)] leading-[1.02]">
             {project.name}
           </h1>
-          <Tag tone={project.status === 'In Progress' ? 'active' : 'done'}>
-            {project.status}
-          </Tag>
+          <Tag tone={statusTone(project.status)}>{project.status}</Tag>
         </div>
 
         <p className="max-w-[58ch] text-[18px] leading-relaxed text-ink-2">

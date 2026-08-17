@@ -53,6 +53,13 @@ export function findProjectBySlug(projects, slug) {
   return (projects || []).find((project) => slugify(project.name) === slug);
 }
 
+/** Maps a project's status to a Tag tone — one rule, shared by every list. */
+export function statusTone(status) {
+  if (status === 'In Progress') return 'active';
+  if (status === 'Archived') return 'neutral';
+  return 'done';
+}
+
 export const LENS_COPY = {
   [SYSTEMS]: {
     label: 'Systems',

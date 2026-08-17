@@ -89,8 +89,8 @@ export function validateContent(content) {
       if ((p.hld || p.lld) && !p.overview) {
         errors.push(`${at} has hld/lld but no overview — the first layer must read for anyone.`);
       }
-      if (p.status && !['Completed', 'In Progress'].includes(p.status)) {
-        errors.push(`${at}.status must be "Completed" or "In Progress", got "${p.status}".`);
+      if (p.status && !['Completed', 'In Progress', 'Archived'].includes(p.status)) {
+        errors.push(`${at}.status must be "Completed", "In Progress" or "Archived", got "${p.status}".`);
       }
       if (!Array.isArray(p.skills)) errors.push(`${at}.skills must be an array.`);
       if (p.metrics && !Array.isArray(p.metrics)) errors.push(`${at}.metrics must be an array.`);

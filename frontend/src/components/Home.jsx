@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Page, Section, Metric, MetricRow, Tag, Eyebrow } from './Plate';
-import { href, slugify, LENS_COPY, SYSTEMS } from '../utils/lens';
+import { href, slugify, LENS_COPY, SYSTEMS, statusTone } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
 import { hero as HERO } from '../content';
 
@@ -20,7 +20,9 @@ export default function Home() {
 
   const hero = HERO[lens];
   const copy = LENS_COPY[lens];
-  const selected = projects.slice(0, 3);
+  /* Archived work is excluded here — the front page shows front-line work. */
+  const shipped = projects.filter((p) => p.status !== 'Archived');
+  const selected = shipped.slice(0, 3);
 
   return (
     <Page className="pt-32">
@@ -45,7 +47,7 @@ export default function Home() {
             />
           ))}
           <Metric
-            figure={projects.length}
+            figure={shipped.length}
             label={lens === SYSTEMS ? 'Projects shipped' : 'Pieces published'}
             source="From content"
           />
@@ -90,9 +92,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <Tag tone={project.status === 'In Progress' ? 'active' : 'done'}>
-                    {project.status}
-                  </Tag>
+                  <Tag tone={statusTone(project.status)}>{project.status}</Tag>
                 </Link>
               </li>
             ))}
@@ -107,7 +107,7 @@ export default function Home() {
           to={href(lens, '/work')}
           className="mt-6 inline-block border-b border-ch pb-0.5 font-data text-[11px] uppercase tracking-[0.1em] text-ch"
         >
-          All {copy.workLabel.toLowerCase()} ({projects.length})
+          All {copy.workLabel.toLowerCase()} ({shipped.length})
         </Link>
       </Section>
 

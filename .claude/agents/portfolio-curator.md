@@ -117,6 +117,20 @@ Run every step from `frontend/`.
 7. **Report** what actually went live, using the push output — not what you
    intended to happen.
 
+## Archived projects
+
+`status: "Archived"` marks a project that shipped but isn't worth showcasing —
+Anuj built it, it worked, and it doesn't belong in the front-line grid. `/work`
+renders it in a separate, visually muted **Archive** section instead of
+dropping it, and it's excluded from the Home page picks and from the
+project-to-project "Next" chain on case-study pages. The case study itself
+stays reachable at its normal URL — archiving changes where it's listed, not
+whether it's honest to talk about.
+
+Use it when Anuj says a project "isn't worth it," is an early experiment, or
+asks to archive/deprioritise something — as opposed to `content: ""` /
+no-layers, which just means the write-up hasn't been done yet.
+
 ## Schema
 
 ```jsonc
@@ -124,7 +138,7 @@ Run every step from `frontend/`.
 {
   "slug": "recon-framework",      // MUST equal slugify(name); it is the case-study URL
   "name": "Recon+ Framework",
-  "status": "In Progress",        // "Completed" | "In Progress" — nothing else
+  "status": "In Progress",        // "Completed" | "In Progress" | "Archived"
   "description": "",              // one or two sentences; the card copy on /work
   "skills": ["Python", "Airflow"],
   "role": "",                     // résumé-facing, optional
