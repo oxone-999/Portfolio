@@ -144,7 +144,12 @@ const html = `<!doctype html>
   h2 {
     font-family: var(--data);
     font-size: 8pt;
-    letter-spacing: 0.16em;
+    /* ATS-critical: above roughly 0.1em of tracking, PDF text extraction
+       inserts a space between every letter, so "EXPERIENCE" is read as
+       "E X P E R I E N C E" and a parser looking for the section heading
+       finds nothing. Verified by extracting the rendered PDF. Keep this in
+       step with .row .k, which extracts cleanly at the same value. */
+    letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--ch);
     margin: 0 0 7px;
@@ -174,7 +179,10 @@ const html = `<!doctype html>
   li::marker { color: var(--ch); }
 
   /* dated entries — the left date column from the original template */
-  .entry { display: grid; grid-template-columns: 74px 1fr; gap: 10px; margin-bottom: 11px; }
+  /* 112px, not 74px: a full range like "09/2024 - 01/2026" is 17 monospace
+     characters and wrapped onto two lines in the narrower column, splitting the
+     date an ATS is trying to read. Verified against the extracted PDF text. */
+  .entry { display: grid; grid-template-columns: 112px 1fr; gap: 10px; margin-bottom: 11px; }
   .entry:last-child { margin-bottom: 0; }
   .entry .when {
     font-family: var(--data);
