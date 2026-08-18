@@ -156,16 +156,16 @@
         ],
         "metrics": [
           {
+            "label": "Events processed / day",
+            "value": "100,000+",
+            "unit": "",
+            "source": "Production, as reported in Experience"
+          },
+          {
             "label": "Cameras streamed",
             "value": "4",
             "unit": "",
             "source": "Across 2 sites"
-          },
-          {
-            "label": "Frame sample rate",
-            "value": "1",
-            "unit": "/s per camera",
-            "source": "GAP_BETWEEN_FRAMES"
           },
           {
             "label": "Kafka topics",
@@ -176,7 +176,7 @@
           {
             "label": "End-to-end latency",
             "value": null,
-            "unit": "ms",
+            "unit": "",
             "source": "Not instrumented"
           }
         ],
@@ -302,33 +302,33 @@
         ],
         "metrics": [
           {
+            "label": "User-generated apps supported",
+            "value": "1,000+",
+            "unit": "",
+            "source": "Production, as reported in Experience"
+          },
+          {
+            "label": "Files generated per entity",
+            "value": "9",
+            "unit": "",
+            "source": "5 controllers + 4 pages"
+          },
+          {
             "label": "Generator modules",
             "value": "20",
             "unit": "",
             "source": "Counted across 3 tiers"
           },
           {
-            "label": "Files per entity",
-            "value": "9",
-            "unit": "",
-            "source": "5 controllers + 4 pages"
-          },
-          {
-            "label": "Source lines",
-            "value": "2,778",
-            "unit": "",
-            "source": "Hand-written, excl. generated"
-          },
-          {
             "label": "My commits",
-            "value": "21",
-            "unit": "of 104",
+            "value": "21 of 104",
+            "unit": "",
             "source": "git log, 4 contributors"
           },
           {
             "label": "Stacks implemented",
-            "value": "1",
-            "unit": "of several claimed",
+            "value": "1 of several claimed",
+            "unit": "",
             "source": "Coordinator is 3 fixed calls"
           },
           {
@@ -450,7 +450,7 @@
             "label": "Target languages",
             "value": "5",
             "unit": "",
-            "source": "Independent lanes"
+            "source": "Independent lanes, one stream in"
           },
           {
             "label": "Processor services",
@@ -459,15 +459,9 @@
             "source": "Deployed runtime"
           },
           {
-            "label": "Transcription context",
-            "value": "4",
-            "unit": "segments",
-            "source": "~24 s window"
-          },
-          {
             "label": "Glass-to-glass latency",
             "value": null,
-            "unit": "s",
+            "unit": "",
             "source": "Not instrumented"
           }
         ],
@@ -520,12 +514,6 @@
             "value": "3",
             "unit": "",
             "source": "Admin / dev / viewer"
-          },
-          {
-            "label": "Compose files",
-            "value": "1",
-            "unit": "/ match",
-            "source": "Generated per stream"
           },
           {
             "label": "Concurrent matches",
@@ -660,12 +648,6 @@
         ],
         "metrics": [
           {
-            "label": "Python lines",
-            "value": "368",
-            "unit": "",
-            "source": "13 files, excl. infra"
-          },
-          {
             "label": "GDELT columns mapped",
             "value": "61",
             "unit": "",
@@ -673,14 +655,14 @@
           },
           {
             "label": "Pipelines that run",
-            "value": "1",
-            "unit": "of 4 declared",
+            "value": "1 of 4 declared",
+            "unit": "",
             "source": "2 engines × 2 sinks"
           },
           {
             "label": "CAMEO root codes used",
-            "value": "2",
-            "unit": "of 20",
+            "value": "2 of 20",
+            "unit": "",
             "source": "14 protest, 19 fight"
           },
           {
@@ -723,33 +705,27 @@
         ],
         "metrics": [
           {
+            "label": "Passes over input",
+            "value": "1",
+            "unit": "",
+            "source": "Four counters, one loop"
+          },
+          {
             "label": "Source lines",
             "value": "119",
             "unit": "",
             "source": "main.cpp, one file"
           },
           {
-            "label": "Read block",
-            "value": "64",
-            "unit": "KiB",
-            "source": "BUFFER_SIZE = 65536"
-          },
-          {
-            "label": "Passes over input",
-            "value": "1",
-            "unit": "",
-            "source": "four counters, one loop"
-          },
-          {
             "label": "Flag combinations answered",
-            "value": "5",
-            "unit": "of 16",
+            "value": "5 of 16",
+            "unit": "",
             "source": "All 16 traced through the dispatch"
           },
           {
             "label": "-m honoured",
-            "value": "0",
-            "unit": "of 8 combinations",
+            "value": "0 of 8 combinations",
+            "unit": "",
             "source": "Defaults guard omits it; branch is dead"
           },
           {
@@ -800,22 +776,10 @@
         ],
         "metrics": [
           {
-            "label": "Kotlin lines",
-            "value": "12,451",
+            "label": "GPU throughput gain",
+            "value": "+46%",
             "unit": "",
-            "source": "138 files, app/"
-          },
-          {
-            "label": "Python lines",
-            "value": "4,651",
-            "unit": "",
-            "source": "29 files, backend/"
-          },
-          {
-            "label": "Shipped phases",
-            "value": "45",
-            "unit": "",
-            "source": "PLAN.md phase dashboard"
+            "source": "25.5 → 37.3 tok/s, measured"
           },
           {
             "label": "Audit findings",
@@ -824,10 +788,16 @@
             "source": "5-agent adversarial audit"
           },
           {
-            "label": "GPU throughput gain",
-            "value": "+46%",
+            "label": "Shipped phases",
+            "value": "45",
             "unit": "",
-            "source": "25.5 → 37.3 tok/s, measured"
+            "source": "PLAN.md phase dashboard"
+          },
+          {
+            "label": "Source lines",
+            "value": "17,102",
+            "unit": "",
+            "source": "12,451 Kotlin + 4,651 Python"
           },
           {
             "label": "Documented gotchas",
@@ -866,16 +836,22 @@
         ],
         "metrics": [
           {
-            "label": "TypeScript lines",
-            "value": "17,135",
-            "unit": "",
-            "source": "85 files, 4 packages"
+            "label": "Contract bones",
+            "value": "29",
+            "unit": "7 archetypes",
+            "source": "shared/rig-contract.ts"
           },
           {
             "label": "Phases shipped",
-            "value": "13",
-            "unit": "of 18",
+            "value": "13 of 18",
+            "unit": "",
             "source": "PLAN.md status dashboard"
+          },
+          {
+            "label": "Human review gates",
+            "value": "3 + per-scene",
+            "unit": "",
+            "source": "Script, thumbnail, publish"
           },
           {
             "label": "Rig contract version",
@@ -884,16 +860,10 @@
             "source": "4 breaking revisions, changelogged"
           },
           {
-            "label": "Contract bones",
-            "value": "29",
-            "unit": "7 archetypes",
-            "source": "shared/rig-contract.ts"
-          },
-          {
-            "label": "Human review gates",
-            "value": "3",
-            "unit": "+ per-scene",
-            "source": "Script, thumbnail, publish"
+            "label": "TypeScript lines",
+            "value": "17,135",
+            "unit": "",
+            "source": "85 files, 4 packages"
           },
           {
             "label": "Episodes published",
@@ -937,22 +907,22 @@
         ],
         "metrics": [
           {
-            "label": "Source feeds",
-            "value": "4",
-            "unit": "",
-            "source": "HR, absence, leave, schedule"
-          },
-          {
-            "label": "Absence rows",
+            "label": "Absence rows / month",
             "value": "14,873",
-            "unit": "/ month",
-            "source": "June snapshot"
+            "unit": "",
+            "source": "June snapshot, 4 joined feeds"
           },
           {
             "label": "Leaves assessed",
             "value": "1,738",
             "unit": "",
             "source": "Leave_Details feed"
+          },
+          {
+            "label": "Monthly runs archived",
+            "value": "8 consecutive",
+            "unit": "",
+            "source": "past_data, Jan onward"
           },
           {
             "label": "Output sheets",
@@ -967,15 +937,9 @@
             "source": "Rebuilt on open, never pasted"
           },
           {
-            "label": "Monthly runs archived",
-            "value": "8",
-            "unit": "consecutive",
-            "source": "past_data, Jan onward"
-          },
-          {
             "label": "Reference sheets matching exactly",
-            "value": "4",
-            "unit": "of 6",
+            "value": "4 of 6",
+            "unit": "",
             "source": "Pipeline's own parity JSON"
           },
           {
@@ -983,12 +947,6 @@
             "value": null,
             "unit": "",
             "source": "Never recorded"
-          },
-          {
-            "label": "Runtime per run",
-            "value": null,
-            "unit": "",
-            "source": "Never timed"
           }
         ],
         "links": {
@@ -1092,7 +1050,7 @@
         "slug": "eventflow-control-plane",
         "name": "Eventflow Control Plane",
         "status": "Completed",
-        "description": "A browser-authored event pipeline compiled to containers on either Docker Swarm or Kubernetes, chosen per project, from one in-memory spec both orchestrators read natively. The abstraction held for deploying and leaked on naming — one underscore-versus-dash divergence that could never match on Kubernetes and always matched on Swarm, breaking three read paths while every write path kept working.",
+        "description": "A browser-authored event pipeline compiled to containers on either Docker Swarm or Kubernetes, chosen per project, from one in-memory spec both orchestrators read natively — in production across multiple teams, replacing hand-written deployment files. The abstraction held for deploying and leaked on naming: one underscore-versus-dash divergence that could never match on Kubernetes and always matched on Swarm, breaking three read paths while every write path kept working.",
         "skills": [
           "TypeScript",
           "Node.js",
@@ -1119,7 +1077,7 @@
         "org": "",
         "period": "2026",
         "highlights": [
-          "Built the pluggable deployer layer that runs the same event-driven pipelines on Docker Swarm and Kubernetes behind one interface, with a single in-memory Compose-shaped spec both orchestrators interpret natively — the Kubernetes translator extends the Swarm one and emits identical output, so the divergence lives only in the two implementations (roughly 2,500 lines across them).",
+          "Built the pluggable deployer layer behind an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either Docker Swarm or Kubernetes from a single in-memory spec both orchestrators interpret natively — replacing hand-written deployment files, so teams ship a pipeline without writing container manifests or knowing which orchestrator backs their project.",
           "Diagnosed a service-naming divergence — the database keeps underscores, Kubernetes requires DNS-1123 dashes, and the stack prefix guarantees an underscore — that made the two forms never match on Kubernetes and always match on Swarm, silently breaking three read paths: empty log streams, permanently empty task history, and every healthy worker written back as shut down, drawing a false “degraded” banner over a working flow.",
           "Fixed it with an exact-equality-first, DNS-1123-canonical-fallback match rather than renaming either side, so the Swarm path took the identical branch it always had — renaming was rejected because the stored form is already seeded in production rows and the deployer form doubles as the log and metric target.",
           "Replaced delete-and-recreate restarts with in-place rolling restarts on both orchestrators after the Swarm idiom deadlocked on Kubernetes, where asynchronous Deployment deletion made recreation return 409 and leave the pod removed but never rebuilt; added the drain-then-create path for a start colliding with a still-draining stop.",
@@ -1133,55 +1091,37 @@
             "label": "Orchestrators behind one interface",
             "value": "2",
             "unit": "",
-            "source": "Swarm + Kubernetes"
-          },
-          {
-            "label": "Deployer implementations",
-            "value": "2,467",
-            "unit": "lines",
-            "source": "892 Swarm + 1,575 K8s"
-          },
-          {
-            "label": "Rules static-analysis gate",
-            "value": "1,414",
-            "unit": "lines",
-            "source": "Python AST + TS compiler"
-          },
-          {
-            "label": "Read paths broken by one naming divergence",
-            "value": "3",
-            "unit": "",
-            "source": "Logs, status, history"
+            "source": "Swarm + Kubernetes · one spec, chosen per project"
           },
           {
             "label": "Reconciler calls per cycle",
             "value": "3",
             "unit": "",
-            "source": "Was 3 per flow per cycle"
+            "source": "Was 3 per flow — O(flows) to O(orchestrators)"
           },
           {
-            "label": "Poll interval",
-            "value": "30",
-            "unit": "s",
-            "source": "10s floor, 120s ceiling"
-          },
-          {
-            "label": "Startup grace window",
-            "value": "60",
-            "unit": "s",
-            "source": "Before zero replicas = failure"
-          },
-          {
-            "label": "Concurrent deploys allowed",
-            "value": "8",
+            "label": "Downtime per worker restart",
+            "value": "0",
             "unit": "",
-            "source": "Counting semaphore"
+            "source": "In-place rolling restart on both targets"
+          },
+          {
+            "label": "Read paths broken by one naming divergence",
+            "value": "3",
+            "unit": "",
+            "source": "Logs, status, task history"
           },
           {
             "label": "Worker types shipped",
             "value": "10",
             "unit": "",
-            "source": "7 active, 3 inactive"
+            "source": "7 active · receivers, processors, senders"
+          },
+          {
+            "label": "User-code rule violations blocked at save",
+            "value": "5",
+            "unit": "classes",
+            "source": "Imports, escapes, eval, destructive ops, IO"
           },
           {
             "label": "Flows sustained under load test",
@@ -1196,7 +1136,7 @@
         },
         "diagram": "one-spec-two-orchestrators",
         "uiPreview": "",
-        "overview": "<p><strong>A pipeline runs on one orchestrator or the other, and the\npeople building pipelines should not have to know which.</strong> That is the\nwhole product. A team draws an event-driven flow in a browser &mdash; a receiver,\nsome processors, the Kafka topics between them, a Redis keyspace or two &mdash;\npresses execute, and containers appear on a cluster. Whether that cluster is\nDocker Swarm or Kubernetes is a column on the project, set once, and nothing\nabove it changes.</p>\n\n<p>This is the control plane behind that: a React designer over a\nNode/TypeScript API that compiles a drawn graph into containers, keeps a live\npicture of what is actually running, and streams logs and metrics back to the\nperson watching. Ten worker types ship with it, seven of them active &mdash;\nweb-API and webhook receivers, HTTP and Elasticsearch senders, a relay and a\nrouter.</p>\n\n<h2>The part that is not a drawing tool</h2>\n\n<p>Between the canvas and the cluster sits a translator that emits <strong>one\nspecification, in memory, never written to disk</strong>, which both\norchestrators read. The Kubernetes translator literally extends the Swarm one\nand emits the same output; the difference lives entirely in the two deployers\nthat interpret it &mdash; Docker Services on one side, Deployments plus Services\nplus Secrets plus Traefik custom resources on the other.</p>\n\n<p>The harder half is that a cluster is not a database. Nothing tells you a\ncontainer died. So a reconciler polls, on a fixed interval, and it &mdash; not\nthe deploy call &mdash; is what decides a flow is healthy. Pressing execute sets\nthe flow to <em>preparing</em> and nothing more. The reconciler promotes it to\nrunning, degraded or failed once it has seen real tasks, with a grace window so\na flow still pulling images is not declared dead.</p>\n\n<h2>Where the users author code</h2>\n\n<p>Each worker carries transformation rules the user writes, in Python or\nJavaScript, in a Monaco editor in the browser. Those rules then execute inside a\ncontainer on the customer's cluster. That is a code-execution surface with a\ntext box in front of it, so rules are <strong>statically analysed on save</strong>\n&mdash; a real Python AST walk and a real TypeScript-compiler pass, not regex\n&mdash; and a flow whose rules reach for the filesystem, the network, dunder\nescapes or destructive Redis commands is rejected before it is ever built.</p>\n\n<h2>The part worth reading</h2>\n\n<p>The two-orchestrator abstraction held for deploying and leaked on\n<em>naming</em>. The same worker is named by two sanitizers &mdash; one keeps\nunderscores for the database column, one forces DNS-1123 dashes for Kubernetes\n&mdash; and because the stack prefix always contains an underscore, the two forms\n<strong>never</strong> match on Kubernetes and <strong>always</strong> match on\nSwarm.</p>\n\n<p>Every write path kept working. Three read paths broke: the log console went\nsilently empty, task history stayed permanently empty, and the reconciler forced\nevery healthy Kubernetes worker to a shutdown state, so the UI drew a\n&ldquo;degraded&rdquo; banner across a flow that was serving traffic perfectly\nwell. One divergence, three unrelated-looking bugs, none of them visible on the\norchestrator it was developed against. The layers below cover the deployer\ncontract, the reconciler's cost model, and that seam in full.</p>",
+        "overview": "<p><strong>A pipeline runs on one orchestrator or the other, and the\npeople building pipelines should not have to know which.</strong> That is the\nwhole product. A team draws an event-driven flow in a browser &mdash; a receiver,\nsome processors, the Kafka topics between them, a Redis keyspace or two &mdash;\npresses execute, and containers appear on a cluster. Whether that cluster is\nDocker Swarm or Kubernetes is a column on the project, set once, and nothing\nabove it changes.</p>\n\n<p>It runs in production across multiple teams, and it replaced hand-written deployment files — a team ships a pipeline without authoring a container manifest or knowing which orchestrator backs their project.</p>\n\n<p>This is the control plane behind that: a React designer over a\nNode/TypeScript API that compiles a drawn graph into containers, keeps a live\npicture of what is actually running, and streams logs and metrics back to the\nperson watching. Ten worker types ship with it, seven of them active &mdash;\nweb-API and webhook receivers, HTTP and Elasticsearch senders, a relay and a\nrouter.</p>\n\n<h2>The part that is not a drawing tool</h2>\n\n<p>Between the canvas and the cluster sits a translator that emits <strong>one\nspecification, in memory, never written to disk</strong>, which both\norchestrators read. The Kubernetes translator literally extends the Swarm one\nand emits the same output; the difference lives entirely in the two deployers\nthat interpret it &mdash; Docker Services on one side, Deployments plus Services\nplus Secrets plus Traefik custom resources on the other.</p>\n\n<p>The harder half is that a cluster is not a database. Nothing tells you a\ncontainer died. So a reconciler polls, on a fixed interval, and it &mdash; not\nthe deploy call &mdash; is what decides a flow is healthy. Pressing execute sets\nthe flow to <em>preparing</em> and nothing more. The reconciler promotes it to\nrunning, degraded or failed once it has seen real tasks, with a grace window so\na flow still pulling images is not declared dead.</p>\n\n<h2>Where the users author code</h2>\n\n<p>Each worker carries transformation rules the user writes, in Python or\nJavaScript, in a Monaco editor in the browser. Those rules then execute inside a\ncontainer on the customer's cluster. That is a code-execution surface with a\ntext box in front of it, so rules are <strong>statically analysed on save</strong>\n&mdash; a real Python AST walk and a real TypeScript-compiler pass, not regex\n&mdash; and a flow whose rules reach for the filesystem, the network, dunder\nescapes or destructive Redis commands is rejected before it is ever built.</p>\n\n<h2>The part worth reading</h2>\n\n<p>The two-orchestrator abstraction held for deploying and leaked on\n<em>naming</em>. The same worker is named by two sanitizers &mdash; one keeps\nunderscores for the database column, one forces DNS-1123 dashes for Kubernetes\n&mdash; and because the stack prefix always contains an underscore, the two forms\n<strong>never</strong> match on Kubernetes and <strong>always</strong> match on\nSwarm.</p>\n\n<p>Every write path kept working. Three read paths broke: the log console went\nsilently empty, task history stayed permanently empty, and the reconciler forced\nevery healthy Kubernetes worker to a shutdown state, so the UI drew a\n&ldquo;degraded&rdquo; banner across a flow that was serving traffic perfectly\nwell. One divergence, three unrelated-looking bugs, none of them visible on the\norchestrator it was developed against. The layers below cover the deployer\ncontract, the reconciler's cost model, and that seam in full.</p>",
         "hld": "<p>A three-tier control plane &mdash; browser designer, stateless API,\npolled reconciler &mdash; over two container orchestrators reached through one\ninterface.</p>\n\n<h2>The shape</h2>\n\n<ul>\n  <li><strong>Designer.</strong> A React Flow canvas where a flow is a DAG:\n      workers as nodes, Kafka topics as the edges between them, Redis keyspaces\n      as attached memory. Saving persists a definition, not a deployment.</li>\n  <li><strong>Translator.</strong> Compiles that definition into a single\n      Compose-shaped <code>ComposeSpec</code> held in memory, plus a map of\n      config artifacts to write. The spec never touches disk; only the workers'\n      own config, rules and dependency files do, and those land on a shared\n      filesystem both orchestrators mount.</li>\n  <li><strong>Deployers.</strong> Two implementations behind one interface,\n      selected per project. Swarm talks to the Docker Engine API; Kubernetes\n      talks to the apiserver and maps the same spec to Deployments, Services,\n      Secrets and Traefik custom resources.</li>\n  <li><strong>Reconciler.</strong> A single background loop that polls both\n      targets and owns flow status. Nothing else promotes a flow to\n      running.</li>\n  <li><strong>Live channels.</strong> Server-sent events for deploy progress,\n      per-worker logs and per-worker container metrics, all proxied through the\n      API so the log aggregator is never exposed and authorisation stays in one\n      place.</li>\n</ul>\n\n<h2>One spec, two orchestrators &mdash; and what that actually buys</h2>\n\n<p>The claim worth being precise about: this is <em>not</em> a\nlowest-common-denominator abstraction. The spec is Compose-shaped because Swarm\ncame first, and the Kubernetes deployer interprets it natively rather than being\nhanded a watered-down version. Kubernetes-only concepts &mdash; the ClusterIP\nService backing an IngressRoute, the resourceVersion a custom-resource replace\nrequires &mdash; live inside that deployer and are invisible above it.</p>\n\n<p>What the abstraction genuinely provides is that <strong>every per-flow\noperation reads one column and picks one implementation</strong>: deploy, stop,\nstatus, logs, stats, reconcile, per-worker restart. A mixed estate of Swarm and\nKubernetes projects works, because the choice is made per flow rather than per\ninstallation.</p>\n\n<p><strong>Where it does not hold, stated plainly:</strong> the cross-project\nadmin cleanup job and the health endpoint still read a single global default\ndeployer, so in a genuinely mixed deployment leftover stacks on the non-default\ntarget must be cleaned up by hand. That is a known gap, not a solved\nproblem.</p>\n\n<h2>Guarantees</h2>\n\n<ul>\n  <li><strong>Restarts are in place, on both targets.</strong> Swarm forces a\n      service update honouring a start-first update order; Kubernetes bumps a\n      pod-template annotation so an otherwise-identical replace still rolls a\n      new ReplicaSet. Neither deletes and recreates. This is a correctness\n      requirement rather than a performance one &mdash; see the implementation\n      layer for the deadlock that made it so.</li>\n  <li><strong>Deploy never declares success.</strong> Execute writes\n      <em>preparing</em>. Only the reconciler, having seen real tasks, writes\n      running, degraded or failed. The UI's optimistic update uses the same\n      state, so the browser cannot claim a health the cluster has not\n      confirmed.</li>\n  <li><strong>A failure explains itself.</strong> On a transition to failed or\n      degraded, the reconciler refetches task history and stores a per-service\n      summary built from actual container error logs and pod warning events, not\n      just a replica count. Run history says why, not merely that.</li>\n  <li><strong>User-authored rules are analysed before they can be built.</strong>\n      Static analysis runs on save, in the API, and blocks the save. It is a\n      safeguard layer rather than a sandbox &mdash; it constrains what rule code\n      can reference, and the container boundary and image contents remain the\n      enforcement of last resort.</li>\n  <li><strong>Access to a flow is project-scoped.</strong> Role permissions and\n      per-project access grants are checked in middleware on every flow route,\n      including the log and metric streams, which are proxied precisely so they\n      cannot bypass it.</li>\n</ul>\n\n<h2>Failure behaviour</h2>\n\n<ul>\n  <li><strong>A polling cycle that fails is skipped, not believed.</strong> If a\n      target's batched read throws, every flow on that target keeps its current\n      status untouched for that cycle. A transient apiserver error must never\n      read as a fleet-wide outage.</li>\n  <li><strong>A flow that never produced a stack fails; a running flow whose\n      stack vanished stops.</strong> The same empty result is read two different\n      ways depending on whether the flow was still preparing &mdash; a deploy\n      that never landed is a failure, an established flow that disappeared is a\n      stop.</li>\n  <li><strong>A start colliding with a still-draining stop waits.</strong>\n      Kubernetes Deployment deletion is asynchronous, so the create path detects\n      a Terminating predecessor and polls for it to clear rather than replacing\n      a corpse.</li>\n  <li><strong>Bursts are bounded, not queued unboundedly.</strong> Deploys pass\n      through a counting semaphore, so a burst drains steadily instead of\n      overwhelming the orchestrator and the shared filesystem at once.</li>\n</ul>\n\n<h2>The cost model, because polling has one</h2>\n\n<p>A reconciler that reads per flow is O(flows) API calls per cycle, and on\nKubernetes it was three list calls per flow. At a hundred flows that is three\nhundred calls every interval, which does not fit inside the interval &mdash; the\nloop stops being a health check and becomes the load. Both deployers therefore\nexpose a batched read: <strong>one cluster-wide list per resource kind, grouped\nby a stack label</strong>, making a cycle O(orchestrators) rather than O(flows).\nRoughly three calls per cycle regardless of fleet size.</p>\n\n<p>The interval itself is deliberately floored, not minimised. Below about ten\nseconds both the Docker Engine API and the apiserver start objecting; above\nabout two minutes the status a human is looking at is stale enough to be\nmisleading. Thirty seconds is the default, and status freshness in the UI does\nnot depend on it &mdash; a flow's status response overlays live orchestrator\nstate on top of the stored rows at read time.</p>",
         "lld": "<p>Two implementation stories. The first is a naming divergence that\nproduced three unrelated-looking bugs; the second is a restart primitive that was\ncorrect on one orchestrator and deadlocked on the other. Both are cases of an\nidiom surviving a port that it should not have.</p>\n\n<h2>1. One divergence, three bugs</h2>\n\n<p>A worker's service name is written in two places by two different\nsanitizers.</p>\n\n<ul>\n  <li>The database column stores <code>&lt;stack&gt;_&lt;sanitized-name&gt;</code>,\n      built by a sanitizer that maps anything outside <code>[a-z0-9_-]</code> to\n      an underscore &mdash; so underscores survive.</li>\n  <li>The Kubernetes deployer's <code>metadata.name</code> is built by a\n      DNS-1123 sanitizer that maps anything outside <code>[a-z0-9-]</code> to a\n      dash &mdash; so underscores <em>cannot</em> survive, because the label\n      grammar forbids them.</li>\n</ul>\n\n<p><strong>The stack prefix always contains an underscore.</strong> Not usually:\nalways, because it is generated as a fixed prefix joined to the flow id. So on\nKubernetes the two forms differ in every case, and on Swarm they are byte\nidentical in every case. There is no middle ground where a test would catch it\nintermittently, and the platform was developed against Swarm.</p>\n\n<p>Three consumers keyed off that name, and each failure looked like its own\nunrelated defect:</p>\n\n<ul>\n  <li><strong>Logs.</strong> The log stream selects containers by label. The\n      selector was built from the database form, matched zero pods, and the live\n      console showed nothing &mdash; indistinguishable from a worker that simply\n      was not logging.</li>\n  <li><strong>Status.</strong> The reconciler matches live services against\n      stored worker rows by that name. The match always missed, so every\n      running Kubernetes worker was written back as\n      <code>task_state=&quot;shutdown&quot;</code> with zero running replicas\n      &mdash; while flow-level status, read straight from the deployer, correctly\n      said running. The interface therefore rendered a <em>degraded</em> banner\n      over a flow whose workers were all healthy, and the two halves of a single\n      API response contradicted each other.</li>\n  <li><strong>History.</strong> The summary view built a Map keyed by the\n      deployer's name and looked it up by the database's name, so task history\n      was empty on Kubernetes permanently &mdash; and an empty history reads as\n      &ldquo;nothing has happened yet&rdquo;, not as a bug.</li>\n</ul>\n\n<h3>The fix, and the two rejected ones</h3>\n\n<p>Cross-boundary comparisons go through one predicate:\n<strong>exact equality first, then canonical DNS-1123 equality as a\nfallback</strong>. The ordering is the design. Exact-first means the Swarm path\ntakes the identical branch it always took and carries no new risk from a fix for\na Kubernetes-only defect; the fallback only ever runs where the exact comparison\nhas already failed.</p>\n\n<p>Two more obvious repairs were rejected for concrete reasons:</p>\n\n<ul>\n  <li><strong>Store the database name in DNS-1123 form.</strong> Breaks Swarm,\n      whose service names legitimately contain underscores, and orphans every\n      already-seeded production row.</li>\n  <li><strong>Reverse-map the deployer's name back at read time.</strong>\n      Fragile, because that name is not merely an identifier &mdash; it is also\n      the target used for log selection and metric collection, so a lossy\n      round-trip has more than one victim.</li>\n</ul>\n\n<p>The transferable lesson is narrower than &ldquo;normalise your names&rdquo;:\n<strong>when two subsystems derive an identifier under different grammars, the\nmismatch surfaces in read paths only, so writes keep succeeding and the system\nlooks healthy while it reports nonsense.</strong> The symptom that finally\nlocalised it was self-contradiction inside one response &mdash; a flow reported\nrunning whose every worker reported shutdown. Two disagreeing sources in one\npayload is a much sharper signal than either being wrong alone.</p>\n\n<h2>2. Restart semantics that did not port</h2>\n\n<p>Swarm's original per-worker restart removed the service and created it again.\nPorted to Kubernetes, that produced a hang rather than an error:</p>\n\n<ul>\n  <li>A Deployment is a named singleton and its deletion is <em>asynchronous</em>\n      &mdash; with foreground propagation it stays Terminating until its pods\n      drain.</li>\n  <li>Recreating the same name immediately returns 409 Conflict.</li>\n  <li>The 409 handler replaced in place &mdash; but replacing an object that is\n      Terminating is a dead end. The pod was removed and never came back.</li>\n</ul>\n\n<p>An interim fix polled for the old Deployment to disappear before creating the\nnew one. It worked and was still rejected: it keeps full downtime on every\nrestart, and it is not what the platform natively offers.</p>\n\n<p><strong>Both deployers now restart in place.</strong> Kubernetes stamps a\nrestart annotation onto the pod template, so a replace with an otherwise\nunchanged spec still changes the template and the controller rolls a new\nReplicaSet &mdash; configured so the new pod is Ready before the old one\nterminates. Swarm reaches the same end through its own primitive: a forced\nservice update carrying the current version index, honouring the configured\nstart-first update order. The genuine collision that remains &mdash; a start\narriving while a stop is still draining &mdash; is handled explicitly: if the\nexisting object carries a deletion timestamp, wait for it to clear, then create\nfresh; otherwise replace in place.</p>\n\n<p>Two smaller things fell out of that change, both worth naming:</p>\n\n<ul>\n  <li><strong>Custom resources need a resourceVersion to replace.</strong> Once\n      restarts became in-place replaces, the Traefik route objects started\n      failing where the Deployment did not: built-in resources tolerate a blind\n      overwrite, custom resources reject one without the current version. The\n      replace path now reads the live version and carries it.</li>\n  <li><strong>A routed receiver needs an explicit ClusterIP Service.</strong> A\n      receiver published through the ingress has no host port, so the spec\n      carried no ports, so no Service was created, so the route pointed at\n      nothing and was dropped as invalid &mdash; and the request then fell\n      through to a broader catch-all route and returned the API's own 404. The\n      symptom was a plausible-looking not-found from the wrong service entirely.\n      Swarm needs none of this, because its router addresses containers\n      directly.</li>\n</ul>\n\n<h2>Restart history, and a boolean that lied</h2>\n\n<p>Swarm creates a fresh task object per attempt, so a crash loop leaves a\nreadable trail. Kubernetes restarts a container in place, so the same view\nshowed only a current snapshot. Prior attempts are now recovered from the\ncontainer's last-terminated state alongside its restart count.</p>\n\n<p>Reading that state surfaced a precedence bug worth keeping as a warning:\na check written as <code>reason || exitCode === 0</code> parses as\n<code>reason || (exitCode === 0)</code>, so any terminated container carrying a\nreason string reported <em>complete</em> &mdash; every crash looked like a clean\nexit. It is now an explicit test on the exit code.</p>\n\n<h2>The rules safeguard, and what it does not claim</h2>\n\n<p>Rule code is analysed on save, per language:</p>\n\n<ul>\n  <li><strong>Python</strong> &mdash; an AST walk that tracks aliasing and\n      indirection rather than matching text, blocking imports of process,\n      filesystem, network, serialisation and client libraries; the dangerous\n      builtins including <code>eval</code>, <code>exec</code>,\n      <code>__import__</code> and <code>open</code>; and the dunder attributes\n      that make up the standard sandbox-escape chain\n      (<code>__class__</code>, <code>__subclasses__</code>,\n      <code>__globals__</code> and relatives).</li>\n  <li><strong>JavaScript and TypeScript</strong> &mdash; the same policy\n      expressed through the TypeScript compiler's own AST, so member chains and\n      aliased references are followed rather than pattern-matched.</li>\n  <li><strong>Both</strong> &mdash; the utility object handed to rule code is\n      restricted to an allow-list of members, and destructive Redis operations\n      (<code>del</code>, <code>flushdb</code>, <code>flushall</code>,\n      <code>rename</code> and the rest) are refused, so one flow's rules cannot\n      quietly erase another's keyspace.</li>\n</ul>\n\n<p>Violations are returned as human-readable messages with location hints, and\nthe save is refused &mdash; the analysis is a gate, not a warning. The stance is\ndeliberately conservative: prefer a false positive that a user can see and work\naround to a false negative that ships.</p>\n\n<p><strong>What it is not:</strong> this is static analysis, and static analysis\nof a dynamic language is not a security boundary. It is the first of several\nlayers, and the container's own isolation and image contents remain the real\none. Calling it a sandbox would overstate it, so it is not called one.</p>\n\n<h2>Measured, and not</h2>\n\n<p>The numbers in the metric strip are counts and configured constants read from\nthe source: deploy concurrency, poll interval, grace window, worker types,\nimplementation sizes. <strong>The throughput slot is empty because no load test\nwas run.</strong> The batched-read work was motivated by an order-of-magnitude\nargument about API calls per cycle, and the argument is sound &mdash; three calls\nper cycle rather than three per flow per cycle &mdash; but the fleet size at\nwhich the old design actually fell over was reasoned about, never measured, and\nthe slot stays dashed until it is.</p>",
         "content": ""
@@ -1205,7 +1145,7 @@
         "slug": "transformer-health-monitoring",
         "name": "Transformer Health Monitoring",
         "status": "In Progress",
-        "description": "A condition-monitoring data platform for power transformers: six idempotent daily ingestions into search and relational stores, a strictly layered read path, and a refurbishment gate that decides which stored measurements still describe the current machine — because a refurbished unit's earlier readings are not stale, they are about something else.",
+        "description": "A condition-monitoring data platform for a production fleet of 50–200 power transformers, moving 100K–1M records a day from six source systems into search and relational stores — replacing condition reporting that was previously compiled by hand. Six idempotent daily ingestions, a strictly layered read path, and a refurbishment gate that decides which stored measurements still describe the current machine, because a refurbished unit's earlier readings are not stale, they are about something else.",
         "skills": [
           "Python",
           "FastAPI",
@@ -1226,7 +1166,7 @@
         "org": "",
         "period": "2026",
         "highlights": [
-          "Built six scheduled ingestion services feeding a transformer condition-monitoring platform — plant-historian tag readings, log messages, vendor-API permits, incident records, asset-monitoring rows and ERP work orders — each on a daily 24-hour window with per-run audit rows.",
+          "Built the ingestion layer and data services behind a condition-monitoring platform for a production fleet of 50–200 power transformers, moving roughly 100K–1M records a day from six source systems — plant-historian tag readings, log messages, vendor-API permits, incident records, asset-monitoring rows and ERP work orders — each on a daily 24-hour window with per-run audit rows, replacing condition reporting previously compiled by hand.",
           "Made every ingestion idempotent by construction rather than by a de-duplication pass, deriving each destination id from record content (tag name with timestamp, source index with record id, permit id), so overlapping windows and manual backfills upsert instead of double-counting — the property that makes the schedule safely restartable after an outage.",
           "Designed the refurbishment visibility gate that decides which stored measurements still describe the current asset: two flags produce hide-all, hide-before-cutoff, or no-restriction, with hide-all expressed as an unreachable sentinel date so the visibility check stays one comparison with no second code path.",
           "Chose the permissive default on unresolved flags deliberately and documented the reasoning in code — a silently blanked panel is indistinguishable from one with nothing to report, so a suppression bug hides forever while an over-showing bug is caught by the domain expert who knows the unit's history.",
@@ -1237,58 +1177,46 @@
         ],
         "metrics": [
           {
-            "label": "Scheduled ingestion services",
+            "label": "Transformers monitored",
+            "value": "50–200",
+            "unit": "",
+            "source": "Production fleet · operator-reported range"
+          },
+          {
+            "label": "Records ingested / day",
+            "value": "100K–1M",
+            "unit": "",
+            "source": "Six sources combined · operator-reported"
+          },
+          {
+            "label": "Source systems integrated",
             "value": "6",
             "unit": "",
             "source": "Historian, logs, permits, incidents, SQL, ERP"
           },
           {
-            "label": "Test functions",
-            "value": "182",
+            "label": "Duplicate records after a re-run",
+            "value": "0",
             "unit": "",
-            "source": "Across the three tested services"
-          },
-          {
-            "label": "Ingestion window",
-            "value": "24",
-            "unit": "h",
-            "source": "Rolling, daily, per service"
+            "source": "Content-derived ids · upsert by construction"
           },
           {
             "label": "Refurbishment gate outcomes",
             "value": "3",
             "unit": "",
-            "source": "Hide all, cutoff, no restriction"
+            "source": "Hide all · cutoff · no restriction"
           },
           {
-            "label": "Dashboard endpoints",
-            "value": "11",
+            "label": "Test functions",
+            "value": "182",
             "unit": "",
-            "source": "Composed payloads"
+            "source": "Across the three services I built"
           },
           {
-            "label": "Core data endpoints",
-            "value": "9",
-            "unit": "",
-            "source": "3 families x search/latest/run"
-          },
-          {
-            "label": "Display precision",
-            "value": "3",
-            "unit": "dp",
-            "source": "Truncated toward zero, not rounded"
-          },
-          {
-            "label": "Backing stores",
-            "value": "4",
-            "unit": "kinds",
-            "source": "Search, relational, source SQL, checkpoint"
-          },
-          {
-            "label": "Rows ingested / day",
+            "label": "End-to-end latency",
             "value": null,
             "unit": "",
-            "source": "Never measured"
+            "source": "Never instrumented"
           }
         ],
         "links": {
@@ -1297,7 +1225,7 @@
         },
         "diagram": "refurbishment-visibility-gate",
         "uiPreview": "",
-        "overview": "<p><strong>A transformer that has been refurbished is, for\nmeasurement purposes, a different machine.</strong> Its oil was changed, its\nwindings may have been reworked, and the acidity reading from eighteen months ago\ndescribes equipment that no longer exists. Plot that reading beside this\nmonth's and you get a trend line across a discontinuity &mdash; which is worse\nthan showing nothing, because it looks like information.</p>\n\n<p>This is the data platform behind a condition-monitoring system for power\ntransformers at a petrochemical operator: six scheduled ingestion services\npulling from a plant historian, a permit system, an incident API, an ERP and two\ndatabases, into search and relational stores; a read path that turns them into\ndashboard payloads; and a chat assistant that answers health questions in plain\nlanguage. My work was the ingestion layer, the two data services, and the domain\nrules that decide what any of it is allowed to say.</p>\n\n<h2>Two problems, and only one of them is collecting data</h2>\n\n<p>The first problem is ordinary: pull yesterday's readings, every day, without\nlosing any and without counting any twice. Solved structurally rather than\ncarefully &mdash; <strong>every destination id is derived from the record's own\ncontent</strong>, so a tag reading is keyed by its tag name and timestamp, a log\nmessage by its source index and id, a permit by its permit id. An overlapping\nwindow or a manual re-run upserts the same row. There is no de-duplication step\nbecause there is nothing to de-duplicate.</p>\n\n<p>The second problem is the one that took the judgement: <strong>which stored\nmeasurements still describe the asset in front of you.</strong> That question has\nno general answer, only a domain one, and it lives in a gate that reads two\nrefurbishment flags and produces three outcomes &mdash; hide everything, hide\neverything before a cutoff date, or impose no restriction at all.</p>\n\n<h2>What the third outcome costs</h2>\n\n<p>That last branch is a deliberate choice and it is the one worth arguing\nabout. When the flags do not resolve &mdash; one is missing, they hold a\ncombination that should not occur, or the end date will not parse &mdash; the\ndata <em>shows</em>. The reasoning: an operator looking at an empty panel cannot\ntell &ldquo;no measurements exist&rdquo; from &ldquo;measurements exist but a\nrule hid them&rdquo;, and of those two failures the silent blanking is the one\nthat erodes trust in the whole dashboard. Defaulting the other way would be\nequally defensible. It was not chosen, and the code says so in as many\nwords.</p>\n\n<h2>The field that is two things</h2>\n\n<p>The cutoff compares against each measurement's own lab-test date rather than\nwhen it was ingested, because different tests within a single run happen on\ndifferent days. But that field is overloaded in the real feed: sometimes it\nholds a date, and sometimes it holds a standards citation &mdash; a reference to\nthe test method rather than the time of the test. A citation cannot be proven to\npost-date a refurbishment, so wherever a cutoff applies, those records are\nhidden. The layers below cover the service boundaries, the failure behaviour,\nand that gate in full.</p>",
+        "overview": "<p><strong>A transformer that has been refurbished is, for\nmeasurement purposes, a different machine.</strong> Its oil was changed, its\nwindings may have been reworked, and the acidity reading from eighteen months ago\ndescribes equipment that no longer exists. Plot that reading beside this\nmonth's and you get a trend line across a discontinuity &mdash; which is worse\nthan showing nothing, because it looks like information.</p>\n\n<p>This is the data platform behind a condition-monitoring system for a <strong>production fleet of 50&ndash;200 power transformers</strong> at a petrochemical operator, moving on the order of <strong>100K&ndash;1M records a day</strong>: six scheduled ingestion services\npulling from a plant historian, a permit system, an incident API, an ERP and two\ndatabases, into search and relational stores; a read path that turns them into\ndashboard payloads; and a chat assistant that answers health questions in plain\nlanguage. My work was the ingestion layer, the two data services, and the domain\nrules that decide what any of it is allowed to say.</p>\n\n<h2>Two problems, and only one of them is collecting data</h2>\n\n<p>The first problem is ordinary: pull yesterday's readings, every day, without\nlosing any and without counting any twice. Solved structurally rather than\ncarefully &mdash; <strong>every destination id is derived from the record's own\ncontent</strong>, so a tag reading is keyed by its tag name and timestamp, a log\nmessage by its source index and id, a permit by its permit id. An overlapping\nwindow or a manual re-run upserts the same row. There is no de-duplication step\nbecause there is nothing to de-duplicate.</p>\n\n<p>The second problem is the one that took the judgement: <strong>which stored\nmeasurements still describe the asset in front of you.</strong> That question has\nno general answer, only a domain one, and it lives in a gate that reads two\nrefurbishment flags and produces three outcomes &mdash; hide everything, hide\neverything before a cutoff date, or impose no restriction at all.</p>\n\n<h2>What the third outcome costs</h2>\n\n<p>That last branch is a deliberate choice and it is the one worth arguing\nabout. When the flags do not resolve &mdash; one is missing, they hold a\ncombination that should not occur, or the end date will not parse &mdash; the\ndata <em>shows</em>. The reasoning: an operator looking at an empty panel cannot\ntell &ldquo;no measurements exist&rdquo; from &ldquo;measurements exist but a\nrule hid them&rdquo;, and of those two failures the silent blanking is the one\nthat erodes trust in the whole dashboard. Defaulting the other way would be\nequally defensible. It was not chosen, and the code says so in as many\nwords.</p>\n\n<h2>The field that is two things</h2>\n\n<p>The cutoff compares against each measurement's own lab-test date rather than\nwhen it was ingested, because different tests within a single run happen on\ndifferent days. But that field is overloaded in the real feed: sometimes it\nholds a date, and sometimes it holds a standards citation &mdash; a reference to\nthe test method rather than the time of the test. A citation cannot be proven to\npost-date a refurbishment, so wherever a cutoff applies, those records are\nhidden. The layers below cover the service boundaries, the failure behaviour,\nand that gate in full.</p>",
         "hld": "<p>Three tiers with one-way dependencies &mdash; scheduled ingestion,\na store-facing data service, a composition service &mdash; plus an agentic\nassistant that consumes the same read path a browser does.</p>\n\n<h2>The shape</h2>\n\n<ul>\n  <li><strong>Ingestion (six services).</strong> Independent scheduled\n      processes, one per source system: plant-historian tag readings and log\n      messages copied between search clusters, permits pulled from a vendor API,\n      incidents from a REST API, asset-monitoring rows from a source database,\n      and work orders from an ERP. Each runs a daily rolling 24-hour window and\n      writes one audit row per run.</li>\n  <li><strong>Core data service.</strong> The <em>sole</em> consumer of the\n      search indices. Exposes filtered search, latest-per-equipment, and\n      fetch-by-run for the three measurement families (performance indicators,\n      health scores, alerts).</li>\n  <li><strong>Dashboard service.</strong> Composes core-data responses with\n      relational metadata &mdash; equipment masters, classification bands,\n      parameter definitions, feedback &mdash; into UI-ready payloads. It\n      <strong>never queries the search indices directly.</strong></li>\n  <li><strong>Chat assistant.</strong> A two-node graph: a remote diagnostic\n      agent produces verbose condition data, a local model extracts the precise\n      answer, and only the extracted answer is streamed to the client. Built by\n      a colleague; it consumes the same data path.</li>\n</ul>\n\n<h2>Why the layering is absolute</h2>\n\n<p>&ldquo;Only core data touches the indices&rdquo; is a rule, not a\nconvention, and it exists because the alternative decays predictably. The moment\na second service issues its own query, the meaning of a measurement is defined\nin two places &mdash; and these queries are not simple reads. They are\nstatus-gated (only runs the pipeline marked valid), refurbishment-gated, and\nselected by a domain-specific notion of &ldquo;latest&rdquo;. A second\nimplementation of that is not duplication, it is a second, quietly different\nanswer to &ldquo;what is this transformer's acidity?&rdquo;</p>\n\n<p>The same reasoning puts the composition in its own tier: the dashboard's job\nis joining measurements to metadata and shaping responses, and it holds no\nopinion about which measurements are real.</p>\n\n<h2>Guarantees</h2>\n\n<ul>\n  <li><strong>Re-running an ingestion is safe.</strong> Destination ids are\n      derived from record content, so overlapping windows and manual backfills\n      upsert. This is what makes the schedule restartable after an outage\n      without anyone reasoning about what was already written.</li>\n  <li><strong>Only valid runs are visible.</strong> Measurement documents carry\n      no status of their own; the runs index does. Valid run ids are resolved\n      first, then every other query is constrained to them &mdash; so a failed\n      or superseded pipeline run cannot leak a number onto a dashboard.</li>\n  <li><strong>Numbers are truncated, never rounded.</strong> A measured value\n      displayed to three decimals is truncated toward zero, because rounding\n      0.1239 up to 0.124 invents precision the instrument did not report.</li>\n  <li><strong>Schedules and retry policy are data, not code.</strong> Cadence\n      and retry counts live in configuration tables per service, so operations\n      can retime or re-tune an ingestion without a deployment.</li>\n  <li><strong>Missing source columns surface as null.</strong> Four detail\n      fields have no column in the source schema yet. They return null rather\n      than a placeholder or an omitted key, so the absence is visible to the\n      client instead of being disguised.</li>\n</ul>\n\n<h2>Failure behaviour</h2>\n\n<ul>\n  <li><strong>A transient store failure serves the last good answer.</strong>\n      Read endpoints cache their successful responses keyed by request body; if\n      a later identical call fails on an upstream or server error, the previous\n      response is returned instead of a 500. <strong>Client errors are never\n      masked</strong> &mdash; a not-found or a validation failure propagates,\n      because those are answers, not outages.</li>\n  <li><strong>Retries are bounded and logged per attempt.</strong> A shared\n      decorator retries a configured number of times with a fixed delay and then\n      fails loudly, rather than retrying forever against a source that is\n      genuinely down.</li>\n  <li><strong>Rate limits are obeyed, not fought.</strong> The permit ingestion\n      treats a 429 as a pause-and-continue rather than a counted failure, and\n      sleeps between pages by default.</li>\n  <li><strong>A capped lookup warns when it saturates.</strong> Run-id\n      resolution has a result ceiling; on reaching it the service logs that some\n      valid runs may have been excluded, rather than silently returning a\n      truncated set. It is a known limit with a loud edge, not a silent\n      one.</li>\n</ul>\n\n<h2>Where it is weaker than it looks</h2>\n\n<p>The stale-response cache is per process and in memory, so with more than one\nreplica the fallback is only as good as which replica the request lands on. The\nrun-id ceiling above is a real cap rather than pagination. And the ingestion\nservices share conventions by copy rather than by a common library &mdash; six\nretry helpers with the same shape, which is fine while they stay identical and a\nliability the first time one needs to change.</p>",
         "lld": "<p>The gate is the part worth reading closely, because almost all of\nit is domain judgement encoded as a small amount of code, and every branch in it\nwas chosen against a real data pathology.</p>\n\n<h2>Deciding what a refurbished asset may show</h2>\n\n<p>Two flags on a refurbishment record produce a per-equipment cutoff &mdash; the\nearliest measurement date still allowed to appear:</p>\n\n<ul>\n  <li><strong>Work-done flag is 0 &rarr; hide everything.</strong> Either the\n      refurbishment is in progress, or it is finished but no post-work report has\n      been ingested yet. In both cases every record on file predates the work, so\n      none of it describes the current machine. Implemented as a sentinel cutoff\n      of &ldquo;the maximum representable date&rdquo;, so no real measurement can\n      ever satisfy it and the comparison needs no special case.</li>\n  <li><strong>Work-done flag is 1 and report flag is 1 &rarr; cut at the end\n      date.</strong> The work finished and a fresh report exists, so measurements\n      from the end date onward are valid and earlier ones are not.</li>\n  <li><strong>Anything else &rarr; no restriction.</strong> Covers a missing\n      flag, the 1-and-0 combination that should not occur, and a 1-and-1 pair\n      whose end date will not parse.</li>\n</ul>\n\n<p>The sentinel is worth dwelling on as a technique: expressing &ldquo;hide\neverything&rdquo; as an unreachable cutoff rather than a boolean means the\nvisibility check stays a single date comparison. There is no second code path\nfor the hide-all case, and therefore no second code path to get wrong.</p>\n\n<h3>The permissive default, stated as a decision</h3>\n\n<p>The third branch is the one a reviewer should push on. When the flags do not\nresolve, the data shows. The alternative &mdash; hide when uncertain &mdash; is\nthe instinct most engineers have, and it is wrong here for an asymmetry\nreason: <strong>a blank panel is indistinguishable from a panel with nothing to\nreport</strong>, so a suppression bug is invisible to the operator and can\npersist indefinitely, while an over-showing bug is visible to the domain expert\nwho knows that transformer was refurbished last spring. Choose the failure your\nusers can detect. That reasoning is written into the code, not left in\nsomebody's head.</p>\n\n<h2>The overloaded field, and why it is not just a parse bug</h2>\n\n<p>The cutoff compares against the measurement's own test date, not its ingest\ntimestamp &mdash; the tests inside one pipeline run are performed on different\ndays, so ingest time would gate them all identically and wrongly.</p>\n\n<p>That field, though, holds two kinds of value in the real feed. Usually a\ndate. Sometimes a standards citation &mdash; naming the method the measurement\nwas interpreted under, not when it happened. So the rule is: <strong>a record\nwhose test date is absent or unparseable is hidden whenever a cutoff\napplies</strong>, and shown when none does. A citation cannot be proven to\npost-date a refurbishment, and the conservative reading is the only sound\none.</p>\n\n<p>Adjacent to that, the extraction is pinned to the document's top-level field\nand deliberately ignores a same-named nested field and a raw payload copy that\nalso carry &ldquo;reference&rdquo;. Three plausible sources, one correct, and\nthe tests assert the wrong two stay ignored even when present.</p>\n\n<h2>Selecting &ldquo;the latest&rdquo;, and the tie that had no rule</h2>\n\n<p>The current value of an indicator is the newest record per code, chosen\nindependently of which pipeline run produced it &mdash; a value should not be\nsuppressed merely because its run differs from the one that produced the health\nscore. Candidacy requires passing the refurbishment gate and having a parseable\ntest date; among candidates the latest test date wins.</p>\n\n<p><strong>Ties on that date were originally resolved by list order.</strong>\nTwo records sharing one test date meant the last one encountered won, which is\nnot a rule so much as an accident of iteration &mdash; and it made the displayed\nvalue depend on upstream result ordering that nothing guarantees. A tie-breaker\nnow falls back to the record's ingest timestamp, the field the older\naggregation-based selection had sorted on before the pipeline moved to test\ndates. The tie-break is written so that when either side's timestamp is\nmissing or unparseable, the previous last-one-wins behaviour still applies,\nwhich keeps the change strictly additive.</p>\n\n<p>The test for it is the part I would point at: it asserts the same two records\nin <em>both</em> list orders, which is what makes it a test of the tie-breaker\nrather than a test that happens to pass because the winner sat last in the\nfixture.</p>\n\n<h2>Tense, which is not a cosmetic concern</h2>\n\n<p>&ldquo;Refurbished&rdquo; and &ldquo;currently being refurbished&rdquo; were\ninitially the same flag, so a unit refurbished years ago rendered a message\nclaiming work was underway. They are now separate: one records that the asset is\na fully refurbished unit, the other that the end date has not yet passed, with\nthe end date itself still counting as in-progress since work completes at the\nclose of that day. A monitoring dashboard that reports a years-old overhaul as\nhappening now is not making a wording mistake &mdash; it is making a claim about\nplant state, to people whose job is knowing plant state.</p>\n\n<h2>Truncation over rounding</h2>\n\n<p>Displayed values are truncated toward zero rather than rounded: 1.999 to two\nplaces is 1.99, not 2.0. For instrument readings compared against alarm\nthresholds, rounding can carry a value across a limit it never actually\ncrossed. Timestamps are likewise reduced to minute precision for display, since\nsub-second detail on a daily lab measurement is noise presented as\nprecision.</p>\n\n<h2>What the tests cover, and what they do not</h2>\n\n<p>182 test functions across the three services I worked on, concentrated where\nthe judgement is rather than spread evenly: the gate and selection logic carry\nthe largest single file, alongside classification mapping, plant resolution,\nreport upload rules, date defaults, query-builder snapshots and the truncation\nserialisers. The one I would defend hardest asserts that records with mismatched\nrun and equipment keys are never merged in a cross-source response &mdash; the\nfailure it prevents is one transformer's health score displayed against\nanother's indicator values, which no amount of eyeballing a dashboard would\ncatch.</p>\n\n<p><strong>What is not covered:</strong> these are unit tests over fakes. There\nis no integration test standing up a real search cluster or database, no load\ntest, and no measurement of ingestion volume or end-to-end latency &mdash; which\nis why the throughput slot in the metric strip is empty rather than\nestimated.</p>",
         "content": ""
