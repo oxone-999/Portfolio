@@ -194,8 +194,13 @@ const html = `<!doctype html>
   @media print {
     body { background: #fff; }
     .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; }
-    section { break-inside: avoid; }
+    /* Deliberately no break-inside rule on section: Experience is one section,
+       so forbidding a break inside it pushes the whole block to a fresh page
+       the moment it outgrows the space left on page 1 — leaving a half-empty
+       page and spilling onto a third. Keep a single job entry together
+       instead, which is the granularity that actually matters. */
     .entry { break-inside: avoid; }
+    h2 { break-after: avoid; }
   }
 </style>
 </head>

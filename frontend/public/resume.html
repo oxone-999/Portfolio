@@ -106,8 +106,13 @@
   @media print {
     body { background: #fff; }
     .sheet { margin: 0; padding: 0; box-shadow: none; max-width: none; }
-    section { break-inside: avoid; }
+    /* Deliberately no break-inside rule on section: Experience is one section,
+       so forbidding a break inside it pushes the whole block to a fresh page
+       the moment it outgrows the space left on page 1 — leaving a half-empty
+       page and spilling onto a third. Keep a single job entry together
+       instead, which is the granularity that actually matters. */
     .entry { break-inside: avoid; }
+    h2 { break-after: avoid; }
   }
 </style>
 </head>
@@ -115,7 +120,7 @@
   <div class="sheet">
     <header class="mast">
       <h1>Anuj Verma</h1>
-      <div class="contact">Software Developer <span class="sep">·</span> Madhya Pradesh, India <span class="sep">·</span> anujverma11062002@gmail.com <span class="sep">·</span> +91 62667 54858</div>
+      <div class="contact">Full Stack Data Engineer <span class="sep">·</span> Madhya Pradesh, India <span class="sep">·</span> anujverma11062002@gmail.com <span class="sep">·</span> +91 62667 54858</div>
     </header>
 
       <section>
@@ -123,12 +128,12 @@
         
         <div class="row">
           <div class="k">Status</div>
-          <div class="v">Software Developer at TCG Digital Solutions, Kolkata</div>
+          <div class="v">Full Stack Data Engineer at TCG Digital Solutions, Kolkata</div>
         </div>
 
         <div class="row">
           <div class="k">Skills</div>
-          <div class="v">C, C++, C Sharp, Python, JavaScript, React.js, FastAPI, MongoDB, Node.js, Kafka, Redis, Laravel, Docker, Jenkins, PHP</div>
+          <div class="v">Python, TypeScript, JavaScript, C++, FastAPI, Node.js, Express, React, Kafka, Airflow, PySpark, pandas, ElasticSearch, MariaDB, Redis, SQLAlchemy, Docker, Kubernetes, AWS S3</div>
         </div>
 
         <div class="row">
@@ -150,8 +155,9 @@
       <section>
         <h2>Synopsis</h2>
         <ul>
-          <li>1+ years experience in tech industry, 2+ years in full-stack development.</li>
+          <li>2+ years experience in the tech industry, 3+ years in full-stack development.</li>
           <li>Experience designing and building scalable web applications, real-time data processing systems, and automation tools.</li>
+          <li>Build data platforms end to end: scheduled ingestion from heterogeneous sources, idempotent pipelines, layered service architectures, and container orchestration across Docker Swarm and Kubernetes.</li>
           <li>Developed solutions for real-time alerts, AI-powered data recognition, and live monitoring.</li>
           <li>Built platforms for managing and visualizing live data, ensuring secure access and seamless user interactions.</li>
           <li>Created tools to simplify application development, automating repetitive tasks and improving efficiency.</li>
@@ -164,10 +170,10 @@
         <h2>Experience</h2>
         
         <div class="entry">
-          <div class="when">09/2024 - Current</div>
+          <div class="when">09/2024 - 01/2026</div>
           <div class="what">
             <div class="head">
-              <span class="role">Software Developer</span>
+              <span class="role">Full Stack Software Engineer</span>
               <span class="org">TCG Digital Solutions, Kolkata</span>
             </div>
             <ul>
@@ -181,6 +187,22 @@
           </div>
         </div>
         <div class="entry">
+          <div class="when">02/2026 - Current</div>
+          <div class="what">
+            <div class="head">
+              <span class="role">Full Stack Data Engineer</span>
+              <span class="org">TCG Digital Solutions, Kolkata</span>
+            </div>
+            <ul>
+          <li>Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.</li>
+          <li>Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.</li>
+          <li>Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.</li>
+          <li>Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.</li>
+          <li>Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="entry">
           <div class="when">05/2023 - 07/2023</div>
           <div class="what">
             <div class="head">
@@ -190,9 +212,7 @@
             <ul>
           <li>Designed a web app to automate CRUD app and Dockerfile creation, reducing manual development efforts by 70% through user-provided specifications.</li>
           <li>Developed a versatile JSON editor tool for parsing and validation, improving data accuracy, and enabling 50% faster web app generation using NPM.</li>
-          <li>Integrated CSV file upload functionality allowing users to populate apps easily, increasing data entry efficiency by 60% through an intuitive interface.</li>
           <li>Built a robust backend to manage user accounts and app generation, supporting over 1000 user-generated apps with optimized data storage and processing.</li>
-          <li>Developed a responsive frontend UI on the Ezextend framework, ensuring seamless interaction with backend APIs, and improving user engagement by 40%.</li>
             </ul>
           </div>
         </div>

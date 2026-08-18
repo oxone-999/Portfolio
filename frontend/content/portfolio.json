@@ -16,7 +16,7 @@
       "behance": "https://www.behance.net/anujverma9",
       "website": ""
     },
-    "resumeTitle": "Software Developer"
+    "resumeTitle": "Full Stack Data Engineer"
   },
   "summary": {
     "SDE": "",
@@ -43,7 +43,13 @@
       "org": "TCG Digital Solutions",
       "location": "Kolkata",
       "period": "02/2026 - Current",
-      "highlights": []
+      "highlights": [
+        "Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.",
+        "Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.",
+        "Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.",
+        "Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.",
+        "Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators."
+      ]
     },
     {
       "role": "Software Developer Intern",
@@ -53,9 +59,7 @@
       "highlights": [
         "Designed a web app to automate CRUD app and Dockerfile creation, reducing manual development efforts by 70% through user-provided specifications.",
         "Developed a versatile JSON editor tool for parsing and validation, improving data accuracy, and enabling 50% faster web app generation using NPM.",
-        "Integrated CSV file upload functionality allowing users to populate apps easily, increasing data entry efficiency by 60% through an intuitive interface.",
-        "Built a robust backend to manage user accounts and app generation, supporting over 1000 user-generated apps with optimized data storage and processing.",
-        "Developed a responsive frontend UI on the Ezextend framework, ensuring seamless interaction with backend APIs, and improving user engagement by 40%."
+        "Built a robust backend to manage user accounts and app generation, supporting over 1000 user-generated apps with optimized data storage and processing."
       ]
     }
   ],
@@ -80,7 +84,7 @@
           "Kafka",
           "Redis",
           "Docker",
-          "Elasticsearch",
+          "ElasticSearch",
           "Logstash",
           "Kibana",
           "JMeter",
@@ -1726,23 +1730,27 @@
     }
   ],
   "sidebar": {
-    "status": "Software Developer at TCG Digital Solutions, Kolkata",
+    "status": "Full Stack Data Engineer at TCG Digital Solutions, Kolkata",
     "skills": [
-      "C",
-      "C++",
-      "C Sharp",
       "Python",
+      "TypeScript",
       "JavaScript",
-      "React.js",
+      "C++",
       "FastAPI",
-      "MongoDB",
       "Node.js",
+      "Express",
+      "React",
       "Kafka",
+      "Airflow",
+      "PySpark",
+      "pandas",
+      "ElasticSearch",
+      "MariaDB",
       "Redis",
-      "Laravel",
+      "SQLAlchemy",
       "Docker",
-      "Jenkins",
-      "PHP"
+      "Kubernetes",
+      "AWS S3"
     ],
     "interests": [
       "Software Development",
@@ -1769,8 +1777,9 @@
     ]
   },
   "synopsis": [
-    "1+ years experience in tech industry, 2+ years in full-stack development.",
+    "2+ years experience in the tech industry, 3+ years in full-stack development.",
     "Experience designing and building scalable web applications, real-time data processing systems, and automation tools.",
+    "Build data platforms end to end: scheduled ingestion from heterogeneous sources, idempotent pipelines, layered service architectures, and container orchestration across Docker Swarm and Kubernetes.",
     "Developed solutions for real-time alerts, AI-powered data recognition, and live monitoring.",
     "Built platforms for managing and visualizing live data, ensuring secure access and seamless user interactions.",
     "Created tools to simplify application development, automating repetitive tasks and improving efficiency.",
