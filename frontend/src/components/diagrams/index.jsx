@@ -11,6 +11,7 @@ import GdeltRiskRadarPipeline from './GdeltRiskRadarPipeline';
 import CcwcSinglePassScan from './CcwcSinglePassScan';
 import AssistantTurnRouting from './AssistantTurnRouting';
 import RigArtBoundary from './RigArtBoundary';
+import OneSpecTwoOrchestrators from './OneSpecTwoOrchestrators';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -33,6 +34,7 @@ const REGISTRY = {
   'ccwc-single-pass-scan': CcwcSinglePassScan,
   'assistant-turn-routing': AssistantTurnRouting,
   'rig-art-boundary': RigArtBoundary,
+  'one-spec-two-orchestrators': OneSpecTwoOrchestrators,
 };
 
 export default function Diagram({ name }) {
