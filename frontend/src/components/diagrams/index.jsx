@@ -12,6 +12,7 @@ import CcwcSinglePassScan from './CcwcSinglePassScan';
 import AssistantTurnRouting from './AssistantTurnRouting';
 import RigArtBoundary from './RigArtBoundary';
 import OneSpecTwoOrchestrators from './OneSpecTwoOrchestrators';
+import RefurbishmentVisibilityGate from './RefurbishmentVisibilityGate';
 
 /**
  * Diagrams are React components keyed by name, referenced from a project's
@@ -35,6 +36,7 @@ const REGISTRY = {
   'assistant-turn-routing': AssistantTurnRouting,
   'rig-art-boundary': RigArtBoundary,
   'one-spec-two-orchestrators': OneSpecTwoOrchestrators,
+  'refurbishment-visibility-gate': RefurbishmentVisibilityGate,
 };
 
 export default function Diagram({ name }) {
