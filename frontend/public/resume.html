@@ -166,17 +166,29 @@
           <li>2+ years experience in the tech industry, 3+ years in full-stack development.</li>
           <li>Experience designing and building scalable web applications, real-time data processing systems, and automation tools.</li>
           <li>Build data platforms end to end: scheduled ingestion from heterogeneous sources, idempotent pipelines, layered service architectures, and container orchestration across Docker Swarm and Kubernetes.</li>
-          <li>Developed solutions for real-time alerts, AI-powered data recognition, and live monitoring.</li>
-          <li>Built platforms for managing and visualizing live data, ensuring secure access and seamless user interactions.</li>
-          <li>Created tools to simplify application development, automating repetitive tasks and improving efficiency.</li>
-          <li>Optimized system performance, enhanced collaboration, and streamlined workflows.</li>
-          <li>Passionate about building innovative solutions that drive automation, scalability, and user experience.</li>
+          <li>Shipped real-time alerting, AI-powered data recognition, and live-monitoring platforms with secure, role-based access.</li>
         </ul>
       </section>
 
       <section>
         <h2>Experience</h2>
         
+        <div class="entry">
+          <div class="when">02/2026 - Current</div>
+          <div class="what">
+            <div class="head">
+              <span class="role">Full Stack Data Engineer</span>
+              <span class="org">TCG Digital Solutions, Kolkata</span>
+            </div>
+            <ul>
+          <li>Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.</li>
+          <li>Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.</li>
+          <li>Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.</li>
+          <li>Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.</li>
+          <li>Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators.</li>
+            </ul>
+          </div>
+        </div>
         <div class="entry">
           <div class="when">09/2024 - 01/2026</div>
           <div class="what">
@@ -191,22 +203,6 @@
           <li>Built web service for live camera visualization and violation detection, enhancing security monitoring by 30%, with role-based access control and real-time processing.</li>
           <li>Containerized services using Docker, improving deployment efficiency and enabling 50% faster onboarding for new developers.</li>
           <li>Managed SQL database operations with MariaDB and SQLAlchemy, optimizing data retrieval, tracking millions of violation records, and reducing query execution time by 60%.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="entry">
-          <div class="when">02/2026 - Current</div>
-          <div class="what">
-            <div class="head">
-              <span class="role">Full Stack Data Engineer</span>
-              <span class="org">TCG Digital Solutions, Kolkata</span>
-            </div>
-            <ul>
-          <li>Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.</li>
-          <li>Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.</li>
-          <li>Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.</li>
-          <li>Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.</li>
-          <li>Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators.</li>
             </ul>
           </div>
         </div>

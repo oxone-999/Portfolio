@@ -25,6 +25,19 @@
   },
   "experience": [
     {
+      "role": "Full Stack Data Engineer",
+      "org": "TCG Digital Solutions",
+      "location": "Kolkata",
+      "period": "02/2026 - Current",
+      "highlights": [
+        "Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.",
+        "Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.",
+        "Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.",
+        "Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.",
+        "Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators."
+      ]
+    },
+    {
       "role": "Full Stack Software Engineer",
       "org": "TCG Digital Solutions",
       "location": "Kolkata",
@@ -36,19 +49,6 @@
         "Built web service for live camera visualization and violation detection, enhancing security monitoring by 30%, with role-based access control and real-time processing.",
         "Containerized services using Docker, improving deployment efficiency and enabling 50% faster onboarding for new developers.",
         "Managed SQL database operations with MariaDB and SQLAlchemy, optimizing data retrieval, tracking millions of violation records, and reducing query execution time by 60%."
-      ]
-    },
-    {
-      "role": "Full Stack Data Engineer",
-      "org": "TCG Digital Solutions",
-      "location": "Kolkata",
-      "period": "02/2026 - Current",
-      "highlights": [
-        "Built the ingestion layer for a transformer condition-monitoring platform, moving 100K–1M records daily from six source systems — plant historian, ERP, permit and incident APIs, and two SQL databases — for a production fleet of 50–200 transformers, replacing condition reporting previously compiled by hand.",
-        "Made every ingestion idempotent by deriving each destination identifier from record content, so overlapping windows and manual backfills upsert instead of double-counting — removing the de-duplication step entirely and making the daily schedule safely restartable after an outage.",
-        "Designed the domain rules governing which stored measurements remain valid after an asset is refurbished, preventing trend charts from being plotted across an equipment change, and covered the data services with 182 test functions.",
-        "Built pluggable Docker Swarm and Kubernetes deployers behind a single interface for an event-pipeline platform running in production across multiple teams, letting a pipeline drawn in the browser deploy to either orchestrator from one specification and replacing hand-written deployment files.",
-        "Cut reconciliation cost from O(flows) to O(orchestrators) API calls per cycle — about 3 calls per cycle instead of 3 per flow per cycle — using batched cluster-wide reads, and replaced delete-and-recreate restarts with zero-downtime in-place rolling restarts on both orchestrators."
       ]
     },
     {
@@ -1780,11 +1780,7 @@
     "2+ years experience in the tech industry, 3+ years in full-stack development.",
     "Experience designing and building scalable web applications, real-time data processing systems, and automation tools.",
     "Build data platforms end to end: scheduled ingestion from heterogeneous sources, idempotent pipelines, layered service architectures, and container orchestration across Docker Swarm and Kubernetes.",
-    "Developed solutions for real-time alerts, AI-powered data recognition, and live monitoring.",
-    "Built platforms for managing and visualizing live data, ensuring secure access and seamless user interactions.",
-    "Created tools to simplify application development, automating repetitive tasks and improving efficiency.",
-    "Optimized system performance, enhanced collaboration, and streamlined workflows.",
-    "Passionate about building innovative solutions that drive automation, scalability, and user experience."
+    "Shipped real-time alerting, AI-powered data recognition, and live-monitoring platforms with secure, role-based access."
   ],
   "accomplishments": [
     "Cleared JEE Mains and JEE Advanced, secured admission to IIT Kharagpur.",
