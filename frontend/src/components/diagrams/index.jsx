@@ -11,6 +11,8 @@ import GdeltRiskRadarPipeline from './GdeltRiskRadarPipeline';
 import CcwcSinglePassScan from './CcwcSinglePassScan';
 import AssistantTurnRouting from './AssistantTurnRouting';
 import RigArtBoundary from './RigArtBoundary';
+import LeaveRefreshPipeline from './LeaveRefreshPipeline';
+import PerCapitaRateNormalisation from './PerCapitaRateNormalisation';
 import OneSpecTwoOrchestrators from './OneSpecTwoOrchestrators';
 import RefurbishmentVisibilityGate from './RefurbishmentVisibilityGate';
 
@@ -35,6 +37,8 @@ const REGISTRY = {
   'ccwc-single-pass-scan': CcwcSinglePassScan,
   'assistant-turn-routing': AssistantTurnRouting,
   'rig-art-boundary': RigArtBoundary,
+  'leave-refresh-pipeline': LeaveRefreshPipeline,
+  'per-capita-rate-normalisation': PerCapitaRateNormalisation,
   'one-spec-two-orchestrators': OneSpecTwoOrchestrators,
   'refurbishment-visibility-gate': RefurbishmentVisibilityGate,
 };

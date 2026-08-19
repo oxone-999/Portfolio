@@ -18,6 +18,8 @@ import Contact from './components/Contact';
 import Log from './components/Log';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Page, Eyebrow } from './components/Plate';
+import RouteTransition from './components/motion/RouteTransition';
+import CustomCursor from './components/motion/CustomCursor';
 
 // Split out of the main bundle: the auth/CRUD UI (and its Supabase writer
 // surface) has no reason to ship to every visitor of the public site.
@@ -49,9 +51,11 @@ function LensSync() {
     document.title = LENS_COPY[lens].title;
   }, [lens]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  /* Scroll reset lives in RouteTransition now, not here. Firing it on
+     pathname change scrolled the *outgoing* page, which is still mounted for
+     its exit animation, so leaving the bottom of a long page visibly yanked
+     that page to the top before it faded. RouteTransition waits for the exit
+     to finish (and handles the reduced-motion case, where there is no exit). */
 
   return null;
 }
@@ -92,10 +96,16 @@ function LensRoutes() {
 
 function AppContent() {
   usePortfolioContentLoader();
+  const location = useLocation();
+  // The admin portal and its Suspense boundary opt out of the page-transition
+  // fade — it's a tool, not part of the reading experience, and swapping it
+  // mid-fade would delay the auth check it does on mount.
+  const isAdmin = location.pathname.startsWith(ADMIN_ROUTE);
 
   return (
     <div className="flex min-h-screen flex-col bg-paper">
       <LensSync />
+      <CustomCursor routeKey={location.pathname} />
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:border focus:border-ch focus:bg-paper focus:px-4 focus:py-2 focus:font-data focus:text-[11px] focus:uppercase focus:tracking-[0.1em] focus:text-ch"
@@ -105,19 +115,26 @@ function AppContent() {
       <NavBar />
       <div id="content" className="flex-grow">
         <ErrorBoundary>
-          <Routes>
-            <Route path="/">{LensRoutes()}</Route>
-            <Route path="/3d">{LensRoutes()}</Route>
-            <Route
-              path={ADMIN_ROUTE}
-              element={
-                <Suspense fallback={null}>
-                  <AdminPortal />
-                </Suspense>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          {isAdmin ? (
+            <Routes location={location}>
+              <Route
+                path={ADMIN_ROUTE}
+                element={
+                  <Suspense fallback={null}>
+                    <AdminPortal />
+                  </Suspense>
+                }
+              />
+            </Routes>
+          ) : (
+            <RouteTransition locationKey={location.pathname}>
+              <Routes location={location}>
+                <Route path="/">{LensRoutes()}</Route>
+                <Route path="/3d">{LensRoutes()}</Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </RouteTransition>
+          )}
         </ErrorBoundary>
       </div>
       <Footer />

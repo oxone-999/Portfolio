@@ -1,5 +1,9 @@
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { motion, useReducedMotion, useScroll, useSpring } from 'motion/react';
 import { Page, Section, Eyebrow } from './Plate';
+import Reveal from './motion/Reveal';
+import { StaggerGroup, StaggerItem } from './motion/StaggerList';
 import StackPlate from './StackPlate';
 import { SYSTEMS } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
@@ -17,14 +21,27 @@ import { useLens } from '../hooks/useLens';
  */
 export default function About() {
   const lens = useLens();
+  const reduced = useReducedMotion();
   const skills = useSelector((state) => state.admin.content.skills?.[lens] || []);
   const projects = useSelector((state) => state.admin.content.projects?.[lens] || []);
   const journey = useSelector((state) => state.admin.content.journey || []);
   const timeline = [...journey].reverse();
 
+  /* Tracks how far down the timeline list the visitor has scrolled, so the
+   * rail beside it fills as a read progress indicator — representing actual
+   * scroll position through actual content, not a decorative loop. */
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 0.85', 'end 0.4'],
+  });
+  // Smoothed rather than a raw 1:1 readout, so the rail settles rather than
+  // jumping on every scroll tick.
+  const railScale = useSpring(scrollYProgress, { stiffness: 300, damping: 40, mass: 0.5 });
+
   return (
     <Page>
-      <header>
+      <Reveal as="header">
         <Eyebrow>About</Eyebrow>
         <h1 className="mb-5 max-w-[16ch] text-[clamp(34px,5.6vw,56px)] leading-[1.02]">
           Two disciplines, <span className="text-ch">one pipeline habit</span>
@@ -47,7 +64,7 @@ export default function About() {
         >
           Résumé
         </a>
-      </header>
+      </Reveal>
 
       <Section
         label="Stack"
@@ -67,29 +84,52 @@ export default function About() {
       >
         <h2 className="mb-6 text-[clamp(24px,3.2vw,30px)]">Path</h2>
         {timeline.length > 0 ? (
-          <ol className="border-t border-rule">
-            {timeline.map((item, i) => (
-              <li
-                key={item.id || `${item.title}-${i}`}
-                className="grid gap-1 border-b border-rule-soft py-4 md:grid-cols-[132px_minmax(0,1fr)_auto] md:items-baseline md:gap-6"
+          <div ref={timelineRef} className="relative pl-3">
+            {/* A read-progress rail, not a decoration: it fills exactly as far
+                as the visitor has actually scrolled through this list. */}
+            {!reduced ? (
+              <div
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-px bg-rule-soft"
               >
-                <span className="font-data text-[11px] tracking-wide text-ch tabular-nums">
-                  {item.duration}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="text-[17px] leading-snug text-ink">
-                    {item.title}
-                  </h3>
-                  {item.organization ? (
-                    <p className="text-[14px] text-ink-2">{item.organization}</p>
-                  ) : null}
-                </div>
-                <span className="font-data text-[9.5px] uppercase tracking-[0.09em] text-ink-3">
-                  {item.typeLabel}
-                </span>
-              </li>
-            ))}
-          </ol>
+                <motion.div
+                  className="w-full origin-top bg-ch"
+                  style={{ scaleY: railScale, height: '100%' }}
+                />
+              </div>
+            ) : null}
+
+            {/* Keyed on the ids for the same reason as Home's list — the
+                bundled-to-Supabase swap re-keys every row. See StaggerList.jsx. */}
+            <StaggerGroup
+              key={timeline.map((t) => t.id || t.title).join('|')}
+              as="ol"
+              className="border-t border-rule"
+            >
+              {timeline.map((item, i) => (
+                <StaggerItem
+                  key={item.id || `${item.title}-${i}`}
+                  as="li"
+                  className="grid gap-1 border-b border-rule-soft py-4 md:grid-cols-[132px_minmax(0,1fr)_auto] md:items-baseline md:gap-6"
+                >
+                  <span className="font-data text-[11px] tracking-wide text-ch tabular-nums">
+                    {item.duration}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] leading-snug text-ink">
+                      {item.title}
+                    </h3>
+                    {item.organization ? (
+                      <p className="text-[14px] text-ink-2">{item.organization}</p>
+                    ) : null}
+                  </div>
+                  <span className="font-data text-[9.5px] uppercase tracking-[0.09em] text-ink-3">
+                    {item.typeLabel}
+                  </span>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
         ) : (
           <p className="border border-rule bg-paper-2 p-5 text-[14.5px] text-ink-2">
             No timeline entries yet.

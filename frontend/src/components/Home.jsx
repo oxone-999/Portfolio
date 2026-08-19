@@ -1,9 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'motion/react';
 import { Page, Section, Metric, MetricRow, Tag, Eyebrow } from './Plate';
+import Reveal from './motion/Reveal';
+import { StaggerGroup, StaggerItem } from './motion/StaggerList';
 import { href, slugify, LENS_COPY, SYSTEMS, statusTone } from '../utils/lens';
 import { useLens } from '../hooks/useLens';
 import { hero as HERO } from '../content';
+import { FADE_UP, STAGGER_CONTAINER } from '../utils/motionVariants';
 
 /**
  * Hero copy comes from content/portfolio.json, alongside every other piece
@@ -13,6 +17,7 @@ import { hero as HERO } from '../content';
 
 export default function Home() {
   const lens = useLens();
+  const reduced = useReducedMotion();
   const projects = useSelector(
     (state) => state.admin.content.projects?.[lens] || [],
   );
@@ -24,44 +29,64 @@ export default function Home() {
   const shipped = projects.filter((p) => p.status !== 'Archived');
   const selected = shipped.slice(0, 3);
 
+  /* The hero animates once on mount, not on scroll (it's already on screen),
+   * which is why this uses initial/animate rather than Reveal's whileInView.
+   * Reduced-motion visitors get neither prop, so these render as plain,
+   * already-settled elements. */
+  const heroGroup = reduced ? {} : { initial: 'hidden', animate: 'visible', variants: STAGGER_CONTAINER };
+  const heroItem = reduced ? {} : { variants: FADE_UP };
+
   return (
     <Page className="pt-32">
       {/* ---- hero: the thesis ---- */}
-      <header>
-        <Eyebrow>{hero.eyebrow || copy.eyebrow}</Eyebrow>
-        <h1 className="mb-5 max-w-[15ch] text-[clamp(38px,6.6vw,64px)] leading-[1.01]">
+      <motion.header {...heroGroup}>
+        <motion.div {...heroItem}>
+          <Eyebrow>{hero.eyebrow || copy.eyebrow}</Eyebrow>
+        </motion.div>
+        <motion.h1
+          {...heroItem}
+          className="mb-5 max-w-[15ch] text-[clamp(38px,6.6vw,64px)] leading-[1.01]"
+        >
           {hero.headline[0]} <span className="text-ch">{hero.headline[1]}</span>
-        </h1>
-        <p className="mb-9 max-w-[54ch] text-[18px] leading-relaxed text-ink-2">
+        </motion.h1>
+        <motion.p
+          {...heroItem}
+          className="mb-9 max-w-[54ch] text-[18px] leading-relaxed text-ink-2"
+        >
           {hero.lede}
-        </p>
+        </motion.p>
 
-        <MetricRow>
-          {hero.metrics.map((m) => (
+        <motion.div {...heroItem}>
+          <MetricRow>
+            {hero.metrics.map((m) => (
+              <Metric
+                key={m.label}
+                figure={m.value}
+                unit={m.unit}
+                label={m.label}
+                source={m.source}
+              />
+            ))}
             <Metric
-              key={m.label}
-              figure={m.value}
-              unit={m.unit}
-              label={m.label}
-              source={m.source}
+              figure={shipped.length}
+              label={lens === SYSTEMS ? 'Projects shipped' : 'Pieces published'}
+              source="From content"
             />
-          ))}
-          <Metric
-            figure={shipped.length}
-            label={lens === SYSTEMS ? 'Projects shipped' : 'Pieces published'}
-            source="From content"
-          />
-        </MetricRow>
+          </MetricRow>
+        </motion.div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-data text-[10px] uppercase tracking-[0.06em] text-ink-3">
+        <motion.div
+          {...heroItem}
+          className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-data text-[10px] uppercase tracking-[0.06em] text-ink-3"
+        >
           {skills.slice(0, 6).map((skill, i) => (
             <span key={skill.id} className={i === 0 ? 'text-ch' : undefined}>
               {i > 0 ? '· ' : ''}
               {skill.name}
             </span>
           ))}
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
 
       {/* ---- selected work ---- */}
       <Section
@@ -71,32 +96,46 @@ export default function Home() {
         <h2 className="mb-3 text-[clamp(25px,3.4vw,32px)]">{copy.workLabel}</h2>
         <p className="mb-7 max-w-[58ch] text-ink-2">{copy.workBlurb}</p>
 
+        {/* StaggerGroup is keyed on the ids so it remounts when bundled content
+            is replaced by the Supabase rows — otherwise the re-keyed children
+            mount into an already-fired `once` trigger and stay invisible.
+            See the note in StaggerList.jsx. */}
         {selected.length > 0 ? (
-          <ul className="border-t border-rule">
+          <StaggerGroup
+            key={selected.map((p) => p.id).join('|')}
+            as="ul"
+            className="border-t border-rule"
+          >
             {selected.map((project) => (
-              <li key={project.id} className="border-b border-rule-soft">
-                <Link
-                  to={href(lens, `/work/${slugify(project.name)}`)}
-                  className="group grid gap-2 py-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-baseline md:gap-8"
-                >
-                  <div className="min-w-0">
-                    <h3 className="mb-1 text-[19px] text-ink transition-colors group-hover:text-ch">
-                      {project.name}
-                    </h3>
-                    <p className="max-w-[62ch] text-[14.5px] text-ink-2">
-                      {project.description}
-                    </p>
-                    <div className="mt-2.5 flex flex-wrap gap-x-2 gap-y-1 font-data text-[10px] uppercase tracking-[0.06em] text-ink-3">
-                      {(project.skills || []).slice(0, 6).map((s) => (
-                        <span key={s}>{s}</span>
-                      ))}
+              <StaggerItem
+                key={project.id}
+                as="li"
+                className="border-b border-rule-soft"
+              >
+                <motion.div whileHover={reduced ? undefined : { x: 6 }} transition={{ duration: 0.18 }}>
+                  <Link
+                    to={href(lens, `/work/${slugify(project.name)}`)}
+                    className="group grid gap-2 py-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-baseline md:gap-8"
+                  >
+                    <div className="min-w-0">
+                      <h3 className="mb-1 text-[19px] text-ink transition-colors group-hover:text-ch">
+                        {project.name}
+                      </h3>
+                      <p className="max-w-[62ch] text-[14.5px] text-ink-2">
+                        {project.description}
+                      </p>
+                      <div className="mt-2.5 flex flex-wrap gap-x-2 gap-y-1 font-data text-[10px] uppercase tracking-[0.06em] text-ink-3">
+                        {(project.skills || []).slice(0, 6).map((s) => (
+                          <span key={s}>{s}</span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  <Tag tone={statusTone(project.status)}>{project.status}</Tag>
-                </Link>
-              </li>
+                    <Tag tone={statusTone(project.status)}>{project.status}</Tag>
+                  </Link>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </ul>
+          </StaggerGroup>
         ) : (
           <p className="border border-rule bg-paper-2 p-5 text-[14.5px] text-ink-2">
             No entries yet for this lens.
@@ -113,22 +152,24 @@ export default function Home() {
 
       {/* ---- contact ---- */}
       <Section label="Contact" note="A real form, not a mailto in the footer.">
-        <h2 className="mb-3 text-[clamp(25px,3.4vw,32px)]">
-          {lens === SYSTEMS
-            ? 'Hiring, or want the architecture detail?'
-            : 'Commissions and collaborations'}
-        </h2>
-        <p className="mb-6 max-w-[54ch] text-ink-2">
-          {lens === SYSTEMS
-            ? 'Happy to walk through any of these systems in depth — the tradeoffs are more interesting than the diagrams.'
-            : 'Open to asset work and real-time art. Tell me the engine, the budget and the deadline.'}
-        </p>
-        <Link
-          to={href(lens, '/contact')}
-          className="inline-block border border-ch px-5 py-2.5 font-data text-[11px] uppercase tracking-[0.1em] text-ch transition-colors hover:bg-ch hover:text-paper"
-        >
-          Get in touch
-        </Link>
+        <Reveal>
+          <h2 className="mb-3 text-[clamp(25px,3.4vw,32px)]">
+            {lens === SYSTEMS
+              ? 'Hiring, or want the architecture detail?'
+              : 'Commissions and collaborations'}
+          </h2>
+          <p className="mb-6 max-w-[54ch] text-ink-2">
+            {lens === SYSTEMS
+              ? 'Happy to walk through any of these systems in depth — the tradeoffs are more interesting than the diagrams.'
+              : 'Open to asset work and real-time art. Tell me the engine, the budget and the deadline.'}
+          </p>
+          <Link
+            to={href(lens, '/contact')}
+            className="inline-block border border-ch px-5 py-2.5 font-data text-[11px] uppercase tracking-[0.1em] text-ch transition-colors hover:bg-ch hover:text-paper"
+          >
+            Get in touch
+          </Link>
+        </Reveal>
       </Section>
     </Page>
   );
